@@ -41,7 +41,7 @@ public class TheaterDao implements Crud, RandomId, UsageCheck {
                     .append(THEATER_ROWS, cur.getRows())
                     .append(THEATER_LOCATION, cur.getLocation())
                     .append(IMAGE_LINK, cur.getImageLink());
-            coll.insertOne(doc);
+            this.coll.insertOne(doc);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -55,7 +55,7 @@ public class TheaterDao implements Crud, RandomId, UsageCheck {
      */
     @Override
     public Document read(String id) {
-        Document document = coll.find(eq(ID, Integer.valueOf(id))).first();
+        Document document = this.coll.find(eq(ID, Integer.valueOf(id))).first();
         return document;
     }
     /**
@@ -64,7 +64,7 @@ public class TheaterDao implements Crud, RandomId, UsageCheck {
     @Override
     public List<Document> readAll() {
 
-        return coll.find().into(new ArrayList<Document>());
+        return this.coll.find().into(new ArrayList<Document>());
     }
     /**
      * @param document contain fields to update
@@ -78,13 +78,13 @@ public class TheaterDao implements Crud, RandomId, UsageCheck {
             if (read(document.get(ID).toString()) == null) {
                 return false;
             }
-            if (DaoUtils.checkAndSet(coll,THEATER_NAME,document)){
+            if (DaoUtils.checkAndSet(this.coll,THEATER_NAME,document)){
                 updated=true;
             }
-            if (DaoUtils.checkAndSet(coll,IMAGE_LINK,document)){
+            if (DaoUtils.checkAndSet(this.coll,IMAGE_LINK,document)){
                 updated=true;
             }
-            if (DaoUtils.checkAndSet(coll,THEATER_LOCATION,document)){
+            if (DaoUtils.checkAndSet(this.coll,THEATER_LOCATION,document)){
                 updated=true;
             }
         } catch (Exception e) {
@@ -105,7 +105,7 @@ public class TheaterDao implements Crud, RandomId, UsageCheck {
             if (read(id) == null) {
                 return false;
             }
-            coll.deleteOne(filter);
+            this.coll.deleteOne(filter);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -131,7 +131,7 @@ public class TheaterDao implements Crud, RandomId, UsageCheck {
      */
     @Override
     public int randomId() {
-        return new DaoUtils().randomId(coll);
+        return new DaoUtils().randomId(this.coll);
     }
     /**
      * @param document to insert
@@ -140,7 +140,7 @@ public class TheaterDao implements Crud, RandomId, UsageCheck {
     @Override
     public String insertValidation(Document document) {
         //put auto increment id
-        document.append(ID, new DaoUtils().getNextSequence(coll));
+        document.append(ID, new DaoUtils().getNextSequence(this.coll));
         //check for  correctness of fields
         try {
             if (document.get(THEATER_NAME) == null || document.get(THEATER_NAME).toString().trim().equals(""))
@@ -155,7 +155,7 @@ public class TheaterDao implements Crud, RandomId, UsageCheck {
             e.printStackTrace();
             return status.invalid_document.toString();
         }
-        coll.insertOne(document);
+        this.coll.insertOne(document);
         return status.OK.toString();
     }
     /**

@@ -77,7 +77,7 @@ public class UserResource {
             return  Response.status(Response.Status.NOT_FOUND).entity(DOES_NOT_EXIST).build();
         }
         //try to delete and return proper response
-        if (userDao.drop(userId)==false){
+        if (!userDao.drop(userId)){
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(ERROR_IN_DELETION).build();
         }
         return Response.status(Response.Status.OK).entity(RESOURCE_HAS_BEEN_DELETED).build();

@@ -72,7 +72,7 @@ public class ShowInstanceDao implements Crud, Seat, UsageCheck {
     public Document read(String id) {
         Document showInstance = null;
 
-        MongoCursor<Document> cursor = coll.find().iterator();
+        MongoCursor<Document> cursor = this.coll.find().iterator();
         try {
             while (cursor.hasNext()) {
                 Document doc = cursor.next();
@@ -119,13 +119,13 @@ public class ShowInstanceDao implements Crud, Seat, UsageCheck {
             }
             //get the show id for the instance
             Bson filter = Filters.eq(SHOW_INSTANCE + "." + ID, new ObjectId(id));
-            Document document = coll.find().filter(filter).first();
+            Document document = this.coll.find().filter(filter).first();
             //pull the instance from the array that is located in the show document
             BasicDBObject match = new BasicDBObject(ID, document.get(ID));
             BasicDBObject condition = new BasicDBObject(ID, new ObjectId(id));
             BasicDBObject find = new BasicDBObject(SHOW_INSTANCE, condition);
             BasicDBObject update = new BasicDBObject("$pull", find);
-            coll.updateOne(match, update);
+            this.coll.updateOne(match, update);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -190,7 +190,7 @@ public class ShowInstanceDao implements Crud, Seat, UsageCheck {
             e.printStackTrace();
             return status.invalid_document.toString();
         }
-        coll.updateOne(eq(ID, showId), Updates.addToSet(SHOW_INSTANCE, document));
+        this.coll.updateOne(eq(ID, showId), Updates.addToSet(SHOW_INSTANCE, document));
         return status.OK.toString();
     }
 
@@ -209,7 +209,7 @@ public class ShowInstanceDao implements Crud, Seat, UsageCheck {
         query.put(SHOW_INSTANCE + "." + ID, new ObjectId(showInstanceId));
 
         BasicDBObject setQuery = new BasicDBObject("$set", new BasicDBObject(SHOW_INSTANCE + ".$." + SHOW_INSTANCE_SEATS + ".0." + RowColumnNameHandler.rowNumberToName(row) + "." + column, seatStatus));
-        coll.updateOne(query, setQuery);
+        this.coll.updateOne(query, setQuery);
     }
 
     /**

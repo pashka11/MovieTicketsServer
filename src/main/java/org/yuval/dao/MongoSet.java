@@ -40,11 +40,6 @@ public class MongoSet {
             }
         }
 
-//        instanceArr.put("$push", new BasicDBObject(USER_TICKETS + "." + USER_SHOW_INSTANCE_ID, showInstanceID));
-//        instanceArr.put("$addToSet", new BasicDBObject(USER_TICKETS + "." + USER_TICKETS_FOR_INSTANCE, RowColumnNameHandler.rowNumberToName(row) + " " + RowColumnNameHandler.columnNumberToName(column)));
-//        DBObject updateQuery = new BasicDBObject("$push",instanceArr);
-//        coll.updateOne(query, (Bson) updateQuery);
-
 
         DBObject object = new BasicDBObject(USER_TICKETS,new BasicDBObject(USER_SHOW_INSTANCE_ID,showInstanceID).append(USER_TICKETS_FOR_INSTANCE, Arrays.asList(RowColumnNameHandler.rowNumberToName(row) + " " + RowColumnNameHandler.columnNumberToName(column))));
         DBObject updateQuery = new BasicDBObject("$push",object);

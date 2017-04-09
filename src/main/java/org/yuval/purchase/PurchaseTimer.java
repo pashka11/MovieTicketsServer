@@ -4,7 +4,7 @@ import static org.yuval.utils.Parameters.PURCHASE_TIMER_TIME_TO_SLEEP;
 
 /**
  * Created by Yuval on 20-Mar-17.
- * this class represent the purchase timer hence handles the lock of a seat for x amount of time
+ * this class represent the purchase timer hence handles the lock of a seat for X amount of time
  */
 public class PurchaseTimer extends Thread {
 

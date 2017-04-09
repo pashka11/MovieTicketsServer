@@ -44,7 +44,7 @@ public class UserDao implements Crud {
                     .append(USER_IS_ADMIN, cur.isAdmin())
                     .append(USER_TICKETS, Arrays.asList());
 
-            coll.insertOne(doc);
+            this.coll.insertOne(doc);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -58,7 +58,7 @@ public class UserDao implements Crud {
      */
     @Override
     public Document read(String id) {
-        Document document = coll.find(eq(ID, id)).first();
+        Document document = this.coll.find(eq(ID, id)).first();
         return document;
     }
     /**
@@ -68,7 +68,7 @@ public class UserDao implements Crud {
     public List<Document> readAll() {
         //return only the names
         Bson projection = fields(include(ID));
-        return coll.find().projection(projection).into(new ArrayList<Document>());
+        return this.coll.find().projection(projection).into(new ArrayList<Document>());
     }
     /**
      * @param document contain fields to update
@@ -89,7 +89,7 @@ public class UserDao implements Crud {
             if (read(id) == null) {
                 return false;
             }
-            coll.deleteOne(filter);
+            this.coll.deleteOne(filter);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -103,7 +103,7 @@ public class UserDao implements Crud {
     @Override
     public boolean dropAll() {
         try {
-            coll.drop();
+            this.coll.drop();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -142,7 +142,7 @@ public class UserDao implements Crud {
             e.printStackTrace();
             return status.invalid_document.toString();
         }
-        coll.insertOne(document);
+        this.coll.insertOne(document);
         return status.OK.toString();
     }
 

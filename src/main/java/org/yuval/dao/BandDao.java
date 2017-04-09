@@ -39,7 +39,7 @@ public class BandDao implements Crud, RandomId,UsageCheck {
                     .append(BAND_NAME, band.getName())
                     .append(BAND_DESCRIPTION, band.getInfo())
                     .append(IMAGE_LINK, band.getImageLink());
-            coll.insertOne(doc);
+            this.coll.insertOne(doc);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -55,7 +55,7 @@ public class BandDao implements Crud, RandomId,UsageCheck {
     @Override
     public Document read(String id) {
         Bson filter = Filters.eq(ID, Integer.valueOf(id));
-        return coll.find(filter).first();
+        return this.coll.find(filter).first();
     }
 
     /**
@@ -63,7 +63,7 @@ public class BandDao implements Crud, RandomId,UsageCheck {
      */
     @Override
     public List<Document> readAll() {
-        return coll.find().into(new ArrayList<Document>());
+        return this.coll.find().into(new ArrayList<Document>());
     }
 
     /**
@@ -78,13 +78,13 @@ public class BandDao implements Crud, RandomId,UsageCheck {
             if (read(document.get(ID).toString()) == null) {
                 return false;
             }
-            if (DaoUtils.checkAndSet(coll,BAND_NAME,document)){
+            if (DaoUtils.checkAndSet(this.coll,BAND_NAME,document)){
                 updated =true;
             }
-            if (DaoUtils.checkAndSet(coll,IMAGE_LINK,document)){
+            if (DaoUtils.checkAndSet(this.coll,IMAGE_LINK,document)){
                 updated=true;
             }
-            if (DaoUtils.checkAndSet(coll,BAND_DESCRIPTION,document)){
+            if (DaoUtils.checkAndSet(this.coll,BAND_DESCRIPTION,document)){
                 updated=true;
             }
 
@@ -108,7 +108,7 @@ public class BandDao implements Crud, RandomId,UsageCheck {
             if (read(id) == null) {
                 return false;
             }
-            coll.deleteOne(filter);
+            this.coll.deleteOne(filter);
         } catch (Exception e) {
             e.printStackTrace();
             return false;

@@ -63,7 +63,7 @@ public class ShowDao implements Crud, ShowInstancesByShowIdNoSeatsQuery, UsageCh
                     .append(IMAGE_LINK, cur.getImageLink())
                     .append(SHOW_INSTANCE, Arrays.asList());
 
-            coll.insertOne(doc);
+            this.coll.insertOne(doc);
 
             for (int i = 0; i < cur.getShowInstances().size(); i++) {//TODO move it to showInstanceDao
 
@@ -78,7 +78,7 @@ public class ShowDao implements Crud, ShowInstancesByShowIdNoSeatsQuery, UsageCh
                         .append(SHOW_INSTANCE_PRICE, cur.getShowInstances().get(i).getPrice())
                         .append(SHOW_INSTANCE_THEATER_ID, cur.getShowInstances().get(i).getTheaterId())
                         .append(SHOW_INSTANCE_SEATS, Arrays.asList(seatDocument));
-                coll.updateOne(eq(ID, cur.getShowId()), Updates.addToSet(SHOW_INSTANCE, instance));
+                this.coll.updateOne(eq(ID, cur.getShowId()), Updates.addToSet(SHOW_INSTANCE, instance));
 
             }
         } catch (Exception e) {
@@ -117,13 +117,13 @@ public class ShowDao implements Crud, ShowInstancesByShowIdNoSeatsQuery, UsageCh
             if (read(document.get(ID).toString()) == null) {
                 return false;
             }
-            if (DaoUtils.checkAndSet(coll, SHOW_DESCRIPTION, document)) {
+            if (DaoUtils.checkAndSet(this.coll, SHOW_DESCRIPTION, document)) {
                 updated = true;
             }
-            if (DaoUtils.checkAndSet(coll, SHOW_NAME, document)) {
+            if (DaoUtils.checkAndSet(this.coll, SHOW_NAME, document)) {
                 updated = true;
             }
-            if (DaoUtils.checkAndSet(coll, IMAGE_LINK, document)) {
+            if (DaoUtils.checkAndSet(this.coll, IMAGE_LINK, document)) {
                 updated = true;
             }
             //if band parameter was inserted check if valid and update
@@ -150,7 +150,7 @@ public class ShowDao implements Crud, ShowInstancesByShowIdNoSeatsQuery, UsageCh
             if (read(id) == null) {
                 return false;
             }
-            coll.deleteOne(filter);
+            this.coll.deleteOne(filter);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -164,7 +164,7 @@ public class ShowDao implements Crud, ShowInstancesByShowIdNoSeatsQuery, UsageCh
     @Override
     public boolean dropAll() {
         try {
-            coll.drop();
+            this.coll.drop();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -198,7 +198,7 @@ public class ShowDao implements Crud, ShowInstancesByShowIdNoSeatsQuery, UsageCh
             e.printStackTrace();
             return status.invalid_document.toString();
         }
-        coll.insertOne(document);
+        this.coll.insertOne(document);
         return status.OK.toString();
     }
 

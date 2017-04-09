@@ -19,14 +19,14 @@ public class SeatsHandler {
     public static Integer[][] getSeatsFromShowInstanceDoc(Document document) {
         ArrayList<Document> seatDoc = (ArrayList<Document>) document.get(SHOW_INSTANCE_SEATS);
         Document doc = seatDoc.get(0);
-        ArrayList<ArrayList<Integer[]>> asd = new ArrayList<>();
+        ArrayList<ArrayList<Integer[]>> tempArr = new ArrayList<>();
 
         for (Object g : doc.values()) {
-            asd.add((ArrayList<Integer[]>) g);
+            tempArr.add((ArrayList<Integer[]>) g);
         }
-        Integer[][] arrayToReturn = new Integer[asd.size()][asd.get(0).size()];
+        Integer[][] arrayToReturn = new Integer[tempArr.size()][tempArr.get(0).size()];
         int i = 0;
-        for (ArrayList<Integer[]> arr : asd) {
+        for (ArrayList<Integer[]> arr : tempArr) {
 
             for (int j = 0; j < arr.size(); j++) {
                 arrayToReturn[i][j] = Integer.valueOf(String.valueOf(arr.get(j)));

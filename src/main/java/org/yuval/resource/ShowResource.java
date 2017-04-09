@@ -92,7 +92,7 @@ public class ShowResource {
         if (showDao.isInUse(showId)){
             return Response.status(Response.Status.FORBIDDEN).entity(RESOURCE_IS_IN_USE).build();
         }
-        if (showDao.drop(showId)==false){
+        if (!showDao.drop(showId)){
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(ERROR_IN_DELETION).build();
         }
         return Response.status(Response.Status.OK).entity(RESOURCE_HAS_BEEN_DELETED).build();
