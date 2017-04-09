@@ -17,7 +17,7 @@ import static org.yuval.utils.Parameters.SEAT_WAS_PURCHASED;
  * class that handles purchase approval
  */
 @Path("purchase_approve")
-public class PurchaseApprove implements CheckParameters {
+public class PurchaseApprove {
 
 
     /**

@@ -13,4 +13,6 @@ import javax.ws.rs.BeanParam;
 public interface InspectInput {
     void validateInput(@BeanParam PurchaseFilterBean filterBean)throws UserNotExistException,ShowInstanceNotExistException,ShowNotExistException,
             TheaterOutOfBoundsException;
+
+    void validateInputUnmarkedSeat(@BeanParam PurchaseFilterBean filterBean)throws UserNotExistException,ShowInstanceNotExistException,ShowNotExistException;
 }

@@ -51,4 +51,26 @@ public class ValidateInput implements InspectInput{
             throw new TheaterOutOfBoundsException(INVALID_COLUMN, filterBean.getColumn());
         }
     }
+
+    /**
+     * @param filterBean the input from the HTTP request
+     * @throws UserNotExistException didn't find the user in the DB
+     * @throws ShowInstanceNotExistException didn't find the show instance in the DB
+     * @throws ShowNotExistException didn't find the show in the DB
+     */
+    @Override
+    public void validateInputUnmarkedSeat(@BeanParam PurchaseFilterBean filterBean) throws UserNotExistException, ShowInstanceNotExistException, ShowNotExistException {
+        //        check if user exists
+        if (new UserDao().read(filterBean.getUser()) == null) {
+            throw new UserNotExistException(INVALID_USER_ID, filterBean.getUser());
+        }
+//        check that show exists
+        if (new ShowDao().read(String.valueOf(filterBean.getShowId())) == null) {
+            throw new ShowNotExistException(INVALID_SHOW_ID, filterBean.getShowId());
+        }
+//        check that showInstance exists
+        if (new ShowInstanceDao().read(filterBean.getShowInstanceID()) == null) {
+            throw new ShowInstanceNotExistException(INVALID_SHOW_INSTANCE_ID, filterBean.getShowInstanceID());
+        }
+    }
 }

@@ -3,6 +3,7 @@ package org.yuval.purchase;
 import org.bson.Document;
 import org.yuval.dao.ShowInstanceDao;
 import org.yuval.dao.TheaterDao;
+import org.yuval.objects.Seat;
 
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -155,4 +156,22 @@ public class MultitonShowInstance {
         }
     }
 
+    public Seat reserveUnmarkedSeat(String showInstanceID, int showId, String user) {
+        Seat seat = new Seat(0,0,false);
+//        get the seat matrix, try to save a seat
+        Integer [][]seatArr = new Integer[reservationArray.length][reservationArray[0].length];
+        for (int i = 0; i < seatArr.length; i++) {
+            for (int j = 0; j < seatArr[0].length; j++) {
+                if (reserveSeat(i , j, showInstanceID, showId, user)){
+                    seat.setSaved(true);
+                    seat.setRow(i);
+                    seat.setColumn(j);
+                    return seat;
+                }
+            }
+
+        }
+
+        return seat;
+    }
 }
