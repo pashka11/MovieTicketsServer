@@ -1,6 +1,7 @@
 package org.yuval.resource;
 
 import org.bson.Document;
+import org.yuval.dao.Crud;
 import org.yuval.dao.ShowInstanceDao;
 
 import javax.ws.rs.*;
@@ -20,13 +21,19 @@ public class ShowInstanceResource {
 
     /**
      * @param showInstanceId is a json format object to insert
-     * @return  insertion status message
+     * @return insertion status message
      */
     @POST
-    public String insertShowInstance(String showInstanceId){
+    public Response insertShowInstance(String showInstanceId) {
         //turn string into document
         Document document = Document.parse(showInstanceId);
-        return new ShowInstanceDao().insertValidation(document);
+        String s = new ShowInstanceDao().insertValidation(document);
+        //        there is a problem ,so we return info
+        if (!s.equals(Crud.status.OK)) {
+            return Response.status(Response.Status.BAD_REQUEST).entity(s).build();
+        }
+        //        insertion went ok ,return OK status
+        return Response.status(Response.Status.OK).entity(s).build();
     }
 
     /**
@@ -35,16 +42,16 @@ public class ShowInstanceResource {
      */
     @DELETE
     @Path("/{showInstanceId}")
-    public Response deleteShowInstance(@PathParam("showInstanceId")String showInstanceId){
+    public Response deleteShowInstance(@PathParam("showInstanceId") String showInstanceId) {
         //check if show instance exists
         ShowInstanceDao showInstanceDao = new ShowInstanceDao();
-        if (showInstanceDao.read(showInstanceId)==null){
-            return  Response.status(Response.Status.NOT_FOUND).entity(DOES_NOT_EXIST).build();
+        if (showInstanceDao.read(showInstanceId) == null) {
+            return Response.status(Response.Status.NOT_FOUND).entity(DOES_NOT_EXIST).build();
         }
-        if (showInstanceDao.isInUse(showInstanceId)){
+        if (showInstanceDao.isInUse(showInstanceId)) {
             return Response.status(Response.Status.FORBIDDEN).entity(RESOURCE_IS_IN_USE).build();
         }
-        if (showInstanceDao.drop(showInstanceId)==false){
+        if (!showInstanceDao.drop(showInstanceId)) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(ERROR_IN_DELETION).build();
         }
         return Response.status(Response.Status.OK).entity(RESOURCE_HAS_BEEN_DELETED).build();

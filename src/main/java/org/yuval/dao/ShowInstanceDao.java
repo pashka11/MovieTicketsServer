@@ -151,27 +151,27 @@ public class ShowInstanceDao implements Crud, Seat, UsageCheck {
             //check if show id is a valid ID
             showId = Integer.valueOf(document.get(ID).toString());
             if (showId <= 0) {
-                return status.INVALID_PARAMETER.toString() + " " + ID;
+                return status.invalid_parameter.toString() + " " + ID;
             }
             if (new ShowDao().read(String.valueOf(showId)) == null) {
-                return status.INVALID_PARAMETER.toString() + " " + ID;
+                return status.invalid_parameter.toString() + " " + ID;
             }
             //we generate id for the document
             document.append(ID, new ObjectId());
 
             if (document.get(SHOW_INSTANCE_DATE) == null || document.get(SHOW_INSTANCE_DATE).toString().trim().equals("")) {
-                return status.INVALID_PARAMETER.toString() + " " + SHOW_INSTANCE_DATE;
+                return status.invalid_parameter.toString() + " " + SHOW_INSTANCE_DATE;
             }
             //TODO check date format
             if (Integer.valueOf(document.get(SHOW_INSTANCE_PRICE).toString()) <= 0)
-                return status.INVALID_PARAMETER.toString() + " " + SHOW_INSTANCE_PRICE;
+                return status.invalid_parameter.toString() + " " + SHOW_INSTANCE_PRICE;
             //check theater id is valid
             if (Integer.valueOf(document.get(SHOW_INSTANCE_THEATER_ID).toString()) <= 0) {
-                return status.INVALID_PARAMETER.toString() + " " + SHOW_INSTANCE_THEATER_ID;
+                return status.invalid_parameter.toString() + " " + SHOW_INSTANCE_THEATER_ID;
             }
             Document theaterDocument = new TheaterDao().read(document.get(SHOW_INSTANCE_THEATER_ID).toString());
             if (theaterDocument == null) {
-                return status.INVALID_PARAMETER.toString() + " " + SHOW_INSTANCE_THEATER_ID;
+                return status.invalid_parameter.toString() + " " + SHOW_INSTANCE_THEATER_ID;
             }
             //fill the row column according to the theater document
             Document seatDocument = new Document();
@@ -188,7 +188,7 @@ public class ShowInstanceDao implements Crud, Seat, UsageCheck {
 
         } catch (Exception e) {
             e.printStackTrace();
-            return status.INVALID_DOCUMENT.toString();
+            return status.invalid_document.toString();
         }
         coll.updateOne(eq(ID, showId), Updates.addToSet(SHOW_INSTANCE, document));
         return status.OK.toString();
