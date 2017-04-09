@@ -1,11 +1,14 @@
 package org.yuval.resource;
 
 import com.mongodb.util.JSON;
+import org.bson.Document;
 import org.yuval.dao.ShowInstanceDao;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
+import static org.yuval.utils.Parameters.INVALID_SHOW_INSTANCE_ID;
 import static org.yuval.utils.Parameters.SHOW_INSTANCE_SEATS;
 
 /**
@@ -19,12 +22,16 @@ public class SeatsResource {
 
 
     /**
-     * @param showInstanceId to return its seats
+     * @param showInstanceId to return
      * @return requested show instance seats
      */
     @GET
     @Path("/{showInstanceId}")
-    public String getShowById(@PathParam("showInstanceId") String showInstanceId) {
-        return JSON.serialize(new ShowInstanceDao().read(showInstanceId).get(SHOW_INSTANCE_SEATS));
+    public Response getShowInstanceSeats(@PathParam("showInstanceId") String showInstanceId) {
+        Document document = new ShowInstanceDao().read(showInstanceId);
+        if (document!=null && document.get(SHOW_INSTANCE_SEATS)!=null){
+            return Response.status(Response.Status.OK).entity(JSON.serialize(document.get(SHOW_INSTANCE_SEATS))).build();
+        }
+        return Response.status(Response.Status.BAD_REQUEST).entity(INVALID_SHOW_INSTANCE_ID).build();
     }
 }

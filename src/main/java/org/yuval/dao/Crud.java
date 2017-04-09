@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface Crud {
     enum status {
-        OK, INVALID_PARAMETER, INVALID_DOCUMENT ,DUPLICATE_ID
+        OK, invalid_parameter, invalid_document, duplicate_id
     }
     boolean create(Object obj);
     Document read(String id);
