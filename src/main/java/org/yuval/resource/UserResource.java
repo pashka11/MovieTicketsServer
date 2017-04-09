@@ -2,11 +2,13 @@ package org.yuval.resource;
 
 import com.mongodb.util.JSON;
 import org.bson.Document;
+import org.yuval.dao.Crud;
 import org.yuval.dao.UserDao;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 import static org.yuval.utils.Parameters.*;
 
@@ -23,8 +25,12 @@ public class UserResource {
      * @return all the users
      */
     @GET
-    public String getAllUsers() {
-        return JSON.serialize(new UserDao().readAll());
+    public Response getAllUsers() {
+        List<Document> documentList =new UserDao().readAll();
+        if (documentList == null) {
+            return Response.status(Response.Status.NOT_FOUND).entity(INVALID_USER_ID).build();
+        }
+        return Response.status(Response.Status.OK).entity(JSON.serialize(documentList)).build();
     }
 
     /**
@@ -33,8 +39,12 @@ public class UserResource {
      */
     @GET
     @Path("/{userId}")
-    public String getUserTickets(@PathParam("userId")String userId){
-        return JSON.serialize(new UserDao().read(userId).get(USER_TICKETS));
+    public Response getUserTickets(@PathParam("userId")String userId){
+        Document document = new UserDao().read(String.valueOf(userId));
+        if (document == null) {
+            return Response.status(Response.Status.NOT_FOUND).entity(INVALID_USER_ID).build();
+        }
+        return Response.status(Response.Status.OK).entity(JSON.serialize(document)).build();
     }
 
     /**
@@ -42,10 +52,16 @@ public class UserResource {
      * @return insertion status message
      */
     @POST
-    public String insertUser(String user){
+    public Response insertUser(String user){
         //turn string into document
         Document document = Document.parse(user);
-        return new UserDao().insertValidation(document);
+        String s = new UserDao().insertValidation(document);
+        //        there is a problem ,so we return info
+        if (!s.equals(Crud.status.OK.toString())) {
+            return Response.status(Response.Status.BAD_REQUEST).entity(s).build();
+        }
+        //        insertion went ok ,return OK status
+        return Response.status(Response.Status.OK).entity(s).build();
     }
 
     /**

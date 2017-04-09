@@ -144,16 +144,16 @@ public class TheaterDao implements Crud, RandomId, UsageCheck {
         //check for  correctness of fields
         try {
             if (document.get(THEATER_NAME) == null || document.get(THEATER_NAME).toString().trim().equals(""))
-                return status.INVALID_PARAMETER.toString() + " " + THEATER_NAME;
+                return status.invalid_parameter.toString() + " " + THEATER_NAME;
             if (Integer.valueOf(document.get(THEATER_COLUMNS).toString()) <= 0)
-                return status.INVALID_PARAMETER.toString() + " " + THEATER_COLUMNS;
+                return status.invalid_parameter.toString() + " " + THEATER_COLUMNS;
             if (Integer.valueOf(document.get(THEATER_ROWS).toString()) <= 0)
-                return status.INVALID_PARAMETER.toString() + " " + THEATER_ROWS;
+                return status.invalid_parameter.toString() + " " + THEATER_ROWS;
             if (document.get(THEATER_LOCATION) == null || document.get(THEATER_LOCATION).toString().trim().equals(""))
-                return status.INVALID_PARAMETER.toString() + " " + ROW_NUMBER;
+                return status.invalid_parameter.toString() + " " + ROW_NUMBER;
         } catch (Exception e) {
             e.printStackTrace();
-            return status.INVALID_DOCUMENT.toString();
+            return status.invalid_document.toString();
         }
         coll.insertOne(document);
         return status.OK.toString();

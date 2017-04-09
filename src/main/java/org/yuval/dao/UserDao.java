@@ -119,14 +119,14 @@ public class UserDao implements Crud {
         //check for  correctness of fields
         try {
             if (document.get(ID) == null || document.get(ID).toString().trim().equals("")){
-                return status.INVALID_PARAMETER.toString() + " " + ID;
+                return status.invalid_parameter.toString() + " " + ID;
             }
             //check if id exists and if so reject
             if (read(document.get(ID).toString()) != null) {
-                return status.DUPLICATE_ID.toString() + " " + document.get(ID).toString();
+                return status.duplicate_id.toString() + " " + document.get(ID).toString();
             }
             if (document.get(USER_PASSWORD) == null || document.get(USER_PASSWORD).toString().trim().equals("")){
-                return status.INVALID_PARAMETER.toString() + " " + USER_PASSWORD;
+                return status.invalid_parameter.toString() + " " + USER_PASSWORD;
             }
             //check for admin status
             if (document.get(USER_IS_ADMIN)!=null&&document.get(USER_IS_ADMIN).toString().equals("true")){
@@ -140,7 +140,7 @@ public class UserDao implements Crud {
 
         } catch (Exception e) {
             e.printStackTrace();
-            return status.INVALID_DOCUMENT.toString();
+            return status.invalid_document.toString();
         }
         coll.insertOne(document);
         return status.OK.toString();

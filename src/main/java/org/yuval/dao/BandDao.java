@@ -142,13 +142,13 @@ public class BandDao implements Crud, RandomId,UsageCheck {
         //check for  correctness of fields
         try {
             if (document.get(BAND_NAME) == null || document.get(BAND_NAME).toString().trim().equals(""))
-                return status.INVALID_PARAMETER.toString() + " " + BAND_NAME;
+                return status.invalid_parameter.toString() + " " + BAND_NAME;
 
             if (document.get(BAND_DESCRIPTION) == null || document.get(BAND_DESCRIPTION).toString().trim().equals(""))
-                return status.INVALID_PARAMETER.toString() + " " + BAND_DESCRIPTION;
+                return status.invalid_parameter.toString() + " " + BAND_DESCRIPTION;
         }catch (Exception e){
             e.printStackTrace();
-            return status.INVALID_DOCUMENT.toString();
+            return status.invalid_document.toString();
         }
         coll.insertOne(document);
         return status.OK.toString();

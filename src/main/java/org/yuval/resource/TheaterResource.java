@@ -2,11 +2,13 @@ package org.yuval.resource;
 
 import com.mongodb.util.JSON;
 import org.bson.Document;
+import org.yuval.dao.Crud;
 import org.yuval.dao.TheaterDao;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 import static org.yuval.utils.Parameters.*;
 
@@ -24,8 +26,12 @@ public class TheaterResource {
      * @return all the theaters
      */
     @GET
-    public String getAllTheater() {
-        return JSON.serialize(new TheaterDao().readAll());
+    public Response getAllTheater() {
+        List<Document> documentList =new TheaterDao().readAll();
+        if (documentList == null) {
+            return Response.status(Response.Status.NOT_FOUND).entity(INVALID_THEATER_ID).build();
+        }
+        return Response.status(Response.Status.OK).entity(JSON.serialize(documentList)).build();
     }
 
     /**
@@ -34,8 +40,12 @@ public class TheaterResource {
      */
     @GET
     @Path("/{theaterId}")
-    public String getBandById(@PathParam("theaterId") int theaterId) {
-        return JSON.serialize(new TheaterDao().read(String.valueOf(theaterId)));
+    public Response getBandById(@PathParam("theaterId") int theaterId) {
+        Document document = new TheaterDao().read(String.valueOf(theaterId));
+        if (document == null) {
+            return Response.status(Response.Status.NOT_FOUND).entity(INVALID_THEATER_ID).build();
+        }
+        return Response.status(Response.Status.OK).entity(JSON.serialize(document)).build();
     }
 
     /**
@@ -43,10 +53,16 @@ public class TheaterResource {
      * @return insertion status message
      */
     @POST
-    public String insertTheater(String theater){
+    public Response insertTheater(String theater){
         //turn string into document
         Document document = Document.parse(theater);
-        return new TheaterDao().insertValidation(document);
+        String s = new TheaterDao().insertValidation(document);
+        //        there is a problem ,so we return info
+        if (!s.equals(Crud.status.OK.toString())) {
+            return Response.status(Response.Status.BAD_REQUEST).entity(s).build();
+        }
+        //        insertion went ok ,return OK status
+        return Response.status(Response.Status.OK).entity(s).build();
     }
 
     /**

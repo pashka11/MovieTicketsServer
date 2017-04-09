@@ -9,6 +9,8 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import java.util.List;
+
 import static org.yuval.utils.Parameters.*;
 
 /**
@@ -26,11 +28,12 @@ public class BandResource {
      * @return all the bands
      */
     @GET
-    public Response getAllBands(){
-        if (new BandDao().readAll()==null){
+    public Response getAllBands() {
+        List<Document>documentList =new BandDao().readAll();
+        if (documentList == null) {
             return Response.status(Response.Status.NOT_FOUND).entity(INVALID_BAND_ID).build();
         }
-        return Response.status(Response.Status.OK).entity(JSON.serialize(new BandDao().readAll())).build();
+        return Response.status(Response.Status.OK).entity(JSON.serialize(documentList)).build();
     }
 
 
@@ -40,11 +43,12 @@ public class BandResource {
      */
     @GET
     @Path("/{bandId}")
-    public Response getBandById(@PathParam("bandId")int bandId){
-        if (new BandDao().read(String.valueOf(bandId))==null){
+    public Response getBandById(@PathParam("bandId") int bandId) {
+        Document document = new BandDao().read(String.valueOf(bandId));
+        if (document == null) {
             return Response.status(Response.Status.NOT_FOUND).entity(INVALID_BAND_ID).build();
         }
-        return Response.status(Response.Status.OK).entity(JSON.serialize(new BandDao().read(String.valueOf(bandId)))).build();
+        return Response.status(Response.Status.OK).entity(JSON.serialize(document)).build();
     }
 
     /**
@@ -52,15 +56,15 @@ public class BandResource {
      * @return insertion status message
      */
     @POST
-    public Response insertBand(String band){
+    public Response insertBand(String band) {
         //turn string into document
         Document document = Document.parse(band);
         String s = new BandDao().insertValidation(document);
-//        there is a problem ,so we return info
-        if (!s.equals(Crud.status.OK)){
+        //        there is a problem ,so we return info
+        if (!s.equals(Crud.status.OK.toString())) {
             return Response.status(Response.Status.BAD_REQUEST).entity(s).build();
         }
-//        insertion went ok ,return OK status
+        //        insertion went ok ,return OK status
         return Response.status(Response.Status.OK).entity(s).build();
     }
 
@@ -69,9 +73,9 @@ public class BandResource {
      * @return update status message
      */
     @PUT
-    public Response updateBand(String band){
+    public Response updateBand(String band) {
         Document document = Document.parse(band);
-        if (!new BandDao().update(document)){
+        if (!new BandDao().update(document)) {
             return Response.status(Response.Status.CONFLICT).entity(ERROR_IN_UPDATE_PROCESS).build();
         }
         return Response.status(Response.Status.ACCEPTED).entity(SUCCESSFULLY_UPDATED).build();
@@ -83,15 +87,15 @@ public class BandResource {
      */
     @DELETE
     @Path("/{bandId}")
-    public Response deleteBand(@PathParam("bandId")String bandId){
+    public Response deleteBand(@PathParam("bandId") String bandId) {
         BandDao bandDao = new BandDao();
-        if (bandDao.read(bandId)==null){
-            return  Response.status(Response.Status.NOT_FOUND).entity(DOES_NOT_EXIST).build();
+        if (bandDao.read(bandId) == null) {
+            return Response.status(Response.Status.NOT_FOUND).entity(DOES_NOT_EXIST).build();
         }
-        if (bandDao.isInUse(bandId)){
+        if (bandDao.isInUse(bandId)) {
             return Response.status(Response.Status.FORBIDDEN).entity(RESOURCE_IS_IN_USE).build();
         }
-        if (!bandDao.drop(bandId)){
+        if (!bandDao.drop(bandId)) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(ERROR_IN_DELETION).build();
         }
         return Response.status(Response.Status.OK).entity(RESOURCE_HAS_BEEN_DELETED).build();

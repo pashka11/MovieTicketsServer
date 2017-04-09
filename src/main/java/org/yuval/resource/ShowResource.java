@@ -2,11 +2,13 @@ package org.yuval.resource;
 
 import com.mongodb.util.JSON;
 import org.bson.Document;
+import org.yuval.dao.Crud;
 import org.yuval.dao.ShowDao;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 import static org.yuval.utils.Parameters.*;
 
@@ -23,9 +25,14 @@ public class ShowResource {
      * @return all the shows
      */
     @GET
-    public String getAllShows() {
-        return JSON.serialize(new ShowDao().readAll());
+    public Response getAllShows() {
+        List<Document> documentArrayList = new ShowDao().readAll();
+        if (new ShowDao().readAll() == null) {
+            return Response.status(Response.Status.NOT_FOUND).entity(INVALID_SHOW_ID).build();
+        }
+        return Response.status(Response.Status.OK).entity(JSON.serialize(documentArrayList)).build();
     }
+
 
 
     /**
@@ -34,19 +41,28 @@ public class ShowResource {
      */
     @GET
     @Path("/{showId}")
-    public String getShowById(@PathParam("showId") int showId) {
-        return JSON.serialize(new ShowDao().showInstancesForShowNoSeats(showId).get(SHOW_INSTANCE));
+    public Response getShowById(@PathParam("showId") int showId) {
+        Document document = new ShowDao().read(String.valueOf(showId));
+        if (document == null) {
+        return Response.status(Response.Status.NOT_FOUND).entity(INVALID_SHOW_ID).build();
     }
-
+        return Response.status(Response.Status.OK).entity(JSON.serialize(document)).build();
+    }
     /**
      * @param showId is a json format object to insert
      * @return insertion status message
      */
     @POST
-    public String insertShow(String showId){
+    public Response insertShow(String showId){
         //turn string into document
         Document document = Document.parse(showId);
-        return new ShowDao().insertValidation(document);
+        String s = new ShowDao().insertValidation(document);
+        //        there is a problem ,so we return info
+        if (!s.equals(Crud.status.OK.toString())) {
+            return Response.status(Response.Status.BAD_REQUEST).entity(s).build();
+        }
+        //        insertion went ok ,return OK status
+        return Response.status(Response.Status.OK).entity(s).build();
     }
 
     /**

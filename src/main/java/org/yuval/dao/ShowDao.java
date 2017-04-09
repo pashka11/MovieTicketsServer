@@ -182,21 +182,21 @@ public class ShowDao implements Crud, ShowInstancesByShowIdNoSeatsQuery, UsageCh
         //check for  correctness of fields
         try {
             if (document.get(SHOW_NAME) == null || document.get(SHOW_NAME).toString().trim().equals(""))
-                return status.INVALID_PARAMETER.toString() + " " + SHOW_NAME;
+                return status.invalid_parameter.toString() + " " + SHOW_NAME;
             if (document.get(SHOW_DESCRIPTION) == null || document.get(SHOW_DESCRIPTION).toString().trim().equals(""))
-                return status.INVALID_PARAMETER.toString() + " " + SHOW_DESCRIPTION;
+                return status.invalid_parameter.toString() + " " + SHOW_DESCRIPTION;
             if (Integer.valueOf(document.get(SHOW_BAND_ID).toString()) <= 0)
-                return status.INVALID_PARAMETER.toString() + " " + SHOW_BAND_ID;
+                return status.invalid_parameter.toString() + " " + SHOW_BAND_ID;
             //check if band id exists
             if (new BandDao().read(document.get(SHOW_BAND_ID).toString()) == null) {
-                return status.INVALID_PARAMETER.toString() + " " + SHOW_BAND_ID;
+                return status.invalid_parameter.toString() + " " + SHOW_BAND_ID;
             }
             //insert empty instances array
             document.append(SHOW_INSTANCE, Arrays.asList());
 
         } catch (Exception e) {
             e.printStackTrace();
-            return status.INVALID_DOCUMENT.toString();
+            return status.invalid_document.toString();
         }
         coll.insertOne(document);
         return status.OK.toString();
