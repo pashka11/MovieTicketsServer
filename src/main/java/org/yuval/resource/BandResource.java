@@ -57,7 +57,8 @@ public class BandResource {
         Document document = Document.parse(band);
         String s = new BandDao().insertValidation(document);
 //        there is a problem ,so we return info
-        if (!s.equals(Crud.status.OK)){
+//        git comment
+        if (!s.equals(Crud.status.OK.toString())){
             return Response.status(Response.Status.BAD_REQUEST).entity(s).build();
         }
 //        insertion went ok ,return OK status
