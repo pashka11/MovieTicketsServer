@@ -1,6 +1,8 @@
 package org.yuval.purchase;
 
 import org.bson.Document;
+import org.yuval.dao.Crud;
+import org.yuval.dao.Seat;
 import org.yuval.dao.ShowInstanceDao;
 import org.yuval.dao.TheaterDao;
 
@@ -20,17 +22,20 @@ public class MultitonShowInstance {
 
     /**
      * constructor
+     *
      * @param showInstanceId to initialize
      */
     public MultitonShowInstance(String showInstanceId) {
         this.showInstanceId = showInstanceId;
-        Document showInstanceDocument = new ShowInstanceDao().read(showInstanceId);
+        Crud showInstanceCrud = new ShowInstanceDao();
+        Crud theaterCrud = new TheaterDao();
+        Document showInstanceDocument =showInstanceCrud.read(showInstanceId);
         int theaterId = (int) showInstanceDocument.get(SHOW_INSTANCE_THEATER_ID);
-        Document theaterDocument = new TheaterDao().read(String.valueOf(theaterId));
+        Document theaterDocument = theaterCrud.read(String.valueOf(theaterId));
         int rows = (int) theaterDocument.get(THEATER_ROWS);
         int columns = (int) theaterDocument.get(THEATER_COLUMNS);
-        this.locksArray = new ReentrantLock[rows][columns];
-        this.reservationArray = new String[rows][columns];
+        locksArray = new ReentrantLock[rows][columns];
+        reservationArray = new String[rows][columns];
         //initialize the reservationArray so we wont get null
         for (int i = 0; i < reservationArray.length; i++) {
             for (int j = 0; j < reservationArray[i].length; j++) {
@@ -48,6 +53,7 @@ public class MultitonShowInstance {
 
     /**
      * we lock the seat with the value of 2, if we get an approval we change it to 1 if we want to release we change it back to 0
+     *
      * @param row
      * @param column
      * @param instanceId
@@ -58,14 +64,15 @@ public class MultitonShowInstance {
     public Boolean reserveSeat(int row, int column, String instanceId, int showId, String userId) {
         locksArray[row][column].lock();
         boolean isFree = false;
+        Seat seat = new ShowInstanceDao();
         try {
             //if the seat in reserved or ordered
-            if (new ShowInstanceDao().getSeat(row, column, showInstanceId) != SEAT_IS_FREE) {
+            if (seat.getSeat(row, column, showInstanceId) != SEAT_IS_FREE) {
                 isFree = false;
             }
             //reserve seat
             else {
-                new ShowInstanceDao().changeSeatStatus(row, column, SEAT_IS_RESERVED, showInstanceId, showId);
+                seat.changeSeatStatus(row, column, SEAT_IS_RESERVED, showInstanceId, showId);
                 isFree = true;
                 reservationArray[row][column] = userId;
             }
@@ -74,30 +81,30 @@ public class MultitonShowInstance {
             e.printStackTrace();
         } finally {
             locksArray[row][column].unlock();
-            //a timer to realese the seet
-            if (isFree){
-
+            //a timer to release the seat
+            if (isFree) {
+                Thread thread= new PurchaseTimer(row, column, showId, instanceId);
+                thread.start();
             }
-            PurchaseTimer purchaseTimer = new PurchaseTimer(row, column, showId,instanceId);
-            purchaseTimer.start();
-//            .run(row, column, showId,instanceId);
             return isFree;
         }
     }
 
     /**
      * release the seat after timeout
+     *
      * @param row
      * @param column
      * @param showId
      * @param showInstanceId
      */
-    public void releaseSeatAfterTimeout(int row, int column, int showId,String showInstanceId) {
+    public void releaseSeatAfterTimeout(int row, int column, int showId, String showInstanceId) {
         locksArray[row][column].lock();
         try {
-            if (new ShowInstanceDao().getSeat(row, column, showInstanceId) == SEAT_IS_RESERVED) {
+            Seat seat= new ShowInstanceDao();
+            if (seat.getSeat(row, column, showInstanceId) == SEAT_IS_RESERVED) {
                 //release seat
-                new ShowInstanceDao().changeSeatStatus(row, column, SEAT_IS_FREE, showInstanceId, showId);
+                seat.changeSeatStatus(row, column, SEAT_IS_FREE, showInstanceId, showId);
                 reservationArray[row][column] = "";
             }
         } catch (Exception e) {
@@ -110,16 +117,18 @@ public class MultitonShowInstance {
 
     /**
      * release the seat
+     *
      * @param row
      * @param column
      * @param showId
      * @param userId
      */
-    public void releaseSeat(int row, int column,  int showId, String userId) {
+    public void releaseSeat(int row, int column, int showId, String userId) {
         locksArray[row][column].lock();
         try {
+            Seat seat = new ShowInstanceDao();
             //release seat
-            new ShowInstanceDao().changeSeatStatus(row, column, SEAT_IS_FREE, showInstanceId, showId);
+            seat.changeSeatStatus(row, column, SEAT_IS_FREE, showInstanceId, showId);
             reservationArray[row][column] = "";
         } catch (Exception e) {
             System.out.println("error in row " + row + " column " + column + " method releaseSeat");
@@ -131,6 +140,7 @@ public class MultitonShowInstance {
 
     /**
      * approve the seat
+     *
      * @param row
      * @param column
      * @param showId
@@ -141,9 +151,10 @@ public class MultitonShowInstance {
         locksArray[row][column].lock();
         boolean isOrderOk = false;
         try {
+            Seat seat = new ShowInstanceDao();
             //seat is ordered
             if (reservationArray[row][column].equals(userId)) {
-                new ShowInstanceDao().changeSeatStatus(row, column, SEAT_IS_TAKEN, showInstanceId, showId);
+                seat.changeSeatStatus(row, column, SEAT_IS_TAKEN, showInstanceId, showId);
                 isOrderOk = true;
             }
         } catch (Exception e) {

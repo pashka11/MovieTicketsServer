@@ -10,13 +10,13 @@ import static org.yuval.utils.Parameters.SHOW_INSTANCE_SEATS;
  * Created by Yuval on 18-Mar-17.
  *
  */
-public class SeatsHandler {
+public class SeatsHandler implements SeatsInterface {
 
     /**
      * @param document of show instance
      * @return an Integer array of seats
      */
-    public static Integer[][] getSeatsFromShowInstanceDoc(Document document) {
+    public Integer[][] getSeatsFromShowInstanceDoc(Document document) {
         ArrayList<Document> seatDoc = (ArrayList<Document>) document.get(SHOW_INSTANCE_SEATS);
         Document doc = seatDoc.get(0);
         ArrayList<ArrayList<Integer[]>> asd = new ArrayList<>();

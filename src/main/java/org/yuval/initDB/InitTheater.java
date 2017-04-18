@@ -1,6 +1,7 @@
 package org.yuval.initDB;
 
 
+import org.yuval.dao.Crud;
 import org.yuval.dao.TheaterDao;
 import org.yuval.objects.Theater;
 
@@ -33,10 +34,10 @@ public class InitTheater {
         theaters.add(new Theater(11,"CONCERTGEBOUW",10,10,"AMSTERDAM",IMAGE_FOLDER+"theater_11.jpg"));
         theaters.add(new Theater(12,"BOSTON SYMPHONY HALL",12,7,"BOSTON",IMAGE_FOLDER+"theater_12.jpg"));
 
-        TheaterDao theaterDao = new TheaterDao();
-        theaterDao.dropAll();
+        Crud crud = new TheaterDao();
+        crud.dropAll();
         theaters.parallelStream()
-                .forEach(theater -> theaterDao.create(theater));
+                .forEach(theater -> crud.create(theater));
 
 
     }

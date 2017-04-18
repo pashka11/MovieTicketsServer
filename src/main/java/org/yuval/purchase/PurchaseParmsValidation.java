@@ -12,7 +12,7 @@ import javax.ws.rs.core.Response;
  * Created by Yuval on 20-Mar-17.
  * if any parameter is invalid throw proper exception
  */
-public class PurchaseParmsValidation {
+public class PurchaseParmsValidation implements PurchaseParmsValidationInterface {
     //if method returns null then all parameters are valid
     public Response checkParameters(@BeanParam PurchaseFilterBean filterBean) {
 

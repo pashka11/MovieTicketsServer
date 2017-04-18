@@ -4,6 +4,7 @@ import com.mongodb.util.JSON;
 import org.bson.Document;
 import org.yuval.dao.Crud;
 import org.yuval.dao.ShowDao;
+import org.yuval.dao.UsageCheck;
 import org.yuval.utils.Helpers;
 import org.yuval.utils.ResponseDocument;
 
@@ -28,8 +29,9 @@ public class ShowResource {
      */
     @GET
     public Response getAllShows() {
+        Crud crud = new ShowDao();
         List<Document> documentArrayList = new ShowDao().readAll();
-        if (new ShowDao().readAll() == null) {
+        if (crud.readAll() == null) {
             return Response.status(Response.Status.NOT_FOUND).entity(INVALID_SHOW_ID).build();
         }
         return Response.status(Response.Status.OK).entity(JSON.serialize(documentArrayList)).build();
@@ -44,7 +46,8 @@ public class ShowResource {
     @GET
     @Path("/{showId}")
     public Response getShowById(@PathParam("showId") int showId) {
-        Document document = new ShowDao().read(String.valueOf(showId));
+        Crud crud = new ShowDao();
+        Document document = crud.read(String.valueOf(showId));
         if (document == null) {
         return Response.status(Response.Status.NOT_FOUND).entity(INVALID_SHOW_ID).build();
     }
@@ -56,10 +59,11 @@ public class ShowResource {
      */
     @POST
     public Response insertShow(String showId){
+        Crud crud = new ShowDao();
         ResponseDocument responseDocument = new Helpers();
         //turn string into document
         Document document = Document.parse(showId);
-        String s = new ShowDao().insertValidation(document);
+        String s = crud.insertValidation(document);
         //        there is a problem ,so we return info
         if (!s.equals(Crud.status.OK.toString())) {
             return Response.status(Response.Status.BAD_REQUEST).entity(JSON.serialize(responseDocument.docResponse(s))).build();
@@ -74,9 +78,10 @@ public class ShowResource {
      */
     @PUT
     public Response updateBand(String show){
+        Crud crud = new ShowDao();
         ResponseDocument responseDocument = new Helpers();
         Document document = Document.parse(show);
-        if (!new ShowDao().update(document)){
+        if (!crud.update(document)){
             return Response.status(Response.Status.CONFLICT).entity(JSON.serialize(responseDocument.docResponse(ERROR_IN_UPDATE_PROCESS))).build();
         }
         return Response.status(Response.Status.ACCEPTED).entity(JSON.serialize(responseDocument.docResponse(SUCCESSFULLY_UPDATED))).build();
@@ -89,15 +94,16 @@ public class ShowResource {
     @DELETE
     @Path("/{showId}")
     public Response deleteShow(@PathParam("showId")String showId){
+        Crud crud = new ShowDao();
+        UsageCheck usageCheck = new ShowDao();
         ResponseDocument responseDocument = new Helpers();
-        ShowDao showDao = new ShowDao();
-        if (showDao.read(showId)==null){
+        if (crud.read(showId)==null){
             return  Response.status(Response.Status.NOT_FOUND).entity(JSON.serialize(responseDocument.docResponse(DOES_NOT_EXIST))).build();
         }
-        if (showDao.isInUse(showId)){
+        if (usageCheck.isInUse(showId)){
             return Response.status(Response.Status.FORBIDDEN).entity(JSON.serialize(responseDocument.docResponse(RESOURCE_IS_IN_USE))).build();
         }
-        if (showDao.drop(showId)==false){
+        if (crud.drop(showId)==false){
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(JSON.serialize(responseDocument.docResponse(ERROR_IN_DELETION))).build();
         }
         return Response.status(Response.Status.OK).entity(JSON.serialize(responseDocument.docResponse(RESOURCE_HAS_BEEN_DELETED))).build();

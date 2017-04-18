@@ -28,7 +28,8 @@ public class UserResource {
      */
     @GET
     public Response getAllUsers() {
-        List<Document> documentList =new UserDao().readAll();
+        Crud crud = new UserDao();
+        List<Document> documentList =crud.readAll();
         if (documentList == null) {
             return Response.status(Response.Status.NOT_FOUND).entity(INVALID_USER_ID).build();
         }
@@ -42,7 +43,8 @@ public class UserResource {
     @GET
     @Path("/{userId}")
     public Response getUserTickets(@PathParam("userId")String userId){
-        Document document = new UserDao().read(String.valueOf(userId));
+        Crud crud = new UserDao();
+        Document document = crud.read(String.valueOf(userId));
         if (document == null) {
             return Response.status(Response.Status.NOT_FOUND).entity(INVALID_USER_ID).build();
         }
@@ -57,8 +59,9 @@ public class UserResource {
     public Response insertUser(String user){
         //turn string into document
         Document document = Document.parse(user);
+        Crud crud = new UserDao();
         ResponseDocument responseDocument = new Helpers();
-        String s = new UserDao().insertValidation(document);
+        String s = crud.insertValidation(document);
         //        there is a problem ,so we return info
         if (!s.equals(Crud.status.OK.toString())) {
             return Response.status(Response.Status.BAD_REQUEST).entity(JSON.serialize(responseDocument.docResponse(s))).build();
@@ -75,13 +78,13 @@ public class UserResource {
     @Path("/{userId}")
     public Response deleteUser(@PathParam("userId")String userId){
         ResponseDocument responseDocument = new Helpers();
-        UserDao userDao = new UserDao();
+        Crud crud = new UserDao();
         //check if user exists
-        if (userDao.read(userId)==null){
+        if (crud.read(userId)==null){
             return  Response.status(Response.Status.NOT_FOUND).entity(JSON.serialize(responseDocument.docResponse(ERROR_IN_DELETION))).build();
         }
         //try to delete and return proper response
-        if (!userDao.drop(userId)){
+        if (!crud.drop(userId)){
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(JSON.serialize(responseDocument.docResponse(ERROR_IN_DELETION))).build();
         }
         return Response.status(Response.Status.OK).entity(JSON.serialize(responseDocument.docResponse(RESOURCE_HAS_BEEN_DELETED))).build();
