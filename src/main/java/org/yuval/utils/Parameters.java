@@ -68,6 +68,7 @@ public class Parameters {
     public static final String INVALID_ROW = "invalid row";
     public static final String INVALID_COLUMN = "invalid column";
     public static final String FREE_SEAT_NOT_FOUND = "did not find an open seat";
+    public static final String RESPONSE = "response";
     public static final int SEAT_IS_FREE = 0;
     public static final int SEAT_IS_TAKEN = 1;
     public static final int SEAT_IS_RESERVED = 2;

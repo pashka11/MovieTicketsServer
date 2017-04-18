@@ -4,6 +4,8 @@ import com.mongodb.util.JSON;
 import org.bson.Document;
 import org.yuval.dao.Crud;
 import org.yuval.dao.UserDao;
+import org.yuval.utils.Helpers;
+import org.yuval.utils.ResponseDocument;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -55,13 +57,14 @@ public class UserResource {
     public Response insertUser(String user){
         //turn string into document
         Document document = Document.parse(user);
+        ResponseDocument responseDocument = new Helpers();
         String s = new UserDao().insertValidation(document);
         //        there is a problem ,so we return info
         if (!s.equals(Crud.status.OK.toString())) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(s).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(JSON.serialize(responseDocument.docResponse(s))).build();
         }
         //        insertion went ok ,return OK status
-        return Response.status(Response.Status.OK).entity(s).build();
+        return Response.status(Response.Status.OK).entity(JSON.serialize(responseDocument.docResponse(s))).build();
     }
 
     /**
@@ -71,15 +74,16 @@ public class UserResource {
     @DELETE
     @Path("/{userId}")
     public Response deleteUser(@PathParam("userId")String userId){
+        ResponseDocument responseDocument = new Helpers();
         UserDao userDao = new UserDao();
         //check if user exists
         if (userDao.read(userId)==null){
-            return  Response.status(Response.Status.NOT_FOUND).entity(DOES_NOT_EXIST).build();
+            return  Response.status(Response.Status.NOT_FOUND).entity(JSON.serialize(responseDocument.docResponse(DOES_NOT_EXIST))).build();
         }
         //try to delete and return proper response
-        if (userDao.drop(userId)==false){
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(ERROR_IN_DELETION).build();
+        if (!userDao.drop(userId)){
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(JSON.serialize(responseDocument.docResponse(ERROR_IN_DELETION))).build();
         }
-        return Response.status(Response.Status.OK).entity(RESOURCE_HAS_BEEN_DELETED).build();
+        return Response.status(Response.Status.OK).entity(JSON.serialize(responseDocument.docResponse(RESOURCE_HAS_BEEN_DELETED))).build();
     }
 }

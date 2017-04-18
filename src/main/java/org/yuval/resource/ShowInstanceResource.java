@@ -1,8 +1,11 @@
 package org.yuval.resource;
 
+import com.mongodb.util.JSON;
 import org.bson.Document;
 import org.yuval.dao.Crud;
 import org.yuval.dao.ShowInstanceDao;
+import org.yuval.utils.Helpers;
+import org.yuval.utils.ResponseDocument;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -25,15 +28,16 @@ public class ShowInstanceResource {
      */
     @POST
     public Response insertShowInstance(String showInstanceId) {
+        ResponseDocument responseDocument = new Helpers();
         //turn string into document
         Document document = Document.parse(showInstanceId);
         String s = new ShowInstanceDao().insertValidation(document);
         //        there is a problem ,so we return info
         if (!s.equals(Crud.status.OK)) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(s).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(JSON.serialize(responseDocument.docResponse(s))).build();
         }
         //        insertion went ok ,return OK status
-        return Response.status(Response.Status.OK).entity(s).build();
+        return Response.status(Response.Status.OK).entity(JSON.serialize(responseDocument.docResponse(s))).build();
     }
 
     /**
@@ -43,17 +47,18 @@ public class ShowInstanceResource {
     @DELETE
     @Path("/{showInstanceId}")
     public Response deleteShowInstance(@PathParam("showInstanceId") String showInstanceId) {
+        ResponseDocument responseDocument = new Helpers();
         //check if show instance exists
         ShowInstanceDao showInstanceDao = new ShowInstanceDao();
         if (showInstanceDao.read(showInstanceId) == null) {
-            return Response.status(Response.Status.NOT_FOUND).entity(DOES_NOT_EXIST).build();
+            return Response.status(Response.Status.NOT_FOUND).entity(JSON.serialize(responseDocument.docResponse(DOES_NOT_EXIST))).build();
         }
         if (showInstanceDao.isInUse(showInstanceId)) {
-            return Response.status(Response.Status.FORBIDDEN).entity(RESOURCE_IS_IN_USE).build();
+            return Response.status(Response.Status.FORBIDDEN).entity(JSON.serialize(responseDocument.docResponse(RESOURCE_IS_IN_USE))).build();
         }
         if (!showInstanceDao.drop(showInstanceId)) {
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(ERROR_IN_DELETION).build();
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(JSON.serialize(responseDocument.docResponse(ERROR_IN_DELETION))).build();
         }
-        return Response.status(Response.Status.OK).entity(RESOURCE_HAS_BEEN_DELETED).build();
+        return Response.status(Response.Status.OK).entity(JSON.serialize(responseDocument.docResponse(RESOURCE_HAS_BEEN_DELETED))).build();
     }
 }

@@ -4,6 +4,8 @@ import com.mongodb.util.JSON;
 import org.bson.Document;
 import org.yuval.dao.Crud;
 import org.yuval.dao.TheaterDao;
+import org.yuval.utils.Helpers;
+import org.yuval.utils.ResponseDocument;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -54,15 +56,16 @@ public class TheaterResource {
      */
     @POST
     public Response insertTheater(String theater){
+        ResponseDocument responseDocument = new Helpers();
         //turn string into document
         Document document = Document.parse(theater);
         String s = new TheaterDao().insertValidation(document);
         //        there is a problem ,so we return info
         if (!s.equals(Crud.status.OK.toString())) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(s).build();
+            return Response.status(Response.Status.BAD_REQUEST).entity(JSON.serialize(responseDocument.docResponse(s))).build();
         }
         //        insertion went ok ,return OK status
-        return Response.status(Response.Status.OK).entity(s).build();
+        return Response.status(Response.Status.OK).entity(JSON.serialize(responseDocument.docResponse(s))).build();
     }
 
     /**
@@ -71,11 +74,12 @@ public class TheaterResource {
      */
     @PUT
     public Response updateTheater(String theater){
+        ResponseDocument responseDocument = new Helpers();
         Document document = Document.parse(theater);
         if (!new TheaterDao().update(document)){
-            return Response.status(Response.Status.CONFLICT).entity(ERROR_IN_UPDATE_PROCESS).build();
+            return Response.status(Response.Status.CONFLICT).entity(JSON.serialize(responseDocument.docResponse(ERROR_IN_UPDATE_PROCESS))).build();
         }
-        return Response.status(Response.Status.ACCEPTED).entity(SUCCESSFULLY_UPDATED).build();
+        return Response.status(Response.Status.ACCEPTED).entity(JSON.serialize(responseDocument.docResponse(SUCCESSFULLY_UPDATED))).build();
     }
 
     /**
@@ -85,19 +89,20 @@ public class TheaterResource {
     @DELETE
     @Path("/{theaterId}")
     public Response deleteTheater(@PathParam("theaterId") String theaterId){
+        ResponseDocument responseDocument = new Helpers();
         //check if theater exists
         TheaterDao theaterDao = new TheaterDao();
         if (theaterDao.read(theaterId)==null){
-               return  Response.status(Response.Status.NOT_FOUND).entity(DOES_NOT_EXIST).build();
+               return  Response.status(Response.Status.NOT_FOUND).entity(JSON.serialize(responseDocument.docResponse(DOES_NOT_EXIST))).build();
         }
         //check if theater is in use - if not delete it
         if (theaterDao.isInUse(theaterId)){
-            return Response.status(Response.Status.FORBIDDEN).entity(RESOURCE_IS_IN_USE).build();
+            return Response.status(Response.Status.FORBIDDEN).entity(JSON.serialize(responseDocument.docResponse(RESOURCE_IS_IN_USE))).build();
         }
         //theater is not in use - try to delete it and return proper response
-        if (theaterDao.drop(theaterId)==false){
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(ERROR_IN_DELETION).build();
+        if (!theaterDao.drop(theaterId)){
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(JSON.serialize(responseDocument.docResponse(ERROR_IN_DELETION))).build();
         }
-        return Response.status(Response.Status.OK).entity(RESOURCE_HAS_BEEN_DELETED).build();
+        return Response.status(Response.Status.OK).entity(JSON.serialize(responseDocument.docResponse(RESOURCE_HAS_BEEN_DELETED))).build();
     }
 }

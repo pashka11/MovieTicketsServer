@@ -7,46 +7,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="389676bb-41e6-4b49-9d65-45288ae8dccb" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/yuval/utils/ResponseDocument.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/TicketServer.war" afterPath="$PROJECT_DIR$/target/TicketServer.war" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/dao/BandDao.class" afterPath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/dao/BandDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/dao/Crud$status.class" afterPath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/dao/Crud$status.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/dao/ShowDao.class" afterPath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/dao/ShowDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/dao/ShowInstanceDao.class" afterPath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/dao/ShowInstanceDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/dao/TheaterDao.class" afterPath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/dao/TheaterDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/dao/UserDao.class" afterPath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/dao/UserDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/objects/Seat.class" afterPath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/objects/Seat.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/purchase/CheckParameters.class" afterPath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/purchase/CheckParameters.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/purchase/InspectInput.class" afterPath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/purchase/InspectInput.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/purchase/MultitonShowInstance.class" afterPath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/purchase/MultitonShowInstance.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/purchase/PurchaseApprove.class" afterPath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/purchase/PurchaseApprove.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/purchase/PurchaseParmsValidation.class" afterPath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/purchase/PurchaseParmsValidation.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/purchase/PurchaseRequest.class" afterPath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/purchase/PurchaseRequest.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/purchase/ValidateInput.class" afterPath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/purchase/ValidateInput.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/resource/UserResource.class" afterPath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/resource/UserResource.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/utils/Helpers.class" afterPath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/utils/Helpers.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/utils/Parameters.class" afterPath="$PROJECT_DIR$/target/TicketServer/WEB-INF/classes/org/yuval/utils/Parameters.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/yuval/dao/BandDao.class" afterPath="$PROJECT_DIR$/target/classes/org/yuval/dao/BandDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/yuval/dao/Crud$status.class" afterPath="$PROJECT_DIR$/target/classes/org/yuval/dao/Crud$status.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/yuval/dao/ShowDao.class" afterPath="$PROJECT_DIR$/target/classes/org/yuval/dao/ShowDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/yuval/dao/ShowInstanceDao.class" afterPath="$PROJECT_DIR$/target/classes/org/yuval/dao/ShowInstanceDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/yuval/dao/TheaterDao.class" afterPath="$PROJECT_DIR$/target/classes/org/yuval/dao/TheaterDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/yuval/dao/UserDao.class" afterPath="$PROJECT_DIR$/target/classes/org/yuval/dao/UserDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/yuval/objects/Seat.class" afterPath="$PROJECT_DIR$/target/classes/org/yuval/objects/Seat.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/yuval/purchase/CheckParameters.class" afterPath="$PROJECT_DIR$/target/classes/org/yuval/purchase/CheckParameters.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/yuval/purchase/InspectInput.class" afterPath="$PROJECT_DIR$/target/classes/org/yuval/purchase/InspectInput.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/yuval/purchase/MultitonShowInstance.class" afterPath="$PROJECT_DIR$/target/classes/org/yuval/purchase/MultitonShowInstance.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/yuval/purchase/PurchaseApprove.class" afterPath="$PROJECT_DIR$/target/classes/org/yuval/purchase/PurchaseApprove.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/yuval/purchase/PurchaseParmsValidation.class" afterPath="$PROJECT_DIR$/target/classes/org/yuval/purchase/PurchaseParmsValidation.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/yuval/purchase/PurchaseRequest.class" afterPath="$PROJECT_DIR$/target/classes/org/yuval/purchase/PurchaseRequest.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/yuval/purchase/ValidateInput.class" afterPath="$PROJECT_DIR$/target/classes/org/yuval/purchase/ValidateInput.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/yuval/resource/UserResource.class" afterPath="$PROJECT_DIR$/target/classes/org/yuval/resource/UserResource.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/yuval/utils/Helpers.class" afterPath="$PROJECT_DIR$/target/classes/org/yuval/utils/Helpers.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/org/yuval/utils/Parameters.class" afterPath="$PROJECT_DIR$/target/classes/org/yuval/utils/Parameters.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/yuval/objects/Seat.java" afterPath="$PROJECT_DIR$/src/main/java/org/yuval/objects/Seat.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/yuval/purchase/CheckParameters.java" afterPath="$PROJECT_DIR$/src/main/java/org/yuval/purchase/CheckParameters.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/yuval/purchase/InspectInput.java" afterPath="$PROJECT_DIR$/src/main/java/org/yuval/purchase/InspectInput.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/yuval/purchase/MultitonShowInstance.java" afterPath="$PROJECT_DIR$/src/main/java/org/yuval/purchase/MultitonShowInstance.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/yuval/purchase/PurchaseApprove.java" afterPath="$PROJECT_DIR$/src/main/java/org/yuval/purchase/PurchaseApprove.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/yuval/purchase/PurchaseParmsValidation.java" afterPath="$PROJECT_DIR$/src/main/java/org/yuval/purchase/PurchaseParmsValidation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/yuval/purchase/PurchaseRequest.java" afterPath="$PROJECT_DIR$/src/main/java/org/yuval/purchase/PurchaseRequest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/yuval/purchase/ValidateInput.java" afterPath="$PROJECT_DIR$/src/main/java/org/yuval/purchase/ValidateInput.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/yuval/resource/BandResource.java" afterPath="$PROJECT_DIR$/src/main/java/org/yuval/resource/BandResource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/yuval/resource/ShowInstanceResource.java" afterPath="$PROJECT_DIR$/src/main/java/org/yuval/resource/ShowInstanceResource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/yuval/resource/ShowResource.java" afterPath="$PROJECT_DIR$/src/main/java/org/yuval/resource/ShowResource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/yuval/resource/TheaterResource.java" afterPath="$PROJECT_DIR$/src/main/java/org/yuval/resource/TheaterResource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/yuval/resource/UserResource.java" afterPath="$PROJECT_DIR$/src/main/java/org/yuval/resource/UserResource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/yuval/utils/Helpers.java" afterPath="$PROJECT_DIR$/src/main/java/org/yuval/utils/Helpers.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/yuval/utils/Parameters.java" afterPath="$PROJECT_DIR$/src/main/java/org/yuval/utils/Parameters.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -74,44 +53,27 @@
       <content type="file-editors">
         <state>
           <leaf>
-            <file leaf-file-name="BandResource.java" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/resource/BandResource.java">
+            <file leaf-file-name="Helpers.java" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/utils/Helpers.java">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="434">
-                    <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+                  <state relative-caret-position="1099">
+                    <caret line="91" column="27" lean-forward="true" selection-start-line="91" selection-start-column="27" selection-end-line="91" selection-end-column="27" />
                     <folding>
-                      <element signature="imports" expanded="true" />
+                      <element signature="e#3576#3577#0" expanded="true" />
+                      <element signature="e#3627#3628#0" expanded="true" />
                     </folding>
                   </state>
                 </provider>
               </entry>
             </file>
-            <file leaf-file-name="PurchaseParmsValidation.java" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/purchase/PurchaseParmsValidation.java">
+            <file leaf-file-name="UserResource.java" pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/resource/UserResource.java">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="663">
-                    <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="ValidateInput.java" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/purchase/ValidateInput.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="572">
-                    <caret line="55" column="56" lean-forward="true" selection-start-line="55" selection-start-column="25" selection-end-line="55" selection-end-column="56" />
-                    <folding />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file leaf-file-name="MultitonShowInstance.java" pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/purchase/MultitonShowInstance.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="686">
-                    <caret line="168" column="32" lean-forward="false" selection-start-line="168" selection-start-column="32" selection-end-line="168" selection-end-column="32" />
-                    <folding />
+                  <state relative-caret-position="351">
+                    <caret line="63" column="118" lean-forward="true" selection-start-line="63" selection-start-column="71" selection-end-line="63" selection-end-column="118" />
+                    <folding>
+                      <element signature="imports" expanded="true" />
+                    </folding>
                   </state>
                 </provider>
               </entry>
@@ -130,28 +92,18 @@
       <file leaf-file-name="Parameters.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/utils/Parameters.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="69" column="50" lean-forward="true" selection-start-line="69" selection-start-column="31" selection-end-line="69" selection-end-column="50" />
+            <state relative-caret-position="255">
+              <caret line="70" column="51" lean-forward="false" selection-start-line="70" selection-start-column="51" selection-end-line="70" selection-end-column="51" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PurchaseTimer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/purchase/PurchaseTimer.java">
+      <file leaf-file-name="TheaterResource.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/resource/TheaterResource.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="6" column="96" lean-forward="false" selection-start-line="6" selection-start-column="96" selection-end-line="6" selection-end-column="96" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PurchaseRequest.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/purchase/PurchaseRequest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="62" column="44" lean-forward="true" selection-start-line="62" selection-start-column="20" selection-end-line="62" selection-end-column="44" />
+            <state relative-caret-position="599">
+              <caret line="102" column="39" lean-forward="false" selection-start-line="102" selection-start-column="39" selection-end-line="102" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -159,21 +111,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SingeltonShowInstanceMap.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/purchase/SingeltonShowInstanceMap.java">
+      <file leaf-file-name="ShowResource.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/resource/ShowResource.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="28" column="104" lean-forward="false" selection-start-line="28" selection-start-column="104" selection-end-line="28" selection-end-column="104" />
-              <folding />
+            <state relative-caret-position="366">
+              <caret line="76" column="8" lean-forward="false" selection-start-line="76" selection-start-column="8" selection-end-line="76" selection-end-column="58" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PurchaseFilterBean.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/purchase/PurchaseFilterBean.java">
+      <file leaf-file-name="ShowInstanceResource.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/resource/ShowInstanceResource.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="77">
-              <caret line="11" column="39" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="39" />
+            <state relative-caret-position="561">
+              <caret line="53" column="127" lean-forward="false" selection-start-line="53" selection-start-column="127" selection-end-line="53" selection-end-column="127" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SeatsResource.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/resource/SeatsResource.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -189,31 +155,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CheckParameters.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/purchase/CheckParameters.java">
+      <file leaf-file-name="SeatsHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/utils/SeatsHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="8" column="32" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PurchaseCancel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/purchase/PurchaseCancel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="25" column="27" lean-forward="false" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PurchaseApprove.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/purchase/PurchaseApprove.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="490">
-              <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+            <state relative-caret-position="391">
+              <caret line="27" column="18" lean-forward="true" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -225,6 +171,28 @@
             <state relative-caret-position="17">
               <caret line="21" column="31" lean-forward="false" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ResponseDocument.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/utils/ResponseDocument.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="44" lean-forward="false" selection-start-line="9" selection-start-column="44" selection-end-line="9" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BandResource.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/resource/BandResource.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="310">
+              <caret line="81" column="135" lean-forward="false" selection-start-line="81" selection-start-column="135" selection-end-line="81" selection-end-column="135" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -266,11 +234,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/org/yuval/dao/SingeltonMongoClient.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/yuval/dao/TheaterDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/yuval/dao/UsageCheck.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/yuval/dao/UserDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/yuval/filter/SecurityFilter.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/yuval/initDB/InitBand.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/yuval/initDB/InitDb.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/yuval/initDB/InitShow.java" />
@@ -297,26 +261,30 @@
         <option value="$PROJECT_DIR$/src/main/java/org/yuval/purchase/SingeltonShowInstanceMap.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/yuval/resource/ImageService.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/yuval/resource/SeatsResource.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/yuval/resource/ShowInstanceResource.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/yuval/resource/TheaterResource.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/yuval/resource/UserResource.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/yuval/resource/ShowResource.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/yuval/test/jersey/MyResource.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/yuval/utils/Encryption.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/yuval/utils/Helpers.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/yuval/utils/RowColumnNameHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/yuval/utils/SeatsHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/yuval/resource/BandResource.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/yuval/dao/BandDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/yuval/purchase/CheckParameters.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/yuval/purchase/InspectInput.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/yuval/purchase/PurchaseParmsValidation.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/yuval/objects/Seat.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/yuval/purchase/MultitonShowInstance.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/yuval/utils/Parameters.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/yuval/purchase/PurchaseApprove.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/yuval/purchase/ValidateInput.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/yuval/purchase/PurchaseRequest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/yuval/objects/ResponseEntityA.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/yuval/objects/ResponseEntity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/yuval/filter/SecurityFilter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/yuval/utils/Parameters.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/yuval/resource/UserResource.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/yuval/resource/TheaterResource.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/yuval/resource/ShowResource.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/yuval/resource/ShowInstanceResource.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/yuval/resource/BandResource.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/yuval/utils/ResponseDocument.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/yuval/utils/Helpers.java" />
       </list>
     </option>
   </component>
@@ -341,7 +309,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
+    <option name="x" value="1912" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
@@ -369,7 +337,9 @@
       </profile-state>
     </entry>
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -385,8 +355,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -409,157 +379,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="target" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicketServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicketServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="target" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicketServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicketServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicketServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="target" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicketServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="META-INF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicketServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicketServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="target" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="generated-sources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicketServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicketServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="target" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="classes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="yuval" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicketServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicketServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="target" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="classes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicketServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicketServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicketServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicketServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Images" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -863,66 +687,16 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicketServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicketServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value=".idea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicketServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicketServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value=".idea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dictionaries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicketServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TicketServer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value=".idea" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="artifacts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="js.eslint.eslintPackage" value="" />
-    <property name="settings.editor.selected.configurable" value="settings.github" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.postfix.templates" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.23908046" />
@@ -1523,10 +1297,10 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.InitShow" />
-        <item index="1" class="java.lang.String" itemvalue="Application.InitTheater" />
-        <item index="2" class="java.lang.String" itemvalue="Application.Test" />
-        <item index="3" class="java.lang.String" itemvalue="Application.InitDb" />
+        <item index="0" class="java.lang.String" itemvalue="Application.InitDb" />
+        <item index="1" class="java.lang.String" itemvalue="Application.InitShow" />
+        <item index="2" class="java.lang.String" itemvalue="Application.InitTheater" />
+        <item index="3" class="java.lang.String" itemvalue="Application.Test" />
         <item index="4" class="java.lang.String" itemvalue="Application.InitUser" />
       </list>
     </recent_temporary>
@@ -1548,14 +1322,15 @@
       <workItem from="1489533860491" duration="17598000" />
       <workItem from="1489650759882" duration="168637000" />
       <workItem from="1490394364920" duration="195457000" />
-      <workItem from="1491742642547" duration="6978000" />
+      <workItem from="1491742642547" duration="12487000" />
+      <workItem from="1492207913688" duration="13275000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="443571000" />
+    <option name="totallyTimeSpent" value="462355000" />
   </component>
-  <component name="TodoView">
+  <component name="TodoView" selected-index="3">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
     </todo-panel>
@@ -1565,7 +1340,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1581,18 +1356,19 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27783784" sideWeight="0.49791667" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22462203" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31567568" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13081081" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2627027" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08432432" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24947916" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24947916" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32756758" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1601,7 +1377,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32756758" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1621,78 +1396,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/initDB/InitDb.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="44" lean-forward="false" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/initDB/InitShow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="13" column="40" lean-forward="false" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/initDB/InitTheater.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="12" column="43" lean-forward="false" selection-start-line="12" selection-start-column="43" selection-end-line="12" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/initDB/InitUser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="9" column="40" lean-forward="false" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/objects/Row.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/objects/Show.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/objects/ShowInstance.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="8" column="23" lean-forward="false" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/objects/Theater.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/objects/Ticket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="16" lean-forward="false" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/objects/User.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1778,50 +1481,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/resource/SeatsResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="21" column="48" lean-forward="false" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/resource/ShowInstanceResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="33" column="38" lean-forward="false" selection-start-line="33" selection-start-column="38" selection-end-line="33" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/resource/TheaterResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="952">
-          <caret line="66" column="38" lean-forward="false" selection-start-line="66" selection-start-column="38" selection-end-line="66" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/resource/UserResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="52" column="38" lean-forward="false" selection-start-line="52" selection-start-column="38" selection-end-line="52" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/resource/ShowResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="58" column="28" lean-forward="true" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/dao/ShowDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
@@ -1852,7 +1511,7 @@
         <state relative-caret-position="255">
           <caret line="15" column="12" lean-forward="false" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1862,7 +1521,7 @@
         <state relative-caret-position="401">
           <caret line="146" column="23" lean-forward="true" selection-start-line="146" selection-start-column="23" selection-end-line="146" selection-end-column="23" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1872,7 +1531,7 @@
         <state relative-caret-position="2210">
           <caret line="153" column="23" lean-forward="true" selection-start-line="153" selection-start-column="23" selection-end-line="153" selection-end-column="23" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1882,7 +1541,7 @@
         <state relative-caret-position="286">
           <caret line="121" column="29" lean-forward="false" selection-start-line="121" selection-start-column="29" selection-end-line="121" selection-end-column="29" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1892,16 +1551,8 @@
         <state relative-caret-position="-1045">
           <caret line="153" column="36" lean-forward="false" selection-start-line="153" selection-start-column="36" selection-end-line="153" selection-end-column="36" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/utils/SeatsHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="27" column="18" lean-forward="true" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1910,19 +1561,11 @@
         <state relative-caret-position="179">
           <caret line="17" column="29" lean-forward="true" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
           <folding>
-            <element signature="e#695#696#0" expanded="true" />
-            <element signature="e#725#726#0" expanded="true" />
-            <element signature="e#768#769#0" expanded="true" />
-            <element signature="e#799#800#0" expanded="true" />
+            <element signature="e#695#696#0" expanded="false" />
+            <element signature="e#725#726#0" expanded="false" />
+            <element signature="e#768#769#0" expanded="false" />
+            <element signature="e#799#800#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/utils/Helpers.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="31" column="13" lean-forward="false" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1930,40 +1573,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/utils/Parameters.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="69" column="50" lean-forward="true" selection-start-line="69" selection-start-column="31" selection-end-line="69" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/utils/RowColumnNameHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="7" column="63" lean-forward="false" selection-start-line="7" selection-start-column="63" selection-end-line="7" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/resource/BandResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/resource/ImageService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="21" column="31" lean-forward="false" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -1986,25 +1595,50 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/purchase/PurchaseApprove.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/purchase/PurchaseCancel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
+        <state relative-caret-position="0">
           <caret line="25" column="27" lean-forward="false" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/purchase/PurchaseFilterBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
+        <state relative-caret-position="0">
           <caret line="11" column="39" lean-forward="false" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="39" />
-          <folding />
+          <folding>
+            <element signature="e#472#473#0" expanded="false" />
+            <element signature="e#499#500#0" expanded="false" />
+            <element signature="e#539#540#0" expanded="false" />
+            <element signature="e#571#572#0" expanded="false" />
+            <element signature="e#601#602#0" expanded="false" />
+            <element signature="e#630#631#0" expanded="false" />
+            <element signature="e#671#672#0" expanded="false" />
+            <element signature="e#707#708#0" expanded="false" />
+            <element signature="e#748#749#0" expanded="false" />
+            <element signature="e#785#786#0" expanded="false" />
+            <element signature="e#845#846#0" expanded="false" />
+            <element signature="e#897#898#0" expanded="false" />
+            <element signature="e#924#925#0" expanded="false" />
+            <element signature="e#950#951#0" expanded="false" />
+            <element signature="e#985#986#0" expanded="false" />
+            <element signature="e#1015#1016#0" expanded="false" />
+            <element signature="e#1045#1046#0" expanded="false" />
+            <element signature="e#1074#1075#0" expanded="false" />
+            <element signature="e#1115#1116#0" expanded="false" />
+            <element signature="e#1151#1152#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2018,7 +1652,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/purchase/SingeltonShowInstanceMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
+        <state relative-caret-position="0">
           <caret line="28" column="104" lean-forward="false" selection-start-line="28" selection-start-column="104" selection-end-line="28" selection-end-column="104" />
           <folding />
         </state>
@@ -2026,7 +1660,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/purchase/PurchaseTimer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
+        <state relative-caret-position="0">
           <caret line="6" column="96" lean-forward="false" selection-start-line="6" selection-start-column="96" selection-end-line="6" selection-end-column="96" />
           <folding />
         </state>
@@ -2042,10 +1676,301 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/purchase/PurchaseRequest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="62" column="44" lean-forward="true" selection-start-line="62" selection-start-column="20" selection-end-line="62" selection-end-column="44" />
+        <state relative-caret-position="0">
+          <caret line="62" column="44" lean-forward="false" selection-start-line="62" selection-start-column="20" selection-end-line="62" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/objects/ResponseEntityA.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/objects/ResponseEntity.java" />
+    <entry file="uml://JAVA/org.yuval.exceptions">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>org.yuval.exceptions</OriginalElement>
+          <nodes>
+            <node x="" y="">org.yuval.exceptions.ShowNotExistException</node>
+            <node x="" y="">org.yuval.exceptions.UserNotExistException</node>
+            <node x="" y="">org.yuval.exceptions.TheaterOutOfBoundsException</node>
+            <node x="" y="">org.yuval.exceptions.ShowInstanceNotExistException</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="130.0" y="141.5" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/org.yuval">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>org.yuval</OriginalElement>
+          <nodes>
+            <node x="189.0" y="164.0">org.yuval.login</node>
+            <node x="220.0" y="0.0">org.yuval.purchase</node>
+            <node x="207.0" y="82.0">org.yuval.objects</node>
+            <node x="333.0" y="373.0">org.yuval.test</node>
+            <node x="0.0" y="0.0">org.yuval.exceptions</node>
+            <node x="-139.0" y="67.0">org.yuval.resource</node>
+            <node x="366.0" y="256.0">org.yuval.utils</node>
+            <node x="-184.0" y="162.0">org.yuval.initDB</node>
+            <node x="-174.0" y="282.0">org.yuval.filter</node>
+            <node x="-136.0" y="395.0">org.yuval.dao</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="-288.0" y="146.0" />
+          <SelectedNodes>
+            <node>org.yuval.test</node>
+          </SelectedNodes>
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://JAVA/org.yuval.dao">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>JAVA</ID>
+          <OriginalElement>org.yuval.dao</OriginalElement>
+          <nodes>
+            <node x="0.0" y="0.0">org.yuval.dao.Seat</node>
+            <node x="848.9916666666667" y="147.0">org.yuval.dao.UserDao</node>
+            <node x="627.7458333333334" y="0.0">org.yuval.dao.Crud</node>
+            <node x="564.2416666666667" y="147.0">org.yuval.dao.TheaterDao</node>
+            <node x="425.0" y="0.0">org.yuval.dao.UsageCheck</node>
+            <node x="0.0" y="311.0">org.yuval.dao.MongoSet</node>
+            <node x="0.0" y="229.0">org.yuval.dao.SingeltonMongoClient</node>
+            <node x="242.0" y="229.0">org.yuval.dao.MongoCollection</node>
+            <node x="724.9916666666667" y="147.0">org.yuval.dao.BandDao</node>
+            <node x="726.9083333333333" y="0.0">org.yuval.dao.RandomId</node>
+            <node x="418.25" y="147.0">org.yuval.dao.ShowDao</node>
+            <node x="136.99583333333334" y="147.0">org.yuval.dao.ShowInstanceDao</node>
+            <node x="91.0" y="0.0">org.yuval.dao.ShowInstancesByShowIdNoSeatsQuery</node>
+            <node x="158.0" y="311.0">org.yuval.dao.DaoUtils</node>
+          </nodes>
+          <notes />
+          <edges>
+            <edge source="org.yuval.dao.ShowInstanceDao" target="org.yuval.dao.Seat">
+              <point x="-55.0" y="-18.5" />
+              <point x="164.49583333333334" y="127.0" />
+              <point x="35.5" y="127.0" />
+              <point x="0.0" y="18.5" />
+            </edge>
+            <edge source="org.yuval.dao.ShowInstanceDao" target="org.yuval.dao.Crud">
+              <point x="55.0" y="-18.5" />
+              <point x="274.49583333333334" y="97.0" />
+              <point x="635.2458333333334" y="97.0" />
+              <point x="-30.0" y="18.5" />
+            </edge>
+            <edge source="org.yuval.dao.ShowDao" target="org.yuval.dao.Crud">
+              <point x="36.0" y="-18.5" />
+              <point x="508.25" y="107.0" />
+              <point x="650.2458333333334" y="107.0" />
+              <point x="-15.0" y="18.5" />
+            </edge>
+            <edge source="org.yuval.dao.BandDao" target="org.yuval.dao.UsageCheck">
+              <point x="-34.66666666666663" y="-18.5" />
+              <point x="742.325" y="77.0" />
+              <point x="535.25" y="77.0" />
+              <point x="47.25" y="18.5" />
+            </edge>
+            <edge source="org.yuval.dao.UserDao" target="org.yuval.dao.Crud">
+              <point x="0.0" y="-18.5" />
+              <point x="899.4916666666667" y="57.0" />
+              <point x="695.2458333333334" y="57.0" />
+              <point x="30.0" y="18.5" />
+            </edge>
+            <edge source="org.yuval.dao.TheaterDao" target="org.yuval.dao.UsageCheck">
+              <point x="-40.33333333333337" y="-18.5" />
+              <point x="584.4083333333333" y="87.0" />
+              <point x="503.75" y="87.0" />
+              <point x="15.75" y="18.5" />
+            </edge>
+            <edge source="org.yuval.dao.BandDao" target="org.yuval.dao.RandomId">
+              <point x="34.66666666666663" y="-18.5" />
+              <point x="28.25" y="18.5" />
+            </edge>
+            <edge source="org.yuval.dao.TheaterDao" target="org.yuval.dao.RandomId">
+              <point x="40.33333333333337" y="-18.5" />
+              <point x="665.075" y="127.0" />
+              <point x="755.1583333333333" y="127.0" />
+              <point x="-28.25" y="18.5" />
+            </edge>
+            <edge source="org.yuval.dao.ShowDao" target="org.yuval.dao.ShowInstancesByShowIdNoSeatsQuery">
+              <point x="-36.0" y="-18.5" />
+              <point x="436.25" y="77.0" />
+              <point x="248.0" y="77.0" />
+              <point x="0.0" y="18.5" />
+            </edge>
+            <edge source="org.yuval.dao.BandDao" target="org.yuval.dao.Crud">
+              <point x="0.0" y="-18.5" />
+              <point x="776.9916666666667" y="67.0" />
+              <point x="680.2458333333334" y="67.0" />
+              <point x="15.0" y="18.5" />
+            </edge>
+            <edge source="org.yuval.dao.ShowDao" target="org.yuval.dao.UsageCheck">
+              <point x="0.0" y="-18.5" />
+              <point x="-15.75" y="18.5" />
+            </edge>
+            <edge source="org.yuval.dao.ShowInstanceDao" target="org.yuval.dao.UsageCheck">
+              <point x="0.0" y="-18.5" />
+              <point x="219.49583333333334" y="87.0" />
+              <point x="440.75" y="87.0" />
+              <point x="-47.25" y="18.5" />
+            </edge>
+            <edge source="org.yuval.dao.TheaterDao" target="org.yuval.dao.Crud">
+              <point x="0.0" y="-18.5" />
+              <point x="624.7416666666667" y="117.0" />
+              <point x="665.2458333333334" y="117.0" />
+              <point x="0.0" y="18.5" />
+            </edge>
+          </edges>
+          <settings layout="Hierarchic Group" zoom="1.0" x="-5.5" y="137.5" />
+          <SelectedNodes>
+            <node>org.yuval.dao.ShowInstancesByShowIdNoSeatsQuery</node>
+          </SelectedNodes>
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/filter/SecurityFilter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="30" column="83" lean-forward="false" selection-start-line="30" selection-start-column="83" selection-end-line="30" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/initDB/InitShow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="89" column="131" lean-forward="false" selection-start-line="89" selection-start-column="131" selection-end-line="89" selection-end-column="131" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/utils/RowColumnNameHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="7" column="63" lean-forward="false" selection-start-line="7" selection-start-column="63" selection-end-line="7" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/utils/SeatsHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="27" column="18" lean-forward="true" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/glassfish/jersey/core/jersey-server/2.16/jersey-server-2.16-sources.jar!/org/glassfish/jersey/server/internal/MappableExceptionWrapperInterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="91" column="0" lean-forward="false" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/utils/Parameters.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="70" column="51" lean-forward="false" selection-start-line="70" selection-start-column="51" selection-end-line="70" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/resource/TheaterResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="599">
+          <caret line="102" column="39" lean-forward="false" selection-start-line="102" selection-start-column="39" selection-end-line="102" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/resource/ShowResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="76" column="8" lean-forward="false" selection-start-line="76" selection-start-column="8" selection-end-line="76" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/resource/ShowInstanceResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="53" column="127" lean-forward="false" selection-start-line="53" selection-start-column="127" selection-end-line="53" selection-end-column="127" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/resource/SeatsResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/resource/ImageService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="21" column="31" lean-forward="false" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/resource/UserResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="63" column="118" lean-forward="true" selection-start-line="63" selection-start-column="71" selection-end-line="63" selection-end-column="118" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/resource/BandResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="81" column="135" lean-forward="false" selection-start-line="81" selection-start-column="135" selection-end-line="81" selection-end-column="135" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/utils/ResponseDocument.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="44" lean-forward="false" selection-start-line="9" selection-start-column="44" selection-end-line="9" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/yuval/utils/Helpers.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1099">
+          <caret line="91" column="27" lean-forward="true" selection-start-line="91" selection-start-column="27" selection-end-line="91" selection-end-column="27" />
+          <folding>
+            <element signature="e#3576#3577#0" expanded="true" />
+            <element signature="e#3627#3628#0" expanded="true" />
           </folding>
         </state>
       </provider>
