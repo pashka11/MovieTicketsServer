@@ -15,12 +15,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
 
+import static com.sun.xml.internal.ws.model.RuntimeModeler.RESPONSE;
 import static org.yuval.utils.Parameters.*;
 
 /**
  * Created by Yuval on 13-Mar-17.
  */
-public class Helpers {
+public class Helpers implements ResponseDocument{
     private static final int MAX_SHOWS_TO_ENTER = 15;
     private static final int MIN_SHOWS_TO_ENTER = 5;
     private static final int MAX_SHOW_PRICE = 1000;
@@ -84,5 +85,15 @@ public class Helpers {
 
         }
         return showInstances;
+    }
+
+    /**
+     * @param value String to put in the doc
+     * @return and JSON document with that look like this
+     * {response : "value"}
+     */
+    @Override
+    public Document docResponse(String value) {
+        return new Document(RESPONSE,value);
     }
 }
