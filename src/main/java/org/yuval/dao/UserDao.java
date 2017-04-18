@@ -138,7 +138,9 @@ public class UserDao implements Crud {
             }
             String s = document.get(USER_PASSWORD).toString();
             EncryptionInterface encryptionInterface = new Encryption();
+
             document.put(USER_PASSWORD, encryptionInterface.encrypt(s));
+
             document.append(USER_TICKETS, Arrays.asList());
 
         } catch (Exception e) {
