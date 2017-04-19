@@ -6,6 +6,7 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.yuval.objects.User;
 import org.yuval.utils.Encryption;
+import org.yuval.utils.EncryptionInterface;
 import org.yuval.utils.Parameters;
 
 import java.util.ArrayList;
@@ -39,8 +40,9 @@ public class UserDao implements Crud {
     public boolean create(Object obj) {
         try {
             User cur = (User) obj;
+            EncryptionInterface encryptionInterface = new Encryption();
             Document doc = new Document(ID, cur.getUserName())
-                    .append(USER_PASSWORD, Encryption.encrypt(cur.getPassword()))
+                    .append(USER_PASSWORD, encryptionInterface.encrypt(cur.getPassword()))
                     .append(USER_IS_ADMIN, cur.isAdmin())
                     .append(USER_TICKETS, Arrays.asList());
 
@@ -135,7 +137,8 @@ public class UserDao implements Crud {
                 document.put(USER_IS_ADMIN,false);
             }
             String s = document.get(USER_PASSWORD).toString();
-            document.put(USER_PASSWORD, Encryption.encrypt(s));
+            EncryptionInterface encryptionInterface = new Encryption();
+            document.put(USER_PASSWORD, en.encrypt(s));
             document.append(USER_TICKETS, Arrays.asList());
 
         } catch (Exception e) {
