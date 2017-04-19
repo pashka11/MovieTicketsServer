@@ -2,6 +2,7 @@ package org.yuval.login;
 
 import org.bson.Document;
 import org.glassfish.jersey.internal.util.Base64;
+import org.yuval.dao.Crud;
 import org.yuval.dao.UserDao;
 
 import javax.ws.rs.GET;
@@ -22,27 +23,28 @@ import static org.yuval.utils.Parameters.*;
 @Path("authenticate")
 public class Authenticate {
 
-        @GET
-        @Produces(MediaType.TEXT_PLAIN)
-        public String securedMethod(ContainerRequestContext requestContext){
-            //get the user name
-            List<String> list=requestContext.getHeaders().get(AUTHORIZATION_HEADER_KEY);
-            if(list!=null&&list.size()>0) {
-                String s = list.get(0);
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    public String securedMethod(ContainerRequestContext requestContext) {
+        //get the user name
+        List<String> list = requestContext.getHeaders().get(AUTHORIZATION_HEADER_KEY);
+        if (list != null && list.size() > 0) {
+            String s = list.get(0);
 
-                s = s.replaceFirst(AUTHORIZATION_HEADER_PREFIX, "");
-                String decodedString = Base64.decodeAsString(s);
-                StringTokenizer tokenizer = new StringTokenizer(decodedString, ":");
-                String userName = tokenizer.nextToken();
+            s = s.replaceFirst(AUTHORIZATION_HEADER_PREFIX, "");
+            String decodedString = Base64.decodeAsString(s);
+            StringTokenizer tokenizer = new StringTokenizer(decodedString, ":");
+            String userName = tokenizer.nextToken();
 
-                //decide if user is an admin
-                Document userDocument = new UserDao().read(userName);
-                if ((boolean)userDocument.get(USER_IS_ADMIN)==true){
-                    return ADMIN_IS_AUTHENTICATED;
-                }
-                return USER_IS_AUTHENTICATED;
+            //decide if user is an admin
+            Crud crud = new UserDao();
+            Document userDocument = crud.read(userName);
+            if ((boolean) userDocument.get(USER_IS_ADMIN)) {
+                return ADMIN_IS_AUTHENTICATED;
             }
-
-            return AUTHENTICATION_FAILED;
+            return USER_IS_AUTHENTICATED;
         }
+
+        return AUTHENTICATION_FAILED;
+    }
 }

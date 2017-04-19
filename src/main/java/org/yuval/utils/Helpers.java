@@ -6,6 +6,7 @@ import org.bson.codecs.EncoderContext;
 import org.bson.json.JsonMode;
 import org.bson.json.JsonWriter;
 import org.bson.json.JsonWriterSettings;
+import org.yuval.dao.RandomId;
 import org.yuval.dao.TheaterDao;
 import org.yuval.objects.Row;
 import org.yuval.objects.ShowInstance;
@@ -21,7 +22,7 @@ import static org.yuval.utils.Parameters.*;
 /**
  * Created by Yuval on 13-Mar-17.
  */
-public class Helpers implements ResponseDocument{
+public class Helpers implements ResponseDocument,FillShowInstanceArrayInterface{
     private static final int MAX_SHOWS_TO_ENTER = 15;
     private static final int MIN_SHOWS_TO_ENTER = 5;
     private static final int MAX_SHOW_PRICE = 1000;
@@ -30,7 +31,8 @@ public class Helpers implements ResponseDocument{
     private static final int MIN_SHOW_DAYS_DIFFERENCE = 2;
     private static final int RANDOM_SHOW_HOURS = 24;
 
-    /**debug purposes
+    /**
+     * debug purposes
      * @param document to print
      */
     public static void printJson(Document document) {
@@ -48,7 +50,7 @@ public class Helpers implements ResponseDocument{
      * this method is for init show instance
      * @return array list of shows instances
      */
-    public static ArrayList<ShowInstance> fillShowInstanceArray() {
+    public ArrayList<ShowInstance> fillShowInstanceArray() {
 
         ArrayList<ShowInstance> showInstances = new ArrayList<>();
         //insert show instances
@@ -69,7 +71,8 @@ public class Helpers implements ResponseDocument{
             //set date
             showInstance.setDate(showDate.getTime());
             //set random theater
-            Document theater = new TheaterDao().read(String.valueOf(new TheaterDao().randomId()));
+            RandomId randomId = new TheaterDao();
+            Document theater = new TheaterDao().read(String.valueOf(randomId.randomId()));
             showInstance.setTheaterId((int)(theater.get(ID)));
             ArrayList <Row> rows = new ArrayList<>();
             for (int j = 1; j <=(int)theater.get(THEATER_ROWS) ; j++) {

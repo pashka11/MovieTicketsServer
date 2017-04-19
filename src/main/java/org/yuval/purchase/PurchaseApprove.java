@@ -29,7 +29,8 @@ public class PurchaseApprove implements CheckParameters {
     public Response securedMethod(@BeanParam PurchaseFilterBean filterBean) {
 
 //check all input parameters
-        Response errorMsg = new PurchaseParmsValidation().checkParameters(filterBean);
+        PurchaseParmsValidationInterface validationInterface = new PurchaseParmsValidation();
+        Response errorMsg = validationInterface .checkParameters(filterBean);
         if (errorMsg != null) {
             return errorMsg;
         }

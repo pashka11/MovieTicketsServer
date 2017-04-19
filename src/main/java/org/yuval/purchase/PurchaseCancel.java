@@ -21,27 +21,28 @@ public class PurchaseCancel {
      * @param filterBean includes row, column, user, id, show, showInstance
      * @return response about the status of seat release
      */
-        @POST
-        @Produces(MediaType.TEXT_PLAIN)
-        public Response securedMethod(@BeanParam PurchaseFilterBean filterBean){
+    @POST
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response securedMethod(@BeanParam PurchaseFilterBean filterBean) {
 
 //check all input parameters
-            Response errorMsg = new PurchaseParmsValidation().checkParameters(filterBean);
-            if (errorMsg!=null){
-                return errorMsg;
-            }
+        PurchaseParmsValidationInterface validationInterface = new PurchaseParmsValidation();
+        Response errorMsg = validationInterface.checkParameters(filterBean);
+        if (errorMsg != null) {
+            return errorMsg;
+        }
 
-            //cancel the seat
-            SingeltonShowInstanceMap singeltonShowInstanceMap= SingeltonShowInstanceMap.getInstance();
-            MultitonShowInstance multitonShowInstance =singeltonShowInstanceMap.getMultitonShowInstance(filterBean.getShowInstanceID());
-            multitonShowInstance.releaseSeat(filterBean.getRow()-1,filterBean.getColumn()-1,filterBean.getShowId(),filterBean.getUser());
+        //cancel the seat
+        SingeltonShowInstanceMap singeltonShowInstanceMap = SingeltonShowInstanceMap.getInstance();
+        MultitonShowInstance multitonShowInstance = singeltonShowInstanceMap.getMultitonShowInstance(filterBean.getShowInstanceID());
+        multitonShowInstance.releaseSeat(filterBean.getRow() - 1, filterBean.getColumn() - 1, filterBean.getShowId(), filterBean.getUser());
 
 
-                return Response
-                        .status(Response.Status.ACCEPTED)
-                        .entity(SEAT_WAS_RELEASED)
-                        .build();
-            }
+        return Response
+                .status(Response.Status.ACCEPTED)
+                .entity(SEAT_WAS_RELEASED)
+                .build();
+    }
 
 
 }
