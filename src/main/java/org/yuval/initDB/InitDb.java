@@ -6,10 +6,10 @@ package org.yuval.initDB;
  */
 public class InitDb {
     public static void main(String[] args) {
-        String [] argumentss = new String[]{""};
-        new InitBand().main(argumentss);
-        new InitTheater().main(argumentss);
-        new InitUser().main(argumentss);
-        new InitShow().main(argumentss);
+        String [] arguments = new String[]{""};
+        new InitBand().main(arguments);
+        new InitTheater().main(arguments);
+        new InitUser().main(arguments);
+        new InitShow().main(arguments);
     }
 }

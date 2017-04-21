@@ -74,17 +74,18 @@ public class TheaterDao implements Crud, RandomId, UsageCheck {
     public boolean update(Document document) {
         boolean updated = false;
         try {
+            CheckAndSetInterface checkAndSetInterface = new DaoUtils();
             //check if id exists
             if (read(document.get(ID).toString()) == null) {
                 return false;
             }
-            if (DaoUtils.checkAndSet(coll,THEATER_NAME,document)){
+            if (checkAndSetInterface.checkAndSet(coll,THEATER_NAME,document)){
                 updated=true;
             }
-            if (DaoUtils.checkAndSet(coll,IMAGE_LINK,document)){
+            if (checkAndSetInterface.checkAndSet(coll,IMAGE_LINK,document)){
                 updated=true;
             }
-            if (DaoUtils.checkAndSet(coll,THEATER_LOCATION,document)){
+            if (checkAndSetInterface.checkAndSet(coll,THEATER_LOCATION,document)){
                 updated=true;
             }
         } catch (Exception e) {
@@ -131,7 +132,8 @@ public class TheaterDao implements Crud, RandomId, UsageCheck {
      */
     @Override
     public int randomId() {
-        return new DaoUtils().randomId(coll);
+        IdInterface idInterface = new DaoUtils();
+        return idInterface.randomId(coll);
     }
     /**
      * @param document to insert
@@ -140,7 +142,8 @@ public class TheaterDao implements Crud, RandomId, UsageCheck {
     @Override
     public String insertValidation(Document document) {
         //put auto increment id
-        document.append(ID, new DaoUtils().getNextSequence(coll));
+        IdInterface idInterface = new DaoUtils();
+        document.append(ID, idInterface.getNextSequence(coll));
         //check for  correctness of fields
         try {
             if (document.get(THEATER_NAME) == null || document.get(THEATER_NAME).toString().trim().equals(""))

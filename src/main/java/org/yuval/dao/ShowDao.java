@@ -113,22 +113,23 @@ public class ShowDao implements Crud, ShowInstancesByShowIdNoSeatsQuery, UsageCh
     public boolean update(Document document) {
         boolean updated = false;
         try {
+            CheckAndSetInterface checkAndSetInterface = new DaoUtils();
             //check if id exists
             if (read(document.get(ID).toString()) == null) {
                 return false;
             }
-            if (DaoUtils.checkAndSet(coll, SHOW_DESCRIPTION, document)) {
+            if (checkAndSetInterface.checkAndSet(coll, SHOW_DESCRIPTION, document)) {
                 updated = true;
             }
-            if (DaoUtils.checkAndSet(coll, SHOW_NAME, document)) {
+            if (checkAndSetInterface.checkAndSet(coll, SHOW_NAME, document)) {
                 updated = true;
             }
-            if (DaoUtils.checkAndSet(coll, IMAGE_LINK, document)) {
+            if (checkAndSetInterface.checkAndSet(coll, IMAGE_LINK, document)) {
                 updated = true;
             }
             //if band parameter was inserted check if valid and update
             if (document.get(SHOW_BAND_ID) != null && new BandDao().read(document.get(SHOW_BAND_ID).toString()) != null) {
-                if (DaoUtils.checkAndSet(coll, SHOW_BAND_ID, document)) {
+                if (checkAndSetInterface.checkAndSet(coll, SHOW_BAND_ID, document)) {
                     updated = true;
                 }
             }
@@ -178,7 +179,8 @@ public class ShowDao implements Crud, ShowInstancesByShowIdNoSeatsQuery, UsageCh
     @Override
     public String insertValidation(Document document) {
         //put auto increment id
-        document.append(ID, new DaoUtils().getNextSequence(coll));
+        IdInterface idInterface = new DaoUtils();
+        document.append(ID, idInterface.getNextSequence(coll));
         //check for  correctness of fields
         try {
             if (document.get(SHOW_NAME) == null || document.get(SHOW_NAME).toString().trim().equals(""))

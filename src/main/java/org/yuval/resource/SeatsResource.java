@@ -2,6 +2,7 @@ package org.yuval.resource;
 
 import com.mongodb.util.JSON;
 import org.bson.Document;
+import org.yuval.dao.Crud;
 import org.yuval.dao.ShowInstanceDao;
 
 import javax.ws.rs.*;
@@ -28,7 +29,8 @@ public class SeatsResource {
     @GET
     @Path("/{showInstanceId}")
     public Response getShowInstanceSeats(@PathParam("showInstanceId") String showInstanceId) {
-        Document document = new ShowInstanceDao().read(showInstanceId);
+        Crud crud =new ShowInstanceDao();
+        Document document = crud.read(showInstanceId);
         if (document!=null && document.get(SHOW_INSTANCE_SEATS)!=null){
             return Response.status(Response.Status.OK).entity(JSON.serialize(document.get(SHOW_INSTANCE_SEATS))).build();
         }

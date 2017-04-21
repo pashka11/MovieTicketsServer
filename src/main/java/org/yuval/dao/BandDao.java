@@ -13,21 +13,23 @@ import static org.yuval.dao.MongoCollection.getMongoCollection;
 import static org.yuval.utils.Parameters.*;
 
 /**
- * Created by Yuval on 26-Mar-17.
+ * data access object - bands collection
  */
-public class BandDao implements Crud, RandomId,UsageCheck {
+public class BandDao implements Crud, RandomId, UsageCheck {
 
     private com.mongodb.client.MongoCollection<Document> coll;
+
     /**
-     *  constructor
+     * constructor
      */
     public BandDao() {
 
-        this.coll= getMongoCollection(Parameters.BANDS_COLLECTION);
+        this.coll = getMongoCollection(Parameters.BANDS_COLLECTION);
     }
 
     /**
      * this method creates an object and insert it to the DB
+     *
      * @param obj is the document to insert
      * @return true if created false otherwise
      */
@@ -49,6 +51,7 @@ public class BandDao implements Crud, RandomId,UsageCheck {
 
     /**
      * get a single document from the DB
+     *
      * @param id of the DB object
      * @return single document
      */
@@ -63,7 +66,7 @@ public class BandDao implements Crud, RandomId,UsageCheck {
      */
     @Override
     public List<Document> readAll() {
-        return coll.find().into(new ArrayList<Document>());
+        return coll.find().into(new ArrayList<>());
     }
 
     /**
@@ -74,18 +77,19 @@ public class BandDao implements Crud, RandomId,UsageCheck {
     public boolean update(Document document) {
         boolean updated = false;
         try {
+            CheckAndSetInterface checkAndSetInterface = new DaoUtils();
             //check if id exists
             if (read(document.get(ID).toString()) == null) {
                 return false;
             }
-            if (DaoUtils.checkAndSet(coll,BAND_NAME,document)){
-                updated =true;
+            if (checkAndSetInterface.checkAndSet(coll, BAND_NAME, document)) {
+                updated = true;
             }
-            if (DaoUtils.checkAndSet(coll,IMAGE_LINK,document)){
-                updated=true;
+            if (checkAndSetInterface.checkAndSet(coll, IMAGE_LINK, document)) {
+                updated = true;
             }
-            if (DaoUtils.checkAndSet(coll,BAND_DESCRIPTION,document)){
-                updated=true;
+            if (checkAndSetInterface.checkAndSet(coll, BAND_DESCRIPTION, document)) {
+                updated = true;
             }
 
         } catch (Exception e) {
@@ -118,6 +122,7 @@ public class BandDao implements Crud, RandomId,UsageCheck {
 
     /**
      * delete all documents in the current collection
+     *
      * @return true if deletion was successful ,false otherwise
      */
     @Override
@@ -138,7 +143,8 @@ public class BandDao implements Crud, RandomId,UsageCheck {
     @Override
     public String insertValidation(Document document) {
         //put auto increment id
-        document.append(ID,new DaoUtils().getNextSequence(coll));
+        IdInterface idInterface = new DaoUtils();
+        document.append(ID, idInterface.getNextSequence(coll));
         //check for  correctness of fields
         try {
             if (document.get(BAND_NAME) == null || document.get(BAND_NAME).toString().trim().equals(""))
@@ -146,7 +152,7 @@ public class BandDao implements Crud, RandomId,UsageCheck {
 
             if (document.get(BAND_DESCRIPTION) == null || document.get(BAND_DESCRIPTION).toString().trim().equals(""))
                 return status.invalid_parameter.toString() + " " + BAND_DESCRIPTION;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return status.invalid_document.toString();
         }
@@ -160,7 +166,8 @@ public class BandDao implements Crud, RandomId,UsageCheck {
      */
     @Override
     public int randomId() {
-        return new DaoUtils().randomId(coll);
+        IdInterface idInterface = new DaoUtils();
+        return idInterface.randomId(coll);
     }
 
     /**
@@ -170,12 +177,9 @@ public class BandDao implements Crud, RandomId,UsageCheck {
     @Override
     public boolean isInUse(String id) {
         ShowDao showDao = new ShowDao();
-        com.mongodb.client.MongoCollection<Document> mongoCollection =  showDao.getColl();
-        Bson filter = Filters.eq(SHOW_BAND_ID,Integer.valueOf(id)) ;
-        Document document  = mongoCollection.find().filter(filter).first();
-        if (document==null) {
-            return false;
-        }
-        return true;
+        com.mongodb.client.MongoCollection<Document> mongoCollection = showDao.getColl();
+        Bson filter = Filters.eq(SHOW_BAND_ID, Integer.valueOf(id));
+        Document document = mongoCollection.find().filter(filter).first();
+        return document != null;
     }
 }

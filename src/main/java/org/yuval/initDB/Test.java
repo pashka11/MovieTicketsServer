@@ -1,11 +1,5 @@
 package org.yuval.initDB;
 
-import org.bson.Document;
-import org.yuval.dao.TheaterDao;
-
-import static org.yuval.utils.Parameters.ID;
-import static org.yuval.utils.Parameters.THEATER_NAME;
-
 /**
  * Created by Yuval on 19-Mar-17.
  * this class is testing
@@ -30,6 +24,6 @@ public class Test {
 
 //        System.out.println(new ShowInstanceDao().drop("58e37557982e4ac080f654d1" ));
 //        System.out.println(new ShowDao().isInUse("11"));
-        System.out.println(new TheaterDao().update(new Document().append(ID,1).append(THEATER_NAME,"    ")));
+//        System.out.println(new TheaterDao().update(new Document().append(ID,1).append(THEATER_NAME,"    ")));
     }
 }

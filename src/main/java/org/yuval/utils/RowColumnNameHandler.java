@@ -7,15 +7,15 @@ import static org.yuval.utils.Parameters.ROW_NUMBER;
  * Created by Yuval on 20-Mar-17.
  * This class handles convection between seat position and name
  */
-public class RowColumnNameHandler {
+public class RowColumnNameHandler implements RowColumnNameInterface{
 
     public int nameToNumber(String s){
         return Integer.valueOf(s.replace(ROW_NUMBER+" ",""))-1;
     }
-    public static String rowNumberToName(int num){
+    public String rowNumberToName(int num){
         return ROW_NUMBER+" "+String.valueOf(num+1);
     }
-    public static String columnNumberToName(int num){
+    public String columnNumberToName(int num){
         return COLUMN_NUMBER+" "+String.valueOf(num+1);
     }
 

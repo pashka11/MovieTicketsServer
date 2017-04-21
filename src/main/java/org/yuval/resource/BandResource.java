@@ -4,6 +4,7 @@ import com.mongodb.util.JSON;
 import org.bson.Document;
 import org.yuval.dao.BandDao;
 import org.yuval.dao.Crud;
+import org.yuval.dao.UsageCheck;
 import org.yuval.utils.Helpers;
 import org.yuval.utils.ResponseDocument;
 
@@ -30,7 +31,8 @@ public class BandResource {
      */
     @GET
     public Response getAllBands() {
-        List<Document>documentList =new BandDao().readAll();
+        Crud crud = new BandDao();
+        List<Document>documentList = crud.readAll();
         if (documentList == null) {
             return Response.status(Response.Status.NOT_FOUND).entity(INVALID_BAND_ID).build();
         }
@@ -45,7 +47,8 @@ public class BandResource {
     @GET
     @Path("/{bandId}")
     public Response getBandById(@PathParam("bandId") int bandId) {
-        Document document = new BandDao().read(String.valueOf(bandId));
+        Crud crud = new BandDao();
+        Document document = crud.read(String.valueOf(bandId));
         if (document == null) {
             return Response.status(Response.Status.NOT_FOUND).entity(INVALID_BAND_ID).build();
         }
@@ -58,10 +61,11 @@ public class BandResource {
      */
     @POST
     public Response insertBand(String band) {
+        Crud crud = new BandDao();
         ResponseDocument responseDocument = new Helpers();
         //turn string into document
         Document document = Document.parse(band);
-        String s = new BandDao().insertValidation(document);
+        String s = crud.insertValidation(document);
         //        there is a problem ,so we return info
         if (!s.equals(Crud.status.OK.toString())) {
             return Response.status(Response.Status.BAD_REQUEST).entity(JSON.serialize(responseDocument.docResponse(s))).build();
@@ -77,8 +81,9 @@ public class BandResource {
     @PUT
     public Response updateBand(String band) {
         ResponseDocument responseDocument = new Helpers();
+        Crud crud = new BandDao();
         Document document = Document.parse(band);
-        if (!new BandDao().update(document)) {
+        if (!crud.update(document)) {
             return Response.status(Response.Status.CONFLICT).entity(JSON.serialize(responseDocument.docResponse(ERROR_IN_UPDATE_PROCESS))).build();
         }
         return Response.status(Response.Status.ACCEPTED).entity(JSON.serialize(responseDocument.docResponse(SUCCESSFULLY_UPDATED))).build();
@@ -92,14 +97,15 @@ public class BandResource {
     @Path("/{bandId}")
     public Response deleteBand(@PathParam("bandId") String bandId) {
         ResponseDocument responseDocument = new Helpers();
-        BandDao bandDao = new BandDao();
-        if (bandDao.read(bandId) == null) {
+        Crud crud = new BandDao();
+        UsageCheck usageCheck = new BandDao();
+        if (crud.read(bandId) == null) {
             return Response.status(Response.Status.NOT_FOUND).entity(JSON.serialize(responseDocument.docResponse(DOES_NOT_EXIST))).build();
         }
-        if (bandDao.isInUse(bandId)) {
+        if (usageCheck.isInUse(bandId)) {
             return Response.status(Response.Status.FORBIDDEN).entity(JSON.serialize(responseDocument.docResponse(RESOURCE_IS_IN_USE))).build();
         }
-        if (!bandDao.drop(bandId)) {
+        if (!crud.drop(bandId)) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(JSON.serialize(responseDocument.docResponse(ERROR_IN_DELETION))).build();
         }
         return Response.status(Response.Status.OK).entity(JSON.serialize(responseDocument.docResponse(RESOURCE_HAS_BEEN_DELETED))).build();

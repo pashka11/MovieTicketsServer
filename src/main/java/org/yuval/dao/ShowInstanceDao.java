@@ -8,8 +8,7 @@ import com.mongodb.client.model.Updates;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
-import org.yuval.utils.Parameters;
-import org.yuval.utils.RowColumnNameHandler;
+import org.yuval.utils.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,7 +17,6 @@ import java.util.List;
 import static com.mongodb.client.model.Filters.eq;
 import static org.yuval.dao.MongoCollection.getMongoCollection;
 import static org.yuval.utils.Parameters.*;
-import static org.yuval.utils.SeatsHandler.getSeatsFromShowInstanceDoc;
 
 /**
  * Created by Yuval on 26-Mar-17.
@@ -162,9 +160,9 @@ public class ShowInstanceDao implements Crud, Seat, UsageCheck {
             if (document.get(SHOW_INSTANCE_DATE) == null || document.get(SHOW_INSTANCE_DATE).toString().trim().equals("")) {
                 return status.invalid_parameter.toString() + " " + SHOW_INSTANCE_DATE;
             }
-            //TODO check date format
-            if (Integer.valueOf(document.get(SHOW_INSTANCE_PRICE).toString()) <= 0)
+            if (Integer.valueOf(document.get(SHOW_INSTANCE_PRICE).toString()) <= 0) {
                 return status.invalid_parameter.toString() + " " + SHOW_INSTANCE_PRICE;
+            }
             //check theater id is valid
             if (Integer.valueOf(document.get(SHOW_INSTANCE_THEATER_ID).toString()) <= 0) {
                 return status.invalid_parameter.toString() + " " + SHOW_INSTANCE_THEATER_ID;
@@ -182,7 +180,8 @@ public class ShowInstanceDao implements Crud, Seat, UsageCheck {
                 for (int j = 0; j < columns; j++) {
                     arr[j] = 0;
                 }
-                seatDocument.append(RowColumnNameHandler.rowNumberToName(i), Arrays.asList(arr));
+                RowColumnNameInterface rowColumnNameInterface = new RowColumnNameHandler();
+                seatDocument.append(rowColumnNameInterface.rowNumberToName(i), Arrays.asList(arr));
             }
             document.append(SHOW_INSTANCE_SEATS, Arrays.asList(seatDocument));
 
@@ -207,8 +206,8 @@ public class ShowInstanceDao implements Crud, Seat, UsageCheck {
     public void changeSeatStatus(int row, int column, int seatStatus, String showInstanceId, int showId) {
         BasicDBObject query = new BasicDBObject(ID, showId);
         query.put(SHOW_INSTANCE + "." + ID, new ObjectId(showInstanceId));
-
-        BasicDBObject setQuery = new BasicDBObject("$set", new BasicDBObject(SHOW_INSTANCE + ".$." + SHOW_INSTANCE_SEATS + ".0." + RowColumnNameHandler.rowNumberToName(row) + "." + column, seatStatus));
+        RowColumnNameInterface rowColumnNameInterface = new RowColumnNameHandler();
+        BasicDBObject setQuery = new BasicDBObject("$set", new BasicDBObject(SHOW_INSTANCE + ".$." + SHOW_INSTANCE_SEATS + ".0." + rowColumnNameInterface.rowNumberToName(row) + "." + column, seatStatus));
         coll.updateOne(query, setQuery);
     }
 
@@ -220,7 +219,8 @@ public class ShowInstanceDao implements Crud, Seat, UsageCheck {
      */
     @Override
     public int getSeat(int row, int column, String showInstanceId) {
-        Integer[][] seatsArray = getSeatsFromShowInstanceDoc(new ShowInstanceDao().read(showInstanceId));
+        SeatsInterface seatsInterface = new SeatsHandler();
+        Integer[][] seatsArray = seatsInterface.getSeatsFromShowInstanceDoc(new ShowInstanceDao().read(showInstanceId));
         return seatsArray[row][column];
     }
 
@@ -231,7 +231,8 @@ public class ShowInstanceDao implements Crud, Seat, UsageCheck {
     @Override
     public boolean isInUse(String id) {
         //get the correct seat array
-        Integer seatsArr[][] = getSeatsFromShowInstanceDoc(read(id));
+        SeatsInterface seatsInterface = new SeatsHandler();
+        Integer seatsArr[][] = seatsInterface.getSeatsFromShowInstanceDoc(read(id));
         //check if all seats are free
         for (int i = 0; i < seatsArr.length; i++) {
             for (int j = 0; j < seatsArr[0].length; j++) {

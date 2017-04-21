@@ -17,12 +17,13 @@ import static org.yuval.utils.Parameters.ID;
  *
  */
 //this class is for collections with increment id
-public class DaoUtils {
+public class DaoUtils implements IdInterface,CheckAndSetInterface {
 
     /**
      * @param collection
      * @return the next free ID
      */
+    @Override
     public int getNextSequence(MongoCollection collection) {
         int i =0;
         Document document = new Document(ID,i);
@@ -38,6 +39,7 @@ public class DaoUtils {
      * @param coll
      * @return an random ID from this collection
      */
+    @Override
     public int randomId(MongoCollection coll){
         ArrayList<Integer> allId = new ArrayList<>();
         MongoCursor<Document> cursor = coll.find().iterator();
@@ -62,7 +64,8 @@ public class DaoUtils {
      * @param document input document that contain fields to update
      * @return true if value has been changed
      */
-    public static boolean checkAndSet(com.mongodb.client.MongoCollection<Document> coll, String parameter,Document document){
+    @Override
+    public boolean checkAndSet(com.mongodb.client.MongoCollection<Document> coll, String parameter,Document document){
         if (document.get(parameter) != null && !(document.get(parameter).toString().trim().equals(""))) {
             BasicDBObject query = new BasicDBObject(ID, document.get(ID));
             BasicDBObject setQuery = new BasicDBObject("$set", new BasicDBObject(parameter, document.get(parameter)));

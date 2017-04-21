@@ -1,6 +1,7 @@
 package org.yuval.initDB;
 
 import org.yuval.dao.BandDao;
+import org.yuval.dao.Crud;
 import org.yuval.objects.Band;
 
 import java.util.ArrayList;
@@ -107,10 +108,10 @@ public class InitBand {
 
 
 
-        BandDao bandDao = new BandDao();
-        bandDao.dropAll();
+        Crud crud = new BandDao();
+        crud.dropAll();
         bands.parallelStream()
-                .forEach(band -> bandDao.create(band));
+                .forEach(band -> crud.create(band));
     }
 
 }

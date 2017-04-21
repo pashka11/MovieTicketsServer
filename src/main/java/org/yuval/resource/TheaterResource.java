@@ -4,6 +4,7 @@ import com.mongodb.util.JSON;
 import org.bson.Document;
 import org.yuval.dao.Crud;
 import org.yuval.dao.TheaterDao;
+import org.yuval.dao.UsageCheck;
 import org.yuval.utils.Helpers;
 import org.yuval.utils.ResponseDocument;
 
@@ -29,7 +30,8 @@ public class TheaterResource {
      */
     @GET
     public Response getAllTheater() {
-        List<Document> documentList =new TheaterDao().readAll();
+        Crud crud = new TheaterDao();
+        List<Document> documentList =crud.readAll();
         if (documentList == null) {
             return Response.status(Response.Status.NOT_FOUND).entity(INVALID_THEATER_ID).build();
         }
@@ -43,7 +45,8 @@ public class TheaterResource {
     @GET
     @Path("/{theaterId}")
     public Response getBandById(@PathParam("theaterId") int theaterId) {
-        Document document = new TheaterDao().read(String.valueOf(theaterId));
+        Crud crud = new TheaterDao();
+        Document document = crud.read(String.valueOf(theaterId));
         if (document == null) {
             return Response.status(Response.Status.NOT_FOUND).entity(INVALID_THEATER_ID).build();
         }
@@ -59,7 +62,8 @@ public class TheaterResource {
         ResponseDocument responseDocument = new Helpers();
         //turn string into document
         Document document = Document.parse(theater);
-        String s = new TheaterDao().insertValidation(document);
+        Crud crud = new TheaterDao();
+        String s = crud.insertValidation(document);
         //        there is a problem ,so we return info
         if (!s.equals(Crud.status.OK.toString())) {
             return Response.status(Response.Status.BAD_REQUEST).entity(JSON.serialize(responseDocument.docResponse(s))).build();
@@ -76,7 +80,8 @@ public class TheaterResource {
     public Response updateTheater(String theater){
         ResponseDocument responseDocument = new Helpers();
         Document document = Document.parse(theater);
-        if (!new TheaterDao().update(document)){
+        Crud crud = new TheaterDao();
+        if (!crud.update(document)){
             return Response.status(Response.Status.CONFLICT).entity(JSON.serialize(responseDocument.docResponse(ERROR_IN_UPDATE_PROCESS))).build();
         }
         return Response.status(Response.Status.ACCEPTED).entity(JSON.serialize(responseDocument.docResponse(SUCCESSFULLY_UPDATED))).build();
@@ -91,16 +96,17 @@ public class TheaterResource {
     public Response deleteTheater(@PathParam("theaterId") String theaterId){
         ResponseDocument responseDocument = new Helpers();
         //check if theater exists
-        TheaterDao theaterDao = new TheaterDao();
-        if (theaterDao.read(theaterId)==null){
+        Crud crud = new TheaterDao();
+        UsageCheck usageCheck = new TheaterDao();
+        if (crud.read(theaterId)==null){
                return  Response.status(Response.Status.NOT_FOUND).entity(JSON.serialize(responseDocument.docResponse(DOES_NOT_EXIST))).build();
         }
         //check if theater is in use - if not delete it
-        if (theaterDao.isInUse(theaterId)){
+        if (usageCheck.isInUse(theaterId)){
             return Response.status(Response.Status.FORBIDDEN).entity(JSON.serialize(responseDocument.docResponse(RESOURCE_IS_IN_USE))).build();
         }
         //theater is not in use - try to delete it and return proper response
-        if (!theaterDao.drop(theaterId)){
+        if (!crud.drop(theaterId)){
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(JSON.serialize(responseDocument.docResponse(ERROR_IN_DELETION))).build();
         }
         return Response.status(Response.Status.OK).entity(JSON.serialize(responseDocument.docResponse(RESOURCE_HAS_BEEN_DELETED))).build();
