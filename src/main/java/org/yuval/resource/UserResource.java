@@ -48,7 +48,7 @@ public class UserResource {
         if (document == null) {
             return Response.status(Response.Status.NOT_FOUND).entity(INVALID_USER_ID).build();
         }
-        return Response.status(Response.Status.OK).entity(JSON.serialize(document)).build();
+        return Response.status(Response.Status.OK).entity(JSON.serialize(document.get(USER_TICKETS))).build();
     }
 
     /**

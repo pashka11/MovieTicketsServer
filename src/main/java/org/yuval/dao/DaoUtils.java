@@ -66,6 +66,7 @@ public class DaoUtils implements IdInterface,CheckAndSetInterface {
      */
     @Override
     public boolean checkAndSet(com.mongodb.client.MongoCollection<Document> coll, String parameter,Document document){
+
         if (document.get(parameter) != null && !(document.get(parameter).toString().trim().equals(""))) {
             BasicDBObject query = new BasicDBObject(ID, document.get(ID));
             BasicDBObject setQuery = new BasicDBObject("$set", new BasicDBObject(parameter, document.get(parameter)));

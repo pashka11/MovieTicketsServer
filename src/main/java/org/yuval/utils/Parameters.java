@@ -31,6 +31,7 @@ public class Parameters {
     public static final String USER_IS_ADMIN = "is_admin";
     public static final String USER_SHOW_INSTANCE_ID = "instance";
     public static final String USER_TICKETS_FOR_INSTANCE = "user_tickets";
+    public static final String USER_TICKETS_SHOW_ID= "show_id";
     public static final String AUTHORIZATION_HEADER_KEY = "Authorization";
     public static final String AUTHORIZATION_HEADER_PREFIX = "Basic ";
     public static final String SECURED_URL_LOGIN = "authenticate";
@@ -67,6 +68,7 @@ public class Parameters {
     public static final String INVALID_THEATER_ID = "invalid theater id";
     public static final String INVALID_ROW = "invalid row";
     public static final String INVALID_COLUMN = "invalid column";
+    public static final String RESPONSE = "response";
     public static final int SEAT_IS_FREE = 0;
     public static final int SEAT_IS_TAKEN = 1;
     public static final int SEAT_IS_RESERVED = 2;

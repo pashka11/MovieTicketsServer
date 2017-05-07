@@ -1,6 +1,8 @@
 package org.yuval.purchase;
 
-import org.yuval.dao.MongoSet;
+
+import org.yuval.dao.TicketUpdate;
+import org.yuval.dao.UserDao;
 
 import javax.ws.rs.BeanParam;
 import javax.ws.rs.POST;
@@ -42,7 +44,8 @@ public class PurchaseApprove implements CheckParameters {
 
 
             //insert ticket into user document
-            MongoSet.setTicket(filterBean.getRow() - 1, filterBean.getColumn() - 1, filterBean.getShowInstanceID(), filterBean.getUser());
+            TicketUpdate ticketUpdate = new UserDao();
+            ticketUpdate.setTicket(filterBean.getRow() - 1, filterBean.getColumn() - 1, filterBean.getShowInstanceID(), filterBean.getUser(), filterBean.getShowId());
 
             return Response
                     .status(Response.Status.ACCEPTED)

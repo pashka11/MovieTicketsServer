@@ -4,7 +4,8 @@ package org.yuval.exceptions;
  * Created by Yuval on 08-Apr-17.
  * gets thrown if show instance does not exists
  */
-public class ShowInstanceNotExistException extends Throwable {
+public class
+ShowInstanceNotExistException extends Throwable {
 
     private String showInstanceID,message;
 

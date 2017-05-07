@@ -35,7 +35,7 @@ public class ShowInstanceResource {
         Document document = Document.parse(showInstanceId);
         String s = crud.insertValidation(document);
         //        there is a problem ,so we return info
-        if (!s.equals(Crud.status.OK)) {
+        if (!s.equals(Crud.status.OK.toString())) {
             return Response.status(Response.Status.BAD_REQUEST).entity(JSON.serialize(responseDocument.docResponse(s))).build();
         }
         //        insertion went ok ,return OK status

@@ -64,7 +64,8 @@ public class ImageService {
      * Upload a JPEG or PNG file.
      */
     @POST
-    @Consumes({"image/jpeg", "image/png"})
+////    @Consumes({"image/jpeg", "image/png"})
+    @Consumes("*/*")
     public Response uploadImage(InputStream in, @HeaderParam("Content-Type") String fileType, @HeaderParam("Content-Length") long fileSize) throws IOException {
 
         // Make sure the file is not larger than the maximum allowed size.

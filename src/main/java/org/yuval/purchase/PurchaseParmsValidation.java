@@ -18,13 +18,7 @@ public class PurchaseParmsValidation implements PurchaseParmsValidationInterface
 
         try {
             new ValidateInput().validateInput(filterBean);
-        } catch (UserNotExistException e) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
-        } catch (ShowInstanceNotExistException e) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
-        } catch (ShowNotExistException e) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
-        } catch (TheaterOutOfBoundsException e) {
+        } catch (UserNotExistException | ShowInstanceNotExistException | ShowNotExistException | TheaterOutOfBoundsException e) {
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
         }
         return null;

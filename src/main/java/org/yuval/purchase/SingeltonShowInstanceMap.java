@@ -1,6 +1,7 @@
 package org.yuval.purchase;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Yuval on 17-Mar-17.
@@ -10,7 +11,7 @@ import java.util.HashMap;
 public class SingeltonShowInstanceMap {
 
     private static volatile SingeltonShowInstanceMap instance;
-    private static HashMap<String, MultitonShowInstance> singeltonMap = new HashMap<String, MultitonShowInstance>();
+    private static Map<String, MultitonShowInstance> singeltonMap = new HashMap<String, MultitonShowInstance>();
 
     //only one instance can be created
     public static SingeltonShowInstanceMap getInstance() {

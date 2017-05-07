@@ -77,7 +77,7 @@ public class ShowResource {
      * @return update status message
      */
     @PUT
-    public Response updateBand(String show){
+    public Response updateShow(String show){
         Crud crud = new ShowDao();
         ResponseDocument responseDocument = new Helpers();
         Document document = Document.parse(show);
@@ -103,7 +103,7 @@ public class ShowResource {
         if (usageCheck.isInUse(showId)){
             return Response.status(Response.Status.FORBIDDEN).entity(JSON.serialize(responseDocument.docResponse(RESOURCE_IS_IN_USE))).build();
         }
-        if (crud.drop(showId)==false){
+        if (!crud.drop(showId)){
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(JSON.serialize(responseDocument.docResponse(ERROR_IN_DELETION))).build();
         }
         return Response.status(Response.Status.OK).entity(JSON.serialize(responseDocument.docResponse(RESOURCE_HAS_BEEN_DELETED))).build();
