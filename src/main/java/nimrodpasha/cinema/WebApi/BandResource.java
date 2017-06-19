@@ -22,6 +22,7 @@ import static nimrodpasha.cinema.utils.Parameters.*;
  * This class handles the band related HTTP requests
  */
 
+
 @Path("/movies")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
@@ -32,7 +33,7 @@ public class BandResource {
      * @return all the bands
      */
     @GET
-    public List<MovieDetails> getAllBands() {
+    public List<MovieDetails> getAllBands(){
 //        Crud crud = new BandDao();
 //        List<Document>documentList = crud.readAll();
 //        if (documentList == null) {
@@ -44,11 +45,13 @@ public class BandResource {
 		List<MovieDetails> movies = new ArrayList<>();
 		MovieDetails m1 = new MovieDetails();
 		m1.Name = "shit";
+		m1.Id=1;
 		m1.Description = "Wtf is this shit";
 		m1.ImageName = "acdc.jpg";
 
 		MovieDetails m2 = new MovieDetails();
 		m2.Name = "shitface";
+		m2.Id=2;
 		m2.Description = "Wtf is this shit";
 		m2.ImageName = "Aerosmith.jpg";
 
@@ -58,21 +61,57 @@ public class BandResource {
         return movies;
     }
 
+    @GET
+    @Path("/{movieId}")
+    public MovieDetails getMovieById(@PathParam("movieId") int movieId)  {
+
+        List<MovieDetails> movies = new ArrayList<>();
+        MovieDetails m0 = new MovieDetails();
+        m0.Name = "0";
+        m0.Id = 0;
+        m0.Description = "0";
+        m0.ImageName = "0";
+
+
+
+        MovieDetails m1 = new MovieDetails();
+        m1.Name = "shit";
+        m1.Id = 1;
+        m1.Description = "Wtf is this shit";
+        m1.ImageName = "acdc.jpg";
+
+        MovieDetails m2 = new MovieDetails();
+        m2.Name = "shitface";
+        m2.Id = 2;
+        m2.Description = "Wtf is this shit";
+        m2.ImageName = "Aerosmith.jpg";
+
+        movies.add(m1);
+        movies.add(m2);
+
+        for (int i = 0; i < movies.size(); i++) {
+            if (movies.get(i).getId() == movieId)
+                return movies.get(i);
+            }
+        return m0;
+    }
+
+
 
     /**
      * @param bandId to return
      * @return requested band
      */
-    @GET
-    @Path("/{bandId}")
-    public Response getBandById(@PathParam("bandId") int bandId) {
-        Crud crud = new BandDao();
-        Document document = crud.read(String.valueOf(bandId));
-        if (document == null) {
-            return Response.status(Response.Status.NOT_FOUND).entity(INVALID_BAND_ID).build();
-        }
-        return Response.status(Response.Status.OK).entity(JSON.serialize(document)).build();
-    }
+//    @GET
+//    @Path("/{bandId}")
+//    public Response getBandById(@PathParam("bandId") int bandId) {
+//        Crud crud = new BandDao();
+//        Document document = crud.read(String.valueOf(bandId));
+//        if (document == null) {
+//            return Response.status(Response.Status.NOT_FOUND).entity(INVALID_BAND_ID).build();
+//        }
+//        return Response.status(Response.Status.OK).entity(JSON.serialize(document)).build();
+//    }
 
     /**
      * @param band is a json format object to insert
@@ -130,3 +169,5 @@ public class BandResource {
         return Response.status(Response.Status.OK).entity(JSON.serialize(responseDocument.docResponse(RESOURCE_HAS_BEEN_DELETED))).build();
     }
 }
+
+

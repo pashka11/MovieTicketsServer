@@ -32,4 +32,7 @@ public class MovieDetails
     public Date ReleaseDate;
     public String Director;
     public List<String> Actors;
+
+    public  int getId(){return Id;}
+
 }
