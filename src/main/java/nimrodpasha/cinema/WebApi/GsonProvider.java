@@ -19,6 +19,12 @@ import javax.ws.rs.ext.Provider;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import nimrodpasha.cinema.objects.TypeSerializers.LocalDateSerializer;
+import nimrodpasha.cinema.objects.TypeSerializers.LocalDateTimeSerializer;
+import nimrodpasha.cinema.objects.TypeSerializers.LocalTimeSerializer;
+import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
+import org.joda.time.LocalTime;
 
 @Provider
 @Produces(MediaType.APPLICATION_JSON)
@@ -32,7 +38,10 @@ public final class GsonProvider implements MessageBodyWriter,
 
 	private Gson getGson() {
 		if (gson == null) {
-			final GsonBuilder gsonBuilder = new GsonBuilder();
+			final GsonBuilder gsonBuilder = new GsonBuilder()
+					.registerTypeAdapter(LocalDate.class, new LocalDateSerializer())
+					.registerTypeAdapter(LocalTime.class, new LocalTimeSerializer())
+					.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeSerializer());
 			gson = gsonBuilder.create();
 		}
 		return gson;

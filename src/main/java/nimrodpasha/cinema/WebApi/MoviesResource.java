@@ -3,23 +3,26 @@ package nimrodpasha.cinema.WebApi;
 import com.mongodb.util.JSON;
 import nimrodpasha.cinema.dao.BandDao;
 import nimrodpasha.cinema.dao.Crud;
-import nimrodpasha.cinema.objects.MovieDetails;
-import nimrodpasha.cinema.utils.Helpers;
-import org.bson.Document;
 import nimrodpasha.cinema.dao.UsageCheck;
+import nimrodpasha.cinema.objects.MovieDetails;
+import nimrodpasha.cinema.objects.Screening;
+import nimrodpasha.cinema.utils.Helpers;
 import nimrodpasha.cinema.utils.ResponseDocument;
+import org.bson.Document;
+import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static nimrodpasha.cinema.utils.Parameters.*;
 
 /**
- * Created by Yuval on 13-Mar-17.
- * This class handles the band related HTTP requests
+ * Created by Nimrod on 14-Jun-17.
  */
 
 
@@ -27,7 +30,8 @@ import static nimrodpasha.cinema.utils.Parameters.*;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 
-public class BandResource {
+public class MoviesResource
+{
 
     /**
      * @return all the bands
@@ -42,21 +46,27 @@ public class BandResource {
 //        return Response.status(Response.Status.OK).entity(JSON.serialize(documentList)).build();
 
         //Response.status(Response.Status.OK).entity("Pasha kaki").build();
+		
+		List<String> actors = Arrays.asList("Brad ArmPit", "Joshua Weinstein", "Pavel Poltzasky",  "Vin Patrol", "Sara Jassica Peter Parker");
+		List<String> images = Arrays.asList("acdc.jpg", "BlackSabbath.jpg", "guns_N_roses.jpg", "led_zeppelin.jpg", "Metallica.png");
+
 		List<MovieDetails> movies = new ArrayList<>();
-		MovieDetails m1 = new MovieDetails();
-		m1.Name = "shit";
-		m1.Id=1;
-		m1.Description = "Wtf is this shit";
-		m1.ImageName = "acdc.jpg";
 
-		MovieDetails m2 = new MovieDetails();
-		m2.Name = "shitface";
-		m2.Id=2;
-		m2.Description = "Wtf is this shit";
-		m2.ImageName = "Aerosmith.jpg";
-
-		movies.add(m1);
-		movies.add(m2);
+		for (int i = 0; i < 5; i++)
+		{
+			MovieDetails movie = new MovieDetails();
+			movie.Name = images.get(i);
+			movie.Id = i;
+			movie.Description = "What is this shitting shit that going on between the shitting fuck number " + i;
+			movie.ImageName = images.get(i);
+			movie.Actors = actors;
+			movie.Director = "Mr Gas Fringe";
+			movie.Duration = (short) (120 * (i+1));
+			movie.Genres = "Horror, Not Horror, Comedy, Hentai";
+			movie.ReleaseDate = LocalDate.now();
+			
+			movies.add(movie);
+		}
 
         return movies;
     }
@@ -65,14 +75,15 @@ public class BandResource {
     @Path("/{movieId}")
     public MovieDetails getMovieById(@PathParam("movieId") int movieId)  {
 
+    	List<String> actors = Arrays.asList("Brad ArmPit, Joshua Weinstein, Pavel Poltzasky. Vin Patrol, Sara Jassica Peter Parker");
+    	
         List<MovieDetails> movies = new ArrayList<>();
         MovieDetails m0 = new MovieDetails();
         m0.Name = "0";
         m0.Id = 0;
         m0.Description = "0";
         m0.ImageName = "0";
-
-
+        m0.Actors = actors;
 
         MovieDetails m1 = new MovieDetails();
         m1.Name = "shit";
@@ -90,28 +101,49 @@ public class BandResource {
         movies.add(m2);
 
         for (int i = 0; i < movies.size(); i++) {
-            if (movies.get(i).getId() == movieId)
+            if (movies.get(i).Id == movieId)
                 return movies.get(i);
-            }
+        }
+
         return m0;
     }
 
-
-
     /**
-     * @param bandId to return
-     * @return requested band
+     * @param movieId
+     * @return movie future screenings (month range)
      */
-//    @GET
-//    @Path("/{bandId}")
-//    public Response getBandById(@PathParam("bandId") int bandId) {
+
+    @GET
+    @Path("/{movieId}/screenings")
+    public List<Screening> GetMovieScreenings(@PathParam("movieId") int movieId) {
 //        Crud crud = new BandDao();
 //        Document document = crud.read(String.valueOf(bandId));
 //        if (document == null) {
 //            return Response.status(Response.Status.NOT_FOUND).entity(INVALID_BAND_ID).build();
 //        }
 //        return Response.status(Response.Status.OK).entity(JSON.serialize(document)).build();
-//    }
+
+		List<Screening> screenings = new ArrayList<>(4);
+
+		MovieDetails m2 = new MovieDetails();
+		m2.Name = "shitface";
+		m2.Id = movieId;
+		m2.Description = "Wtf is this shit";
+		m2.ImageName = "Aerosmith.jpg";
+
+		for (int i = 0; i < 4; i++)
+		{
+			Screening scr = new Screening();
+			scr.MovieId = m2.Id;
+			scr.ScreeningTime = LocalDateTime.now().plusDays(i + 1);
+			scr.HallId = i + 1;
+			scr.Seats = new int[3][3];
+
+			screenings.add(scr);
+		}
+
+		return screenings;
+    }
 
     /**
      * @param band is a json format object to insert
