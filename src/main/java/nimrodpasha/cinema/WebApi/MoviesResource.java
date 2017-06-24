@@ -38,6 +38,8 @@ public class MoviesResource
      */
     @GET
     public List<MovieDetails> getAllBands(){
+
+//        public Response getAllBands(){
 //        Crud crud = new BandDao();
 //        List<Document>documentList = crud.readAll();
 //        if (documentList == null) {
@@ -107,6 +109,26 @@ public class MoviesResource
 
         return m0;
     }
+
+
+    /**
+     * @param bandId to return
+     * @return requested band
+     */
+//    @GET
+//    @Path("/{bandId}")
+//    public Response getBandById(@PathParam("bandId") int bandId) {
+//        Crud crud = new BandDao();
+//        Document document = crud.read(String.valueOf(bandId));
+//        if (document == null) {
+//            return Response.status(Response.Status.NOT_FOUND).entity(INVALID_BAND_ID).build();
+//        }
+//        return Response.status(Response.Status.OK).entity(JSON.serialize(document)).build();
+//    }
+
+
+
+
 
     /**
      * @param movieId

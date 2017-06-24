@@ -38,7 +38,7 @@ public class ImageService {
      * Make sure this directory exists before you run the service.
      */
     private static final String RELATIVE_IMAGE_DIR = "/Images/";
-
+    private static final java.nio.file.Path BASE_DIR = Paths.get("C:\\University\\AndroidProject\\ProjectGit\\MovieTicketsServer\\src\\main\\resources\\Images");
 //    /*
 //     * Download a list of all image file names.
 //     */
