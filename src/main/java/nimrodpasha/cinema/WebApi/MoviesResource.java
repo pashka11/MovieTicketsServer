@@ -35,43 +35,52 @@ public class MoviesResource
 
     /**
      * @return all the bands
-     */
+
+
+         */
     @GET
-    public List<MovieDetails> getAllBands(){
 
-//        public Response getAllBands(){
-//        Crud crud = new BandDao();
-//        List<Document>documentList = crud.readAll();
-//        if (documentList == null) {
-//            return Response.status(Response.Status.NOT_FOUND).entity(INVALID_BAND_ID).build();
-//        }
-//        return Response.status(Response.Status.OK).entity(JSON.serialize(documentList)).build();
 
-        //Response.status(Response.Status.OK).entity("Pasha kaki").build();
-		
-		List<String> actors = Arrays.asList("Brad ArmPit", "Joshua Weinstein", "Pavel Poltzasky",  "Vin Patrol", "Sara Jassica Peter Parker");
-		List<String> images = Arrays.asList("acdc.jpg", "BlackSabbath.jpg", "guns_N_roses.jpg", "led_zeppelin.jpg", "Metallica.png");
+    public Response getAllBands() {
+            Crud crud = new BandDao();
+            List<Document> documentList = crud.readAll();
 
-		List<MovieDetails> movies = new ArrayList<>();
+            if (documentList == null) {
+                return Response.status(Response.Status.NOT_FOUND).entity(INVALID_BAND_ID).build();
+            }
+            return Response.status(Response.Status.OK).entity(JSON.serialize(documentList)).build();
+        }
 
-		for (int i = 0; i < 5; i++)
-		{
-			MovieDetails movie = new MovieDetails();
-			movie.Name = images.get(i);
-			movie.Id = i;
-			movie.Description = "What is this shitting shit that going on between the shitting fuck number " + i;
-			movie.ImageName = images.get(i);
-			movie.Actors = actors;
-			movie.Director = "Mr Gas Fringe";
-			movie.Duration = (short) (120 * (i+1));
-			movie.Genres = "Horror, Not Horror, Comedy, Hentai";
-			movie.ReleaseDate = LocalDate.now();
-			
-			movies.add(movie);
-		}
 
-        return movies;
-    }
+
+
+//@GET
+//public List<MovieDetails> getAllBands(){
+//    List<String> actors = Arrays.asList("Brad ArmPit", "Joshua Weinstein", "Pavel Poltzasky",  "Vin Patrol", "Sara Jassica Peter Parker");
+//    List<String> images = Arrays.asList("acdc.jpg", "BlackSabbath.jpg", "guns_N_roses.jpg", "led_zeppelin.jpg", "Metallica.png");
+//
+//    List<MovieDetails> movies = new ArrayList<>();
+//
+//		for(int i = 0; i <5; i++)
+//    {
+//        MovieDetails movie = new MovieDetails();
+//        movie.Name = images.get(i);
+//        movie.Id = i;
+//        movie.Description = "What is this shitting shit that going on between the shitting fuck number " + i;
+//        movie.ImageName = images.get(i);
+//        movie.Actors = actors;
+//        movie.Director = "Mr Gas Fringe";
+//        movie.Duration = (short) (120 * (i+1));
+//        movie.Genres = "Horror, Not Horror, Comedy, Hentai";
+//        movie.ReleaseDate = LocalDate.now();
+//
+//        movies.add(movie);
+//    }
+//
+//        return movies;
+//}
+//
+
 
     @GET
     @Path("/{movieId}")
