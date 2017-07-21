@@ -22,7 +22,7 @@ import java.util.List;
 import static nimrodpasha.cinema.utils.Parameters.*;
 
 /**
- * Created by Nimrod on 14-Jun-17.
+ * Created by Nimrod on 14-Jun-17..
  */
 
 
@@ -37,7 +37,7 @@ public class MoviesResource
      * @return all the bands
 
 
-         */
+         .*/
     @GET
 
 
