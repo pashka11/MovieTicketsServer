@@ -40,7 +40,12 @@ public class BandDao implements Crud, RandomId, UsageCheck {
             Document doc = new Document(ID, band.getId())
                     .append(BAND_NAME, band.getName())
                     .append(BAND_DESCRIPTION, band.getInfo())
-                    .append(IMAGE_LINK, band.getImageLink());
+                    .append(IMAGE_LINK, band.getImageLink())
+                    .append(DIRECTOR, band.getDirector())
+                    .append(DURATION, band.getDuration())
+                    .append(GENRES, band.getGenres())
+                    .append(RELEASEDATE, band.getReleasedate())
+                    .append(ACTORS, band.getActors());
             coll.insertOne(doc);
         } catch (Exception e) {
             e.printStackTrace();

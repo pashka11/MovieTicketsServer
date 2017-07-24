@@ -7,6 +7,9 @@ package nimrodpasha.cinema.initDB;
 public class InitDb {
     public static void main(String[] args) {
         String [] arguments = new String[]{""};
+        new InitMovies();
+        InitMovies.main(arguments);
+
         new InitBand();
         InitBand.main(arguments);
         new InitTheater();

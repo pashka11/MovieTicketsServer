@@ -22,6 +22,8 @@ public interface Crud {
     boolean drop(String id);
     boolean dropAll();
     String insertValidation(Document document);
+
+
 }
 
 

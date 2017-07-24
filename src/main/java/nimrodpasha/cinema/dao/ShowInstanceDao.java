@@ -90,7 +90,7 @@ public class ShowInstanceDao implements Crud, Seat, UsageCheck {
     /**
      * @return all documents in this collection in a arrayList
      */
-    @Override
+    //@Override
     public List<Document> readAll() {
 
         return coll.find().into(new ArrayList<Document>());

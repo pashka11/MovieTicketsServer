@@ -24,7 +24,7 @@ import java.util.ArrayList;
  * Created by Yuval on 22-Mar-17.
  * This class handles the image related HTTP requests
  */
-@Path("images")
+@Path("/images")
 public class ImageService {
 
     /*
@@ -38,7 +38,7 @@ public class ImageService {
      * Make sure this directory exists before you run the service.
      */
     private static final String RELATIVE_IMAGE_DIR = "/Images/";
-    private static final java.nio.file.Path BASE_DIR = Paths.get("C:\\University\\AndroidProject\\ProjectGit\\MovieTicketsServer\\src\\main\\resources\\Images");
+    private static final java.nio.file.Path BASE_DIR = Paths.get("C:\\Users\\ppoltar\\Android_Project\\MovieTicketsServer\\src\\main\\resources\\Images");
 //    /*
 //     * Download a list of all image file names.
 //     */
@@ -128,4 +128,5 @@ public class ImageService {
 
         return stream;
     }
+
 }

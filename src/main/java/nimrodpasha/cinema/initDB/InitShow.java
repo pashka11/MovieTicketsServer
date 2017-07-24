@@ -23,6 +23,7 @@ public class InitShow {
         ArrayList<Show> shows = new ArrayList<>();
 
         RandomId randomId = new BandDao();
+
         FillShowInstanceArrayInterface fillShowInstanceArrayInterface = new Helpers();
         shows.add(new Show(1, "Great rock show", "The party will roll all night long during the North American " +
                 "WorldWired tour as we’re psyched to announce that award-winning DJ and producer Mix " +

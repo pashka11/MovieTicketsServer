@@ -5,6 +5,28 @@ package nimrodpasha.cinema.utils;
  * This class holds values
  */
 public class Parameters {
+    public final static String DIRECTOR = "director";
+    public final static String DURATION = "duration";
+    public final static String GENRES  = "genres";
+    public final static String RELEASEDATE = "releasedate";
+    public final static String ACTORS  = "actors";
+
+    public final static String MOVIE_COLLECTION = "movies";
+    public static final String INVALID_MOVIEDETAILS_ID = "invalid MovieDetails id";
+
+    public final static String MOVIE_SCREENINGS = "screenings";
+
+    public final static String MOVIE_INSTANCE_DATE = "date";
+    public final static String MOVIE_INSTANCE_PRICE = "price";
+    public final static String MOVIE_INSTANCE_THEATER_ID = "theater_id";
+    public final static String MOVIE_INSTANCE_SEATS = "seats";
+
+
+    public final static String SCREENINGS = "_screenings";
+    public static final String INVALID_MOVIE_SCREENING_ID = "invalid movie screening id";
+    public static final String INVALID_MOVIE_ID = "invalid movie id";
+
+
 
     public final static String TICKET_DATABASE = "tickets";
     public final static String BANDS_COLLECTION = "bands";
