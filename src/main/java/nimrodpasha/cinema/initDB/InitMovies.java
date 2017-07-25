@@ -30,7 +30,7 @@ public class InitMovies {
                 " he turns against his family and most importantly," +
                 " goes on the wrong side of the law again." +
                 " Now, the crew must unite to bring home the man who made them a family and stop her from unleashing chaos on a grand scale.",
-                                    IMAGE_FOLDER+"fast8.jpg", "F. Gary Gray", "Vin Diesel, Jason Statham, Dwayne Johnson, Michelle Rodriguez, Tyrese Gibson", new LocalDate(2017, 5, 6), "Action, Thriller, Crime", 136));
+                                    "fast8.jpg", "F. Gary Gray", "Vin Diesel, Jason Statham, Dwayne Johnson, Michelle Rodriguez, Tyrese Gibson", new LocalDate(2017, 5, 6), "Action, Thriller, Crime", 136));
 
 
 
@@ -38,7 +38,7 @@ public class InitMovies {
         movies.add(new MovieDetails(2,"McLaren","The story of Bruce McLaren, the New Zealander who founded the McLaren Motor Racing team. " +
                 "A man who showed the world that a man of humble beginnings could take on the elite of motor racing and win." +
                 " Now, the crew must unite to bring home the man who made them a family and stop her from unleashing chaos on a grand scale.",
-                IMAGE_FOLDER+"Maclaren.jpg","Roger Donaldson"," Mario Andretti, Alastair Caldwell, Dwayne Cameron",new LocalDate(2017, 5, 6),"Documentary, Action,  Drama",92));
+                "Maclaren.jpg","Roger Donaldson"," Mario Andretti, Alastair Caldwell, Dwayne Cameron",new LocalDate(2017, 5, 6),"Documentary, Action,  Drama",92));
 
 //
 //        movies.add(new MovieDetails(1,"Fast and Furious 8","After Dom is recruited by a mysterious villainess hacker," +

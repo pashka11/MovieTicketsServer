@@ -19,6 +19,7 @@ public class MoviesConverter
 		movie.ReleaseDate = LocalDate.parse(doc.getString(Constants.Movie.RELEASEDATE));
 		movie.Director = doc.getString(Constants.Movie.DIRECTOR);
 		movie.Actors = doc.getString(Constants.Movie.ACTORS);
+		movie.ImageName = doc.getString(Constants.Movie.IMAGE_NAME);
 
 		return movie;
 	}
