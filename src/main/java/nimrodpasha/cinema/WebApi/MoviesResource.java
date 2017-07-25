@@ -1,19 +1,20 @@
 package nimrodpasha.cinema.WebApi;
 
 import com.mongodb.util.JSON;
-import nimrodpasha.cinema.dao.BandDao;
-import nimrodpasha.cinema.dao.Crud;
-import nimrodpasha.cinema.dao.MovieDao;
-import nimrodpasha.cinema.dao.UsageCheck;
+import nimrodpasha.cinema.dao.*;
+import nimrodpasha.cinema.objects.Converters.MoviesConverter;
+import nimrodpasha.cinema.objects.MovieDetails;
+import nimrodpasha.cinema.objects.Screening;
 import nimrodpasha.cinema.utils.Helpers;
 import nimrodpasha.cinema.utils.ResponseDocument;
 import org.bson.Document;
-import nimrodpasha.cinema.dao.ScreeningsDao;
+//import nimrodpasha.cinema.dao.ScreeningsDao;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static nimrodpasha.cinema.utils.Parameters.*;
 
@@ -28,41 +29,43 @@ import static nimrodpasha.cinema.utils.Parameters.*;
 
 public class MoviesResource
 {
-
-//    /**
-//     * @return all the bands
-//
-//
-//         .*/
-//    @GET
-//
-//
-//    public Response getAllBands() {
-//            Crud crud = new BandDao();
-//            List<Document> documentList = crud.readAll();
-//
-//            if (documentList == null) {
-//                return Response.status(Response.Status.NOT_FOUND).entity(INVALID_BAND_ID).build();
-//            }
-//            return Response.status(Response.Status.OK).entity(JSON.serialize(documentList)).build();
-//        }
-
-
     /**
      * @return all the movies
     .*/
     @GET
-    public Response getAllMoviesDetails() {
+    public Response GetAllMoviesDetails()
+    {
         Crud crud = new MovieDao();
-        List<Document> documentList = crud.readAll();
+        List<Document> movieDocs = crud.readAll();
 
+        if (movieDocs != null && movieDocs.size() != 0)
+        {
+            List<MovieDetails> movies = movieDocs.parallelStream()
+                    .map(x -> MoviesConverter.DBDocToMovieDetails(x))
+                    .collect(Collectors.toList());
+
+            return Response.ok(movies).build();
+        }
+        else
+            return Response.serverError().build();
+    }
+
+    @GET
+    @Path("/{movieId}/screenings")
+    public Response GetMovieScreenings(@PathParam("movieId") int  movieId)
+    {    //int MovieDetails
+        Crud crud = new ScreeningsDao();
+
+        List<Document> documentList = crud.readAll();
+        //Document document = crud.read(String.valueOf(id));
+       // if (document == null) {
         if (documentList == null) {
             return Response.status(Response.Status.NOT_FOUND).entity(INVALID_MOVIEDETAILS_ID).build();
         }
+        //return Response.status(Response.Status.OK).entity(JSON.serialize(document)).build();
         return Response.status(Response.Status.OK).entity(JSON.serialize(documentList)).build();
+
     }
-
-
 
 
 
@@ -163,27 +166,27 @@ public class MoviesResource
 //        return Response.status(Response.Status.OK).entity(JSON.serialize(document)).build();
 //    }
 
-    /**
-     * @param id to return
-     * @return requested band
-     */
-    @GET  //TODO add to CRUD.....
-    //@Path("/{movieId}/{screenings}")
-    @Path("/{screenings}")
-    public Response getMovieDetailsByScreening(@PathParam("screenings") int  MovieDetails) {    //int MovieDetails
-    //public Response getMovieDetailsByScreening(){
-        Crud crud = new ScreeningsDao();
-
-        List<Document> documentList = crud.readAll();
-        //Document document = crud.read(String.valueOf(id));
-       // if (document == null) {
-        if (documentList == null) {
-            return Response.status(Response.Status.NOT_FOUND).entity(INVALID_MOVIEDETAILS_ID).build();
-        }
-        //return Response.status(Response.Status.OK).entity(JSON.serialize(document)).build();
-        return Response.status(Response.Status.OK).entity(JSON.serialize(documentList)).build();
-
-    }
+//    /**
+//     * @param id to return
+//     * @return requested band
+//     */
+//    @GET  //TODO add to CRUD.....
+//    //@Path("/{movieId}/{screenings}")
+//    @Path("/{screenings}")
+//    public Response getMovieDetailsByScreening(@PathParam("screenings") int  MovieDetails) {    //int MovieDetails
+//    //public Response getMovieDetailsByScreening(){
+//        Crud crud = new ScreeningsDao();
+//
+//        List<Document> documentList = crud.readAll();
+//        //Document document = crud.read(String.valueOf(id));
+//       // if (document == null) {
+//        if (documentList == null) {
+//            return Response.status(Response.Status.NOT_FOUND).entity(INVALID_MOVIEDETAILS_ID).build();
+//        }
+//        //return Response.status(Response.Status.OK).entity(JSON.serialize(document)).build();
+//        return Response.status(Response.Status.OK).entity(JSON.serialize(documentList)).build();
+//
+//    }
 
 
 

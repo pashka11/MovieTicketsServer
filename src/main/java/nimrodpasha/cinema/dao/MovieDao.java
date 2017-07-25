@@ -3,13 +3,15 @@ package nimrodpasha.cinema.dao;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Projections;
 import com.mongodb.client.model.Updates;
-import com.sun.xml.internal.bind.v2.TODO;
 import nimrodpasha.cinema.objects.Row;
+import nimrodpasha.cinema.utils.Constants;
 import nimrodpasha.cinema.utils.Parameters;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import nimrodpasha.cinema.objects.MovieDetails;
 import org.bson.types.ObjectId;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,14 +30,16 @@ import static nimrodpasha.cinema.utils.Parameters.*;
  */
 public class MovieDao implements Crud, RandomId, UsageCheck {
 
-    private com.mongodb.client.MongoCollection<Document> coll;
+    private com.mongodb.client.MongoCollection<Document> _collection;
+
+    private static final DateTimeFormatter DATE_FORMAT = ISODateTimeFormat.date();
 
     /**
      * constructor
      */
     public MovieDao() {
 
-        this.coll = getMongoCollection(Parameters.MOVIE_COLLECTION);
+        this._collection = getMongoCollection(Parameters.MOVIE_COLLECTION);
     }
 
     /**
@@ -48,37 +52,37 @@ public class MovieDao implements Crud, RandomId, UsageCheck {
     public boolean create(Object obj) {
         try {
             MovieDetails movie = (MovieDetails) obj;
-            Document doc = new Document(ID, movie.getId())
-                    .append(BAND_NAME, movie.getName())
-                    .append(BAND_DESCRIPTION, movie.getInfo())
-                    .append(IMAGE_LINK, movie.getImageLink())
-                    .append(DIRECTOR, movie.getDirector())
-                    .append(DURATION, movie.getDuration())
-                    .append(GENRES, movie.getGenres())
-                    .append(RELEASEDATE, movie.getReleasedate())
-                    .append(ACTORS, movie.getActors())
-                    .append(Parameters.MOVIE_SCREENINGS, Arrays.asList());
+            Document doc = new Document(Constants.Movie.ID, movie.Id)
+                    .append(Constants.Movie.NAME, movie.Name)
+                    .append(Constants.Movie.DESCRIPTION, movie.Description)
+                    .append(Constants.Movie.IMAGE_NAME, movie.ImageName)
+                    .append(Constants.Movie.DIRECTOR, movie.Director)
+                    .append(Constants.Movie.DURATION, movie.Duration)
+                    .append(Constants.Movie.GENRES, movie.Genres)
+                    .append(Constants.Movie.RELEASEDATE, DATE_FORMAT.print(movie.ReleaseDate))
+                    .append(Constants.Movie.ACTORS, movie.Actors);
+                    //.append(Parameters.MOVIE_SCREENINGS, Arrays.asList());
 
-            coll.insertOne(doc);
+            _collection.insertOne(doc);
 
 
 
-            for (int i = 0; i < movie.getScreenings().size(); i++) {//TODO move it to showInstanceDao
-
-                Document seatDocument = new Document();
-                for (Row row : movie.getScreenings().get(i).getSeats()) {
-                    seatDocument
-                            .append(Parameters.ROW_NUMBER + " " + row.getRowNumber(), Arrays.asList(row.getSeats()));
-                }
-                Document instance = new Document()
-                        .append(Parameters.ID, new ObjectId())
-                        .append(Parameters.MOVIE_INSTANCE_DATE, movie.getScreenings().get(i).getDate())
-                        .append(Parameters.MOVIE_INSTANCE_PRICE, movie.getScreenings().get(i).getPrice())
-                        .append(Parameters.MOVIE_INSTANCE_THEATER_ID, movie.getScreenings().get(i).getTheaterId())
-                        .append(Parameters.MOVIE_INSTANCE_SEATS, Arrays.asList(seatDocument));
-                coll.updateOne(eq(Parameters.ID, movie.getId()), Updates.addToSet(Parameters.MOVIE_SCREENINGS, instance));
-
-            }
+//            for (int i = 0; i < movie.getScreenings().size(); i++) {//TODO move it to showInstanceDao
+//
+//                Document seatDocument = new Document();
+//                for (Row row : movie.getScreenings().get(i).getSeats()) {
+//                    seatDocument
+//                            .append(Parameters.ROW_NUMBER + " " + row.getRowNumber(), Arrays.asList(row.getSeats()));
+//                }
+//                Document instance = new Document()
+//                        .append(Parameters.ID, new ObjectId())
+//                        .append(Parameters.MOVIE_INSTANCE_DATE, movie.getScreenings().get(i).getDate())
+//                        .append(Parameters.MOVIE_INSTANCE_PRICE, movie.getScreenings().get(i).getPrice())
+//                        .append(Parameters.MOVIE_INSTANCE_THEATER_ID, movie.getScreenings().get(i).getTheaterId())
+//                        .append(Parameters.MOVIE_INSTANCE_SEATS, Arrays.asList(seatDocument));
+//                _collection.updateOne(eq(Parameters.ID, movie.getId()), Updates.addToSet(Parameters.MOVIE_SCREENINGS, instance));
+//
+//            }
 
 
 
@@ -95,7 +99,7 @@ public class MovieDao implements Crud, RandomId, UsageCheck {
     @Override
     public int randomId() {
         IdInterface idInterface = new DaoUtils();
-        return idInterface.randomId(coll);
+        return idInterface.randomId(_collection);
     }
     /**
      * get a single document from the DB
@@ -113,7 +117,7 @@ public class MovieDao implements Crud, RandomId, UsageCheck {
      */
     @Override
     public List<Document> readAll() {
-        return coll.find().into(new ArrayList<Document>());
+        return _collection.find().into(new ArrayList<Document>());
     }
     /**
      * @param document contain fields to update
@@ -128,18 +132,18 @@ public class MovieDao implements Crud, RandomId, UsageCheck {
             if (read(document.get(Parameters.ID).toString()) == null) {
                 return false;
             }
-            if (checkAndSetInterface.checkAndSet(coll, Parameters.SHOW_DESCRIPTION, document)) {
+            if (checkAndSetInterface.checkAndSet(_collection, Parameters.SHOW_DESCRIPTION, document)) {
                 updated = true;
             }
-            if (checkAndSetInterface.checkAndSet(coll, Parameters.SHOW_NAME, document)) {
+            if (checkAndSetInterface.checkAndSet(_collection, Parameters.SHOW_NAME, document)) {
                 updated = true;
             }
-            if (checkAndSetInterface.checkAndSet(coll, Parameters.IMAGE_LINK, document)) {
+            if (checkAndSetInterface.checkAndSet(_collection, Parameters.IMAGE_LINK, document)) {
                 updated = true;
             }
             //if band parameter was inserted check if valid and update
             if (document.get(Parameters.SHOW_BAND_ID) != null && new BandDao().read(document.get(Parameters.SHOW_BAND_ID).toString()) != null) {
-                if (checkAndSetInterface.checkAndSet(coll, Parameters.SHOW_BAND_ID, document)) {
+                if (checkAndSetInterface.checkAndSet(_collection, Parameters.SHOW_BAND_ID, document)) {
                     updated = true;
                 }
             }
@@ -161,7 +165,7 @@ public class MovieDao implements Crud, RandomId, UsageCheck {
             if (read(id) == null) {
                 return false;
             }
-            coll.deleteOne(filter);
+            _collection.deleteOne(filter);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -175,7 +179,7 @@ public class MovieDao implements Crud, RandomId, UsageCheck {
     @Override
     public boolean dropAll() {
         try {
-            coll.drop();
+            _collection.drop();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -190,7 +194,7 @@ public class MovieDao implements Crud, RandomId, UsageCheck {
     public String insertValidation(Document document) {
         //put auto increment id
         IdInterface idInterface = new DaoUtils();
-        document.append(Parameters.ID, idInterface.getNextSequence(coll));
+        document.append(Parameters.ID, idInterface.getNextSequence(_collection));
         //check for  correctness of fields
         try {
             if (document.get(Parameters.SHOW_NAME) == null || document.get(Parameters.SHOW_NAME).toString().trim().equals(""))
@@ -210,7 +214,7 @@ public class MovieDao implements Crud, RandomId, UsageCheck {
             e.printStackTrace();
             return status.invalid_document.toString();
         }
-        coll.insertOne(document);
+        _collection.insertOne(document);
         return status.OK.toString();
     }
 
@@ -223,7 +227,7 @@ public class MovieDao implements Crud, RandomId, UsageCheck {
     public Document showInstancesForShowNoSeats(int showId) {
         Bson filter = Filters.eq(Parameters.ID, showId);
         Bson projection = fields(Projections.include(Parameters.MOVIE_SCREENINGS), excludeId());
-        return coll.find(filter).projection(projection).first();
+        return _collection.find(filter).projection(projection).first();
     }
     /**
      * @param id of the document

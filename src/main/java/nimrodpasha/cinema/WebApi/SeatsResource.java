@@ -38,7 +38,7 @@ public class SeatsResource {
     @GET
     @Path("/{movieInstanceId}")
     public Response getShowInstanceSeats(@PathParam("movieInstanceId") String movieInstanceId) {
-        Crud crud =new ScreeningsDao();
+        Crud crud = new ScreeningsDao();
         Document document = crud.read(movieInstanceId);
         if (document!=null && document.get(Parameters.MOVIE_INSTANCE_SEATS)!=null){
             return Response.status(Response.Status.OK).entity(JSON.serialize(document.get(Parameters.MOVIE_INSTANCE_SEATS))).build();

@@ -18,7 +18,7 @@ public class MongoCollection {
         SingeltonMongoClient singeltonMongoClient = SingeltonMongoClient.getInstance();
         MongoClient client = singeltonMongoClient.getClient();
         MongoDatabase db = client.getDatabase(Parameters.TICKET_DATABASE);
-        com.mongodb.client.MongoCollection<Document> coll=db.getCollection(collectionName);
+        com.mongodb.client.MongoCollection<Document> coll = db.getCollection(collectionName);
         return coll;
     }
 }
