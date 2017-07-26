@@ -1,31 +1,16 @@
 package nimrodpasha.cinema.objects;
 
 /**
- * Created by Yuval on 16-Mar-17.
+ * Created by Nimrod Gans on 25-Jul-17.
  * row object
  */
 public class Row {
-    private int rowNumber;
-    private Integer[]seats;
 
-    public Row(int rowNumber, Integer[] seats) {
-        this.rowNumber = rowNumber;
-        this.seats = seats;
-    }
+    public int RowNumber;
+    public int[] Seats;
 
-    public int getRowNumber() {
-        return rowNumber;
-    }
-
-    public void setRowNumber(int rowNumber) {
-        this.rowNumber = rowNumber;
-    }
-
-    public Integer[] getSeats() {
-        return seats;
-    }
-
-    public void setSeats(Integer[] seats) {
-        this.seats = seats;
+    public Row(int rowNumber, int[] seats) {
+        this.RowNumber = rowNumber;
+        this.Seats = seats;
     }
 }
