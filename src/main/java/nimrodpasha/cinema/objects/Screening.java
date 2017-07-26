@@ -3,37 +3,44 @@ package nimrodpasha.cinema.objects;
 import org.joda.time.LocalDateTime;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
 
 /**
  * Created by Nimrod on 15/06/2017.
  */
 
 @XmlRootElement
-public class Screening
-{
-    public Screening()
-    {
+public class Screening {
+//    public Screening()
+//    {
+//
+//    }
+//
+//    public LocalDateTime ScreeningTime;
+//    public int MovieId;
+//    public int TheaterId;
+//    public int [][] Seats;
+//}
+
+
+    /**
+     * Screening  object
+     */
+    public LocalDateTime ScreeningTime;
+    public int HallId;
+    public ArrayList<Row> Seats;
+    public int Price;
+
+    public Screening() {
 
     }
-
-    public LocalDateTime ScreeningTime;
-    public int MovieId;
-    public int TheaterId;
-    public int [][] Seats;
+    public Screening(LocalDateTime screeningTime, int hallId, int price, ArrayList<Row> seats) {
+        this.ScreeningTime = ScreeningTime;
+        this.HallId = hallId;
+        this.Price = price;
+        this.Seats = seats;
+    }
 }
-
-//
-///**
-// * Screening  object
-// */
-//
-//
-//    public Screening(Date date, int theaterId, int price, ArrayList<Row> seats) {
-//        this.date = date;
-//        this.theaterId = theaterId;
-//        this.price = price;
-//        this.seats = seats;
-//    }
 //
 //    public Date getDate() {
 //        return date;
