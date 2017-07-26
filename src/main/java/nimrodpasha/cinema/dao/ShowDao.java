@@ -64,22 +64,22 @@ public class ShowDao implements Crud, ShowInstancesByShowIdNoSeatsQuery, UsageCh
 
             coll.insertOne(doc);
 
-            for (int i = 0; i < cur.getShowInstances().size(); i++) {//TODO move it to showInstanceDao
-
-                Document seatDocument = new Document();
-                for (Row row : cur.getShowInstances().get(i).getSeats()) {
-                    seatDocument
-                            .append(Parameters.ROW_NUMBER + " " + row.getRowNumber(), Arrays.asList(row.getSeats()));
-                }
-                Document instance = new Document()
-                        .append(Parameters.ID, new ObjectId())
-                        .append(Parameters.SHOW_INSTANCE_DATE, cur.getShowInstances().get(i).getDate())
-                        .append(Parameters.SHOW_INSTANCE_PRICE, cur.getShowInstances().get(i).getPrice())
-                        .append(Parameters.SHOW_INSTANCE_THEATER_ID, cur.getShowInstances().get(i).getTheaterId())
-                        .append(Parameters.SHOW_INSTANCE_SEATS, Arrays.asList(seatDocument));
-                coll.updateOne(eq(Parameters.ID, cur.getShowId()), Updates.addToSet(Parameters.SHOW_INSTANCE, instance));
-
-            }
+//            for (int i = 0; i < cur.getShowInstances().size(); i++) {//TODO move it to showInstanceDao
+//
+//                Document seatDocument = new Document();
+//                for (Row row : cur.getShowInstances().get(i).getSeats()) {
+//                    seatDocument
+//                            .append(Parameters.ROW_NUMBER + " " + row.getRowNumber(), Arrays.asList(row.getSeats()));
+//                }
+//                Document instance = new Document()
+//                        .append(Parameters.ID, new ObjectId())
+//                        .append(Parameters.SHOW_INSTANCE_DATE, cur.getShowInstances().get(i).getDate())
+//                        .append(Parameters.SHOW_INSTANCE_PRICE, cur.getShowInstances().get(i).getPrice())
+//                        .append(Parameters.SHOW_INSTANCE_THEATER_ID, cur.getShowInstances().get(i).getTheaterId())
+//                        .append(Parameters.SHOW_INSTANCE_SEATS, Arrays.asList(seatDocument));
+//                coll.updateOne(eq(Parameters.ID, cur.getShowId()), Updates.addToSet(Parameters.SHOW_INSTANCE, instance));
+//
+//            }
         } catch (Exception e) {
             e.printStackTrace();
             return false;

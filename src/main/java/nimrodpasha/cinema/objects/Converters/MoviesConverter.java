@@ -23,6 +23,27 @@ public class MoviesConverter
 
 		return movie;
 	}
+
+
+//	public LocalDateTime ScreeningTime;
+//	public int HallId;
+//	public ArrayList<Row> Seats;
+//	public int Price;
+
+//	public final static Screening DBDocToScreeningsDetails(Document doc)
+//	{
+//		Screening screenings = new Screening();
+//
+//
+//		screenings.HallId=doc.getInteger(Constants.Halls.HALL_ID);
+//		screenings.ScreeningTime=LocalDateTime.parse(doc.getString(Constants.Screening.SCREENINGS_TIME));
+//		screenings.Seats=doc.getArray(Constants.Screening.SEATS);
+//		screenings.Price=doc.getInteger(Constants.Screening.PRICE);
+//
+//
+//
+//		return screenings;
+//	}
 }
 
 //		Document doc = new Document(, movie.Id)

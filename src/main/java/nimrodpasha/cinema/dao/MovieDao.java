@@ -9,13 +9,28 @@ import nimrodpasha.cinema.utils.Parameters;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import nimrodpasha.cinema.objects.MovieDetails;
+import nimrodpasha.cinema.objects.Screening;
 import org.bson.types.ObjectId;
+import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Random;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.Instant;
+
+import java.time.ZoneOffset;
+
+import java.time.Month;
+
 
 
 import static com.mongodb.client.model.Filters.eq;
@@ -24,11 +39,18 @@ import static com.mongodb.client.model.Projections.fields;
 import static nimrodpasha.cinema.dao.MongoCollection.getMongoCollection;
 import static nimrodpasha.cinema.utils.Parameters.*;
 
-
 /**
  * data access object - movies collection
  */
 public class MovieDao implements Crud, RandomId, UsageCheck {
+
+
+    private static final int MAX_SCREENINGS_TO_ENTER = 10;
+    private static final int MIN_SCREENINGS_TO_ENTER = 2;
+    private static final int SCREENINGS_PRICE = 45;
+    private static final int MAX_SCREENINGS_DAYS_DIFFERENCE = 25;
+    private static final int MIN_SCREENINGS_DAYS_DIFFERENCE = 2;
+    private static final int RANDOM_SCREENINGS_HOURS = 24;
 
     private com.mongodb.client.MongoCollection<Document> _collection;
 
@@ -64,6 +86,37 @@ public class MovieDao implements Crud, RandomId, UsageCheck {
                     //.append(Parameters.MOVIE_SCREENINGS, Arrays.asList());
 
             _collection.insertOne(doc);
+
+
+            ArrayList<Screening> screeningsInstances = new ArrayList<>();
+            LocalDateTime screeningTime = LocalDateTime.now(); //TODO add random time
+            int price=(SCREENINGS_PRICE );
+            int r = new Random().nextInt(MAX_SCREENINGS_TO_ENTER - MIN_SCREENINGS_TO_ENTER) + 1;
+
+
+            for (int i = 0; i < r; i++) {
+
+
+                //set random theater
+                RandomId randomId = new HallsDao();
+                Document hall = new HallsDao().read(String.valueOf(randomId.randomId()));
+                int hallId =((int)(hall.get(Constants.Halls.HALL_ID)));
+                ArrayList <Row> rows = new ArrayList<>();
+                for (int j = 1; j <=(int)hall.get(Constants.Halls.HALLS_ROWS) ; j++) {
+                    int arr []=new int[(int)hall.get(Constants.Halls.HALLS_COLUMNS)];
+                    rows.add(new Row(j,arr));
+                    for (int l = 0; l < arr.length; l++) {
+                        arr[l]=0;
+                    }
+                }
+                Screening screeningInstance = new Screening(screeningTime,hallId,price,rows);
+
+
+                screeningsInstances.add(screeningInstance);
+
+            }
+
+
 
 
 
@@ -219,7 +272,7 @@ public class MovieDao implements Crud, RandomId, UsageCheck {
     }
 
 
-    /**
+    /***
      * @param showId
      * @return all of the instances for the show - no info for the seats
      */

@@ -72,13 +72,13 @@ public class Helpers implements ResponseDocument,FillShowInstanceArrayInterface{
             Document theater = new TheaterDao().read(String.valueOf(randomId.randomId()));
             showInstance.setTheaterId((int)(theater.get(Parameters.ID)));
             ArrayList <Row> rows = new ArrayList<>();
-            for (int j = 1; j <=(int)theater.get(Parameters.THEATER_ROWS) ; j++) {
-                Integer arr []=new Integer[(int)theater.get(Parameters.THEATER_COLUMNS)];
-                rows.add(new Row(j,arr));
-                for (int l = 0; l < arr.length; l++) {
-                    arr[l]=0;
-                }
-            }
+//            for (int j = 1; j <=(int)theater.get(Parameters.THEATER_ROWS) ; j++) {
+//                Integer arr []=new Integer[(int)theater.get(Parameters.THEATER_COLUMNS)];
+//                rows.add(new Row(j,arr));
+//                for (int l = 0; l < arr.length; l++) {
+//                    arr[l]=0;
+//                }
+//            }
             showInstance.setSeats(rows);
 
             showInstances.add(showInstance);

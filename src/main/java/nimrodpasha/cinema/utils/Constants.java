@@ -15,6 +15,34 @@ public class Constants {
 		public static final String IMAGE_NAME = "imagename";
 	}
 
+
+	public class Halls {
+		public final static String HALL_ID = "hallid";
+		public static final String INVALID_HALL_ID = "invalid hall id";
+		public final static String HALLS_COLLECTION = "halls";
+		public final static String HALLS_COLUMNS = "columns";
+		public final static String HALLS_ROWS = "rows";
+
+	}
+
+
+	public class Screening {
+		public final static String SCREENINGS_TIME = "screening time";
+		public final static String HALL_ID = "hall id";
+		public final static String SEATS = "seats";
+		public final static String PRICE = "price";
+
+
+
+
+		public final static String MOVIE_COLLECTION = "movies";
+		public static final String INVALID_MOVIE_DETAILS_ID = "invalid MovieDetails id";
+		public final static String SCREENINGS = "screenings";
+
+
+	}
+
+
 	public final static String MOVIE_COLLECTION = "movies";
 	public static final String INVALID_MOVIEDETAILS_ID = "invalid MovieDetails id";
 
