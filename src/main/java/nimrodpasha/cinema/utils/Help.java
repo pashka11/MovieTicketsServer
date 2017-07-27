@@ -1,6 +1,6 @@
 //package nimrodpasha.cinema.utils;
 //
-//import nimrodpasha.cinema.dao.RandomId;
+//import nimrodpasha.cinema.dao.DaoUtils;
 //import nimrodpasha.cinema.dao.TheaterDao;
 //import nimrodpasha.cinema.objects.Row;
 //import nimrodpasha.cinema.objects.Screening;
@@ -10,6 +10,7 @@
 //import org.bson.json.JsonMode;
 //import org.bson.json.JsonWriter;
 //import org.bson.json.JsonWriterSettings;
+//import org.joda.time.LocalDateTime;
 //
 //import java.io.StringWriter;
 //import java.util.ArrayList;
@@ -44,45 +45,35 @@
 //     * this method is for init screening instance
 //     * @return array list of screening instances
 //     */
-////    public ArrayList<Screening> fillScreeningInstanceArray() {
-////
-////        ArrayList<Screening> screeningsInstances = new ArrayList<>();
-////        //insert screening instances
-////        Calendar showDate = Calendar.getInstance();//now date
-////        int k = new Random().nextInt(MAX_SCREENINGS_TO_ENTER - MIN_SCREENINGS_TO_ENTER) + 1;
-////        for (int i = 0; i < k; i++) {
-////            Screening screeningInstance = new Screening();
-////            //set price
-////            screeningInstance.setPrice(SCREENINGS_PRICE );
-////            //set date for the screening
-////            showDate.add(Calendar.DATE, new Random().nextInt((MAX_SCREENINGS_DAYS_DIFFERENCE - MIN_SCREENINGS_DAYS_DIFFERENCE) + 1));
-////            //set different hours
-////            showDate.add(Calendar.DATE, new Random().nextInt((RANDOM_SCREENINGS_HOURS) + 1));
-////            //set minutes and seconds to zero
-////            showDate.set(Calendar.MILLISECOND, 0);
-////            showDate.set(Calendar.MINUTE, 0);
-////            showDate.set(Calendar.SECOND, 0);
-////            //set date
-////            screeningInstance.setDate(showDate.getTime());
-////            //set random theater
-////            RandomId randomId = new TheaterDao();
-////            Document theater = new TheaterDao().read(String.valueOf(randomId.randomId()));
-////            screeningInstance.setTheaterId((int)(theater.get(Parameters.ID)));
-////            ArrayList <Row> rows = new ArrayList<>();
-////            for (int j = 1; j <=(int)theater.get(Parameters.THEATER_ROWS) ; j++) {
-////                Integer arr []=new Integer[(int)theater.get(Parameters.THEATER_COLUMNS)];
-////                rows.add(new Row(j,arr));
-////                for (int l = 0; l < arr.length; l++) {
-////                    arr[l]=0;
-////                }
-////            }
-////            screeningInstance.setSeats(rows);
-////
-////            screeningsInstances.add(screeningInstance);
-////
-////        }
-////        return screeningsInstances;
-////    }
+//    public ArrayList<Screening> fillScreeningInstanceArray() {
+//
+//        ArrayList<Screening> screeningsInstances = new ArrayList<>();
+//        //insert screening instances
+//        Calendar showDate = Calendar.getInstance();//now date
+//        int k = new Random().nextInt(MAX_SCREENINGS_TO_ENTER - MIN_SCREENINGS_TO_ENTER) + 1;
+//        for (int i = 0; i < k; i++) {
+//            Screening screeningInstance = new Screening();
+//            screeningInstance.Price = SCREENINGS_PRICE;
+//            screeningInstance.Time = LocalDateTime.now();
+//            //set random theater
+//			HallDao hallDao = new HallDao();
+//            Document theater = new TheaterDao().read(String.valueOf(DaoUtils.randomId(hallDao.getCollection())));
+//            screeningInstance.setTheaterId((int)(theater.get(Parameters.ID)));
+//            ArrayList <Row> rows = new ArrayList<>();
+//            for (int j = 1; j <=(int)theater.get(Parameters.THEATER_ROWS) ; j++) {
+//                Integer arr []=new Integer[(int)theater.get(Parameters.THEATER_COLUMNS)];
+//                rows.add(new Row(j,arr));
+//                for (int l = 0; l < arr.length; l++) {
+//                    arr[l]=0;
+//                }
+//            }
+//            screeningInstance.setSeats(rows);
+//
+//            screeningsInstances.add(screeningInstance);
+//
+//        }
+//        return screeningsInstances;
+//    }
 //
 //    /**
 //     * @param value String to put in the doc

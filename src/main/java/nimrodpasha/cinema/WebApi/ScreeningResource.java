@@ -1,10 +1,10 @@
 package nimrodpasha.cinema.WebApi;
 
 import com.mongodb.util.JSON;
-import nimrodpasha.cinema.dao.*;
-import nimrodpasha.cinema.utils.Helpers;
+import nimrodpasha.cinema.dao.Crud;
+import nimrodpasha.cinema.dao.MovieDao;
+import nimrodpasha.cinema.dao.ScreeningsDao;
 import nimrodpasha.cinema.utils.Parameters;
-import nimrodpasha.cinema.utils.ResponseDocument;
 import org.bson.Document;
 
 import javax.ws.rs.*;
@@ -57,17 +57,19 @@ public class ScreeningResource {
      */
     @POST
     public Response insertShow(String showId){
-        Crud crud = new ShowDao();
-        ResponseDocument responseDocument = new Helpers();
-        //turn string into document
-        Document document = Document.parse(showId);
-        String s = crud.insertValidation(document);
-        //        there is a problem ,so we return info
-        if (!s.equals(Crud.status.OK.toString())) {
-            return Response.status(Response.Status.BAD_REQUEST).entity(JSON.serialize(responseDocument.docResponse(s))).build();
-        }
-        //        insertion went ok ,return OK status
-        return Response.status(Response.Status.OK).entity(JSON.serialize(responseDocument.docResponse(s))).build();
+//        Crud crud = new ShowDao();
+//        ResponseDocument responseDocument = new Helpers();
+//        //turn string into document
+//        Document document = Document.parse(showId);
+//        String s = crud.insertValidation(document);
+//        //        there is a problem ,so we return info
+//        if (!s.equals(Crud.status.OK.toString())) {
+//            return Response.status(Response.Status.BAD_REQUEST).entity(JSON.serialize(responseDocument.docResponse(s))).build();
+//        }
+//        //        insertion went ok ,return OK status
+//        return Response.status(Response.Status.OK).entity(JSON.serialize(responseDocument.docResponse(s))).build();
+
+        return Response.ok().build();
     }
 
     /**
@@ -76,13 +78,15 @@ public class ScreeningResource {
      */
     @PUT
     public Response updateShow(String show){
-        Crud crud = new ShowDao();
-        ResponseDocument responseDocument = new Helpers();
-        Document document = Document.parse(show);
-        if (!crud.update(document)){
-            return Response.status(Response.Status.CONFLICT).entity(JSON.serialize(responseDocument.docResponse(Parameters.ERROR_IN_UPDATE_PROCESS))).build();
-        }
-        return Response.status(Response.Status.ACCEPTED).entity(JSON.serialize(responseDocument.docResponse(Parameters.SUCCESSFULLY_UPDATED))).build();
+//        Crud crud = new ShowDao();
+//        ResponseDocument responseDocument = new Helpers();
+//        Document document = Document.parse(show);
+//        if (!crud.update(document)){
+//            return Response.status(Response.Status.CONFLICT).entity(JSON.serialize(responseDocument.docResponse(Parameters.ERROR_IN_UPDATE_PROCESS))).build();
+//        }
+//        return Response.status(Response.Status.ACCEPTED).entity(JSON.serialize(responseDocument.docResponse(Parameters.SUCCESSFULLY_UPDATED))).build();
+
+        return Response.ok().build();
     }
 
     /**
@@ -92,18 +96,20 @@ public class ScreeningResource {
     @DELETE
     @Path("/{showId}")
     public Response deleteShow(@PathParam("showId")String showId){
-        Crud crud = new ShowDao();
-        UsageCheck usageCheck = new ShowDao();
-        ResponseDocument responseDocument = new Helpers();
-        if (crud.read(showId)==null){
-            return  Response.status(Response.Status.NOT_FOUND).entity(JSON.serialize(responseDocument.docResponse(Parameters.DOES_NOT_EXIST))).build();
-        }
-        if (usageCheck.isInUse(showId)){
-            return Response.status(Response.Status.FORBIDDEN).entity(JSON.serialize(responseDocument.docResponse(Parameters.RESOURCE_IS_IN_USE))).build();
-        }
-        if (!crud.drop(showId)){
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(JSON.serialize(responseDocument.docResponse(Parameters.ERROR_IN_DELETION))).build();
-        }
-        return Response.status(Response.Status.OK).entity(JSON.serialize(responseDocument.docResponse(Parameters.RESOURCE_HAS_BEEN_DELETED))).build();
+//        Crud crud = new ShowDao();
+//        UsageCheck usageCheck = new ShowDao();
+//        ResponseDocument responseDocument = new Helpers();
+//        if (crud.read(showId)==null){
+//            return  Response.status(Response.Status.NOT_FOUND).entity(JSON.serialize(responseDocument.docResponse(Parameters.DOES_NOT_EXIST))).build();
+//        }
+//        if (usageCheck.isInUse(showId)){
+//            return Response.status(Response.Status.FORBIDDEN).entity(JSON.serialize(responseDocument.docResponse(Parameters.RESOURCE_IS_IN_USE))).build();
+//        }
+//        if (!crud.drop(showId)){
+//            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(JSON.serialize(responseDocument.docResponse(Parameters.ERROR_IN_DELETION))).build();
+//        }
+//        return Response.status(Response.Status.OK).entity(JSON.serialize(responseDocument.docResponse(Parameters.RESOURCE_HAS_BEEN_DELETED))).build();
+
+        return Response.ok().build();
     }
 }

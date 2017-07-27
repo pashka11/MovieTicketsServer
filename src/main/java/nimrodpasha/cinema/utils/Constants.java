@@ -32,10 +32,6 @@ public class Constants {
 		public final static String SEATS = "seats";
 		public final static String PRICE = "price";
 
-
-
-
-		public final static String MOVIE_COLLECTION = "movies";
 		public static final String INVALID_MOVIE_DETAILS_ID = "invalid MovieDetails id";
 		public final static String SCREENINGS = "screenings";
 
@@ -43,7 +39,7 @@ public class Constants {
 	}
 
 
-	public final static String MOVIE_COLLECTION = "movies";
+
 	public static final String INVALID_MOVIEDETAILS_ID = "invalid MovieDetails id";
 
 	public final static String MOVIE_SCREENINGS = "screenings";
@@ -60,12 +56,10 @@ public class Constants {
 
 
 
-	public final static String TICKET_DATABASE = "tickets";
-	public final static String BANDS_COLLECTION = "bands";
-	public final static String SHOW_COLLECTION = "shows";
+
+
 	public final static String BAND_NAME = "name";
 	public final static String BAND_DESCRIPTION = "description";
-	public final static String THEATER_COLLECTION = "theater";
 	public final static String THEATER_NAME = "name";
 	public final static String THEATER_COLUMNS = "columns";
 	public final static String THEATER_ROWS = "rows";
@@ -128,4 +122,10 @@ public class Constants {
 	public static final int SEAT_IS_RESERVED = 2;
 	public static final int PURCHASE_TIMER_TIME_TO_SLEEP = 1000 * 60 * 3;
 
+	public class DB
+	{
+		public final static String TICKET_DATABASE = "tickets";
+		public static final String HALL_COLLECTION = "halls";
+		public final static String MOVIE_COLLECTION = "movies";
+	}
 }

@@ -61,7 +61,7 @@ public class MovieDao implements Crud, RandomId, UsageCheck {
      */
     public MovieDao() {
 
-        this._collection = getMongoCollection(Parameters.MOVIE_COLLECTION);
+        this._collection = getMongoCollection(Constants.DB.MOVIE_COLLECTION);
     }
 
     /**
@@ -70,6 +70,7 @@ public class MovieDao implements Crud, RandomId, UsageCheck {
      * @param obj is the document to insert
      * @return true if created false otherwise
      */
+
     @Override
     public boolean create(Object obj) {
         try {
@@ -87,34 +88,34 @@ public class MovieDao implements Crud, RandomId, UsageCheck {
 
             _collection.insertOne(doc);
 
-
-            ArrayList<Screening> screeningsInstances = new ArrayList<>();
-            LocalDateTime screeningTime = LocalDateTime.now(); //TODO add random time
-            int price=(SCREENINGS_PRICE );
-            int r = new Random().nextInt(MAX_SCREENINGS_TO_ENTER - MIN_SCREENINGS_TO_ENTER) + 1;
-
-
-            for (int i = 0; i < r; i++) {
-
-
-                //set random theater
-                RandomId randomId = new HallsDao();
-                Document hall = new HallsDao().read(String.valueOf(randomId.randomId()));
-                int hallId =((int)(hall.get(Constants.Halls.HALL_ID)));
-                ArrayList <Row> rows = new ArrayList<>();
-                for (int j = 1; j <=(int)hall.get(Constants.Halls.HALLS_ROWS) ; j++) {
-                    int arr []=new int[(int)hall.get(Constants.Halls.HALLS_COLUMNS)];
-                    rows.add(new Row(j,arr));
-                    for (int l = 0; l < arr.length; l++) {
-                        arr[l]=0;
-                    }
-                }
-                Screening screeningInstance = new Screening(screeningTime,hallId,price,rows);
-
-
-                screeningsInstances.add(screeningInstance);
-
-            }
+//
+//            ArrayList<Screening> screeningsInstances = new ArrayList<>();
+//            LocalDateTime screeningTime = LocalDateTime.now(); //TODO add random time
+//            int price=(SCREENINGS_PRICE );
+//            int r = new Random().nextInt(MAX_SCREENINGS_TO_ENTER - MIN_SCREENINGS_TO_ENTER) + 1;
+//
+//
+//            for (int i = 0; i < r; i++) {
+//
+//
+//                //set random theater
+//                RandomId randomId = new HallsDao();
+//                Document hall = new HallsDao().read(String.valueOf(randomId.randomId()));
+//                int hallId =((int)(hall.get(Constants.Halls.HALL_ID)));
+//                ArrayList <Row> rows = new ArrayList<>();
+//                for (int j = 1; j <=(int)hall.get(Constants.Halls.HALLS_ROWS) ; j++) {
+//                    int arr []=new int[(int)hall.get(Constants.Halls.HALLS_COLUMNS)];
+//                    rows.add(new Row(j,arr));
+//                    for (int l = 0; l < arr.length; l++) {
+//                        arr[l]=0;
+//                    }
+//                }
+//                Screening screeningInstance = new Screening(screeningTime,hallId,price,rows);
+//
+//
+//                screeningsInstances.add(screeningInstance);
+//
+//            }
 
 
 
@@ -178,34 +179,36 @@ public class MovieDao implements Crud, RandomId, UsageCheck {
      */
     @Override
     public boolean update(Document document) {
-        boolean updated = false;
-        try {
-            CheckAndSetInterface checkAndSetInterface = new DaoUtils();
-            //check if id exists
-            if (read(document.get(Parameters.ID).toString()) == null) {
-                return false;
-            }
-            if (checkAndSetInterface.checkAndSet(_collection, Parameters.SHOW_DESCRIPTION, document)) {
-                updated = true;
-            }
-            if (checkAndSetInterface.checkAndSet(_collection, Parameters.SHOW_NAME, document)) {
-                updated = true;
-            }
-            if (checkAndSetInterface.checkAndSet(_collection, Parameters.IMAGE_LINK, document)) {
-                updated = true;
-            }
-            //if band parameter was inserted check if valid and update
-            if (document.get(Parameters.SHOW_BAND_ID) != null && new BandDao().read(document.get(Parameters.SHOW_BAND_ID).toString()) != null) {
-                if (checkAndSetInterface.checkAndSet(_collection, Parameters.SHOW_BAND_ID, document)) {
-                    updated = true;
-                }
-            }
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-        return updated;
+        return true;
+//        boolean updated = false;
+//        try {
+//            CheckAndSetInterface checkAndSetInterface = new DaoUtils();
+//            //check if id exists
+//            if (read(document.get(Parameters.ID).toString()) == null) {
+//                return false;
+//            }
+//            if (checkAndSetInterface.checkAndSet(_collection, Parameters.SHOW_DESCRIPTION, document)) {
+//                updated = true;
+//            }
+//            if (checkAndSetInterface.checkAndSet(_collection, Parameters.SHOW_NAME, document)) {
+//                updated = true;
+//            }
+//            if (checkAndSetInterface.checkAndSet(_collection, Parameters.IMAGE_LINK, document)) {
+//                updated = true;
+//            }
+//            //if band parameter was inserted check if valid and update
+//            if (document.get(Parameters.SHOW_BAND_ID) != null && new BandDao().read(document.get(Parameters.SHOW_BAND_ID).toString()) != null) {
+//                if (checkAndSetInterface.checkAndSet(_collection, Parameters.SHOW_BAND_ID, document)) {
+//                    updated = true;
+//                }
+//            }
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return false;
+//        }
+//        return updated;
     }
     /**
      * @param id of an object to delete
@@ -245,29 +248,29 @@ public class MovieDao implements Crud, RandomId, UsageCheck {
      */
     @Override
     public String insertValidation(Document document) {
-        //put auto increment id
-        IdInterface idInterface = new DaoUtils();
-        document.append(Parameters.ID, idInterface.getNextSequence(_collection));
-        //check for  correctness of fields
-        try {
-            if (document.get(Parameters.SHOW_NAME) == null || document.get(Parameters.SHOW_NAME).toString().trim().equals(""))
-                return status.invalid_parameter.toString() + " " + Parameters.SHOW_NAME;
-            if (document.get(Parameters.SHOW_DESCRIPTION) == null || document.get(Parameters.SHOW_DESCRIPTION).toString().trim().equals(""))
-                return status.invalid_parameter.toString() + " " + Parameters.SHOW_DESCRIPTION;
-            if (Integer.valueOf(document.get(Parameters.SHOW_BAND_ID).toString()) <= 0)
-                return status.invalid_parameter.toString() + " " + Parameters.SHOW_BAND_ID;
-            //check if band id exists
-            if (new BandDao().read(document.get(Parameters.SHOW_BAND_ID).toString()) == null) {
-                return status.invalid_parameter.toString() + " " + Parameters.SHOW_BAND_ID;
-            }
-            //insert empty instances array
-            document.append(Parameters.SHOW_INSTANCE, Arrays.asList());
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return status.invalid_document.toString();
-        }
-        _collection.insertOne(document);
+//        //put auto increment id
+//        IdInterface idInterface = new DaoUtils();
+//        document.append(Parameters.ID, idInterface.getNextSequence(_collection));
+//        //check for  correctness of fields
+//        try {
+//            if (document.get(Parameters.SHOW_NAME) == null || document.get(Parameters.SHOW_NAME).toString().trim().equals(""))
+//                return status.invalid_parameter.toString() + " " + Parameters.SHOW_NAME;
+//            if (document.get(Parameters.SHOW_DESCRIPTION) == null || document.get(Parameters.SHOW_DESCRIPTION).toString().trim().equals(""))
+//                return status.invalid_parameter.toString() + " " + Parameters.SHOW_DESCRIPTION;
+//            if (Integer.valueOf(document.get(Parameters.SHOW_BAND_ID).toString()) <= 0)
+//                return status.invalid_parameter.toString() + " " + Parameters.SHOW_BAND_ID;
+//            //check if band id exists
+//            if (new BandDao().read(document.get(Parameters.SHOW_BAND_ID).toString()) == null) {
+//                return status.invalid_parameter.toString() + " " + Parameters.SHOW_BAND_ID;
+//            }
+//            //insert empty instances array
+//            document.append(Parameters.SHOW_INSTANCE, Arrays.asList());
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return status.invalid_document.toString();
+//        }
+//        _collection.insertOne(document);
         return status.OK.toString();
     }
 
@@ -288,17 +291,17 @@ public class MovieDao implements Crud, RandomId, UsageCheck {
      */
     @Override
     public boolean isInUse(String id) {
-        //create an show instance doa instance
-        ShowInstanceDao showInstanceDao = new ShowInstanceDao();
-        //check if the instances inside the show document is in use
-        Document document = read(id);
-        List<Document> showInstanceList = (List<Document>) document.get(Parameters.MOVIE_SCREENINGS);
-        for (Document cur : showInstanceList) {
-            if (showInstanceDao.isInUse(cur.get(Parameters.ID).toString())) {
-                //the instance is in use so we return false
-                return true;
-            }
-        }
+//        //create an show instance doa instance
+//        ShowInstanceDao showInstanceDao = new ShowInstanceDao();
+//        //check if the instances inside the show document is in use
+//        Document document = read(id);
+//        List<Document> showInstanceList = (List<Document>) document.get(Parameters.MOVIE_SCREENINGS);
+//        for (Document cur : showInstanceList) {
+//            if (showInstanceDao.isInUse(cur.get(Parameters.ID).toString())) {
+//                //the instance is in use so we return false
+//                return true;
+//            }
+//        }
         return false;
     }
 }

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class Screening
 {
-    public LocalDateTime ScreeningTime;
+    public LocalDateTime Time;
     public int HallId;
     public ArrayList<Row> Seats;
     public int Price;
@@ -21,7 +21,7 @@ public class Screening
     }
     public Screening(LocalDateTime screeningTime, int hallId, int price, ArrayList<Row> seats)
 	{
-        this.ScreeningTime = screeningTime;
+        this.Time = screeningTime;
         this.HallId = hallId;
         this.Price = price;
         this.Seats = seats;

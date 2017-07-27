@@ -11,7 +11,8 @@ import java.util.List;
  * Update
  * Delete
  */
-public interface Crud {
+public interface Crud
+{
     enum status {
         OK, invalid_parameter, invalid_document, duplicate_id
     }
@@ -22,8 +23,6 @@ public interface Crud {
     boolean drop(String id);
     boolean dropAll();
     String insertValidation(Document document);
-
-
 }
 
 

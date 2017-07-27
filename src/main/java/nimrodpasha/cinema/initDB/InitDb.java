@@ -10,13 +10,5 @@ public class InitDb {
         new InitMovies();
         InitMovies.main(arguments);
 
-        new InitBand();
-        InitBand.main(arguments);
-        new InitTheater();
-        InitTheater.main(arguments);
-        new InitUser();
-        InitUser.main(arguments);
-        new InitShow();
-        InitShow.main(arguments);
     }
 }

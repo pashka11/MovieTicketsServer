@@ -3,15 +3,12 @@ package nimrodpasha.cinema.WebApi;
 import com.mongodb.util.JSON;
 import nimrodpasha.cinema.dao.Crud;
 import nimrodpasha.cinema.dao.ScreeningsDao;
-import nimrodpasha.cinema.dao.ShowInstanceDao;
 import nimrodpasha.cinema.utils.Parameters;
 import org.bson.Document;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import nimrodpasha.cinema.objects.Seat;
-import static nimrodpasha.cinema.utils.Parameters.*;
 /**
  * Created by Yuval on 18-Mar-17.
  * This class handles the seat related HTTP requests

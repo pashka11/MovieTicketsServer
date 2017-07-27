@@ -1,20 +1,10 @@
 package nimrodpasha.cinema.initDB;
 
-
-import nimrodpasha.cinema.dao.RandomId;
-//import nimrodpasha.cinema.utils.Help;
 import nimrodpasha.cinema.dao.Crud;
 import nimrodpasha.cinema.dao.MovieDao;
 import nimrodpasha.cinema.objects.MovieDetails;
-import nimrodpasha.cinema.utils.FillScreeningInstanceArrayInterface;
 import org.joda.time.LocalDate;
-import org.joda.time.LocalDateTime;
-
-
 import java.util.ArrayList;
-import java.util.Date;
-
-import static nimrodpasha.cinema.utils.Parameters.IMAGE_FOLDER;
 
 public class InitMovies {
 
@@ -31,9 +21,6 @@ public class InitMovies {
                 " goes on the wrong side of the law again." +
                 " Now, the crew must unite to bring home the man who made them a family and stop her from unleashing chaos on a grand scale.",
                 "fast8.jpg", "F. Gary Gray", "Vin Diesel, Jason Statham, Dwayne Johnson, Michelle Rodriguez, Tyrese Gibson", new LocalDate(2017, 5, 6), "Action, Thriller, Crime", 136));
-
-
-
 
         movies.add(new MovieDetails(2,"McLaren","The story of Bruce McLaren, the New Zealander who founded the McLaren Motor Racing team. " +
                 "A man who showed the world that a man of humble beginnings could take on the elite of motor racing and win." +
