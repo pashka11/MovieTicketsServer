@@ -9,6 +9,10 @@ public class InitDb {
         String [] arguments = new String[]{""};
         new InitMovies();
         InitMovies.main(arguments);
+        new InitScreening();
+        InitScreening.main(arguments);
+        new InitHall();
+        InitHall.main(arguments);
 
     }
 }

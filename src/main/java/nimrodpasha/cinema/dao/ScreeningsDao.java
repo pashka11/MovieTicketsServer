@@ -2,23 +2,32 @@ package nimrodpasha.cinema.dao;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCursor;
+import com.mongodb.client.MongoCollection;
+
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import nimrodpasha.cinema.objects.Screening;
+import nimrodpasha.cinema.objects.Halls;
+import nimrodpasha.cinema.objects.Row;
 import nimrodpasha.cinema.utils.*;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
+import org.bson.codecs.*;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import static com.mongodb.client.model.Filters.eq;
+import static nimrodpasha.cinema.dao.MongoCollection.getMongoCollection;
 
 public class ScreeningsDao implements Crud, /*Seat,*/ UsageCheck
 {
     private com.mongodb.client.MongoCollection<Document> _collection;
+    private static final DateTimeFormatter TIME_FORMAT = ISODateTimeFormat.time();
 
 	public com.mongodb.client.MongoCollection<Document> getCollection()
 	{
@@ -30,7 +39,7 @@ public class ScreeningsDao implements Crud, /*Seat,*/ UsageCheck
      */
     public ScreeningsDao() {
 
-        this._collection = nimrodpasha.cinema.dao.MongoCollection.getMongoCollection(Parameters.MOVIE_COLLECTION);
+        this._collection = nimrodpasha.cinema.dao.MongoCollection.getMongoCollection(Constants.DB.SCREENINGS_COLLECTION);
     }
 
     /**
@@ -46,9 +55,44 @@ public class ScreeningsDao implements Crud, /*Seat,*/ UsageCheck
 
 
     @Override
+    //public boolean create(Object obj) {return false;}
+
     public boolean create(Object obj) {
-        return false;
+        try {
+            int[] myIntArray = new int[]{1,2,3,4,5,6};
+            Screening screening = (Screening) obj;
+//            Document seatDocument = new Document();
+//            for(Row row: screening.Seats){
+//                seatDocument
+//                        .append(Constants.Halls.HALLS_ROWS + " " + row.RowNumber, Arrays.asList(row.Seats));
+//            }
+
+            Document doc = new Document(Constants.Screening.SCREENINGSID, screening.ScreeningId)
+
+                    .append(Constants.Screening.SCREENINGS_TIME,TIME_FORMAT.print(screening.Time))
+                    .append(Constants.Screening.MOVIEID, screening.MovieId)
+                    .append(Constants.Screening.PRICE, screening.Price)
+                    //.append(Constants.Screening.SEATS, Arrays.asList())
+                    .append(Constants.Screening.HALL_ID, screening.HallId)
+                    .append("TRY",myIntArray);
+
+            _collection.insertOne(doc);
+
+
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
+
+
+
+
+
     /**
      * get a single document from the DB
      * @param id of the DB object
@@ -62,7 +106,7 @@ public class ScreeningsDao implements Crud, /*Seat,*/ UsageCheck
         try {
             while (cursor.hasNext()) {
                 Document doc = cursor.next();
-                List<Document> showInstanceList = (List<Document>) doc.get(Parameters.MOVIE_SCREENINGS);
+                List<Document> showInstanceList = (List<Document>) doc.get(Constants.DB.SCREENINGS_COLLECTION);
                 for (Document cur : showInstanceList) {
                     if (cur.get(Parameters.ID).toString().equals(id)) {
                         showInstance = cur;
@@ -110,12 +154,12 @@ public class ScreeningsDao implements Crud, /*Seat,*/ UsageCheck
                 return false;
             }
             //get the movie id for the instance
-            Bson filter = Filters.eq(Parameters.MOVIE_SCREENINGS + "." + Parameters.ID, new ObjectId(id));
+            Bson filter = Filters.eq(Constants.DB.SCREENINGS_COLLECTION + "." + Parameters.ID, new ObjectId(id));
             Document document = _collection.find().filter(filter).first();
             //pull the instance from the array that is located in the movie document
             BasicDBObject match = new BasicDBObject(Parameters.ID, document.get(Parameters.ID));
             BasicDBObject condition = new BasicDBObject(Parameters.ID, new ObjectId(id));
-            BasicDBObject find = new BasicDBObject(Parameters.MOVIE_SCREENINGS, condition);
+            BasicDBObject find = new BasicDBObject(Constants.DB.SCREENINGS_COLLECTION, condition);
             BasicDBObject update = new BasicDBObject("$pull", find);
             _collection.updateOne(match, update);
         } catch (Exception e) {
