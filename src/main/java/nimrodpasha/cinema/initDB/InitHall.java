@@ -2,9 +2,8 @@ package nimrodpasha.cinema.initDB;
 
 import nimrodpasha.cinema.dao.Crud;
 
-import nimrodpasha.cinema.objects.Halls;
+import nimrodpasha.cinema.objects.Hall;
 
-import nimrodpasha.cinema.utils.Parameters;
 import nimrodpasha.cinema.dao.HallDao;
 import java.util.ArrayList;
 
@@ -12,20 +11,20 @@ public class InitHall {
 
     public static void main(String[]args) {
 
-        ArrayList<Halls> halls = new ArrayList<>();
+        ArrayList<Hall> halls = new ArrayList<>();
 
-        halls.add(new Halls(1, 10, 10));
-        halls.add(new Halls(2,  7, 11));
-        halls.add(new Halls(3,  8, 5 ));
-        halls.add(new Halls(4,  9, 10 ));
-        halls.add(new Halls(5,  10, 6 ));
-        halls.add(new Halls(6,  5, 5));
-        halls.add(new Halls(7, 11, 4 ));
-        halls.add(new Halls(8,  4, 8));
-        halls.add(new Halls(9,  4, 5));
-        halls.add(new Halls(10,  5, 5 ));
-        halls.add(new Halls(11,  10, 10));
-        halls.add(new Halls(12,  12, 7 ));
+        halls.add(new Hall(1, 10, 10));
+        halls.add(new Hall(2,  7, 11));
+        halls.add(new Hall(3,  8, 5 ));
+        halls.add(new Hall(4,  9, 10 ));
+        halls.add(new Hall(5,  10, 6 ));
+        halls.add(new Hall(6,  5, 5));
+        halls.add(new Hall(7, 11, 4 ));
+        halls.add(new Hall(8,  4, 8));
+        halls.add(new Hall(9,  4, 5));
+        halls.add(new Hall(10,  5, 5 ));
+        halls.add(new Hall(11,  10, 10));
+        halls.add(new Hall(12,  12, 7 ));
 
         Crud crud = new HallDao();
         crud.dropAll();

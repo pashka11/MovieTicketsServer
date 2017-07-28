@@ -2,27 +2,20 @@ package nimrodpasha.cinema.dao;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCursor;
-import com.mongodb.client.MongoCollection;
 
 import com.mongodb.client.model.Filters;
-import com.mongodb.client.model.Updates;
 import nimrodpasha.cinema.objects.Screening;
-import nimrodpasha.cinema.objects.Halls;
-import nimrodpasha.cinema.objects.Row;
 import nimrodpasha.cinema.utils.*;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
-import org.bson.codecs.*;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static com.mongodb.client.model.Filters.eq;
-import static nimrodpasha.cinema.dao.MongoCollection.getMongoCollection;
 
 public class ScreeningsDao implements Crud, /*Seat,*/ UsageCheck
 {

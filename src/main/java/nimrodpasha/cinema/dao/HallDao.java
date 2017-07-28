@@ -1,8 +1,7 @@
 package nimrodpasha.cinema.dao;
 
 import com.mongodb.client.model.Filters;
-import nimrodpasha.cinema.objects.Halls;
-import nimrodpasha.cinema.objects.Halls;
+import nimrodpasha.cinema.objects.Hall;
 import nimrodpasha.cinema.utils.Constants;
 import nimrodpasha.cinema.utils.Parameters;
 import org.bson.Document;
@@ -31,7 +30,7 @@ public class HallDao implements Crud, UsageCheck {
 
     public boolean create(Object obj) {
         try {
-            Halls cur = (Halls) obj;
+            Hall cur = (Hall) obj;
             Document doc = new Document(Constants.Halls.HALL_ID, cur.HallId)
                     .append(Constants.Halls.HALLS_COLUMNS, cur.Column)
                     .append(Constants.Halls.HALLS_ROWS, cur.Row);
