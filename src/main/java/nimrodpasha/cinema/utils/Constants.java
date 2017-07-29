@@ -13,10 +13,11 @@ public class Constants {
 		public final static String ACTORS  = "actors";
 		public final static String NAME = "name";
 		public static final String IMAGE_NAME = "imagename";
+		public static final String SCREENINGS = "screenings";
 	}
 
-
-	public class Halls {
+	public class Halls
+	{
 		public final static String HALL_ID = "hallid";
 		public static final String INVALID_HALL_ID = "invalid hall id";
 		public final static String HALLS_COLLECTION = "halls";
@@ -25,28 +26,15 @@ public class Constants {
 
 	}
 
-
-	public class Screening {
-		public final static String SCREENINGS_TIME = "screening time";
-		public final static String HALL_ID = "hall id";
+	public class Screening
+	{
+		public final static String SCREENINGS_TIME = "screeningtime";
+		public final static String HALL_ID = "hallid";
 		public final static String SEATS = "seats";
 		public final static String PRICE = "price";
-		public final static String SCREENINGSID = "screeningId";
-		public final static String MOVIEID = "movieId";
-
-
-		public static final String INVALID_MOVIE_DETAILS_ID = "invalid MovieDetails id";
 		public final static String SCREENINGS = "screenings";
-
-
-	}
-
-	public class DB
-	{
-		public final static String TICKET_DATABASE = "tickets";
-		public static final String HALL_COLLECTION = "halls";
-		public final static String MOVIE_COLLECTION = "movies";
-		public final static String SCREENINGS_COLLECTION = "screenings";
+		public static final String ID = "screening_id";
+		public static final String MOVIE_ID = "movieid";
 	}
 
 
@@ -133,5 +121,11 @@ public class Constants {
 	public static final int SEAT_IS_RESERVED = 2;
 	public static final int PURCHASE_TIMER_TIME_TO_SLEEP = 1000 * 60 * 3;
 
-
+	public class DB
+	{
+		public final static String TICKET_DATABASE = "tickets";
+		public static final String HALL_COLLECTION = "halls";
+		public final static String MOVIE_COLLECTION = "movies";
+		public static final String SCREENINGS_COLLECTION = "screening";
+	}
 }

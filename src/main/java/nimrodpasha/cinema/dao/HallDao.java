@@ -12,31 +12,35 @@ import java.util.List;
 
 import static com.mongodb.client.model.Filters.eq;
 
-public class HallDao implements Crud, UsageCheck {
-
-
+public class HallDao implements Crud, UsageCheck
+{
     private com.mongodb.client.MongoCollection<Document> coll;
+
     /**
-     *  constructor
+     *  Ctor
      */
     public HallDao() {
         this.coll = nimrodpasha.cinema.dao.MongoCollection.getMongoCollection(Constants.Halls.HALLS_COLLECTION);
     }
+
     /**
      * this method creates an object and insert it to the DB
      * @param obj is the document to insert
      * @return true if created false otherwise
      */
-
-    public boolean create(Object obj) {
-        try {
+    public boolean create(Object obj)
+    {
+        try
+        {
             Hall cur = (Hall) obj;
+
             Document doc = new Document(Constants.Halls.HALL_ID, cur.HallId)
                     .append(Constants.Halls.HALLS_COLUMNS, cur.Column)
                     .append(Constants.Halls.HALLS_ROWS, cur.Row);
 
             coll.insertOne(doc);
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
             return false;
         }
@@ -48,9 +52,9 @@ public class HallDao implements Crud, UsageCheck {
      * @return single document
      */
 
-    public Document read(String id) {
-        Document document = coll.find(eq(Constants.Halls.HALL_ID, Integer.valueOf(id))).first();
-        return document;
+    public Document read(String id)
+    {
+        return coll.find(eq(Constants.Halls.HALL_ID, id)).first();
     }
     /**
      * @return all documents in this collection in a arrayList
@@ -58,7 +62,7 @@ public class HallDao implements Crud, UsageCheck {
 
     public List<Document> readAll() {
 
-        return coll.find().into(new ArrayList<Document>());
+        return coll.find().into(new ArrayList<>());
     }
     /**
      * @param document contain fields to update

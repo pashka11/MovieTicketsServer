@@ -1,11 +1,13 @@
 package nimrodpasha.cinema.dao;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Projections;
 import com.mongodb.client.model.Updates;
 import nimrodpasha.cinema.objects.Row;
 import nimrodpasha.cinema.utils.Constants;
 import nimrodpasha.cinema.utils.Parameters;
+import org.bson.BsonArray;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import nimrodpasha.cinema.objects.MovieDetails;
@@ -70,11 +72,12 @@ public class MovieDao implements Crud, RandomId, UsageCheck {
      * @param obj is the document to insert
      * @return true if created false otherwise
      */
-
     @Override
     public boolean create(Object obj) {
-        try {
+        try
+        {
             MovieDetails movie = (MovieDetails) obj;
+
             Document doc = new Document(Constants.Movie.ID, movie.Id)
                     .append(Constants.Movie.NAME, movie.Name)
                     .append(Constants.Movie.DESCRIPTION, movie.Description)
@@ -83,67 +86,18 @@ public class MovieDao implements Crud, RandomId, UsageCheck {
                     .append(Constants.Movie.DURATION, movie.Duration)
                     .append(Constants.Movie.GENRES, movie.Genres)
                     .append(Constants.Movie.RELEASEDATE, DATE_FORMAT.print(movie.ReleaseDate))
-                    .append(Constants.Movie.ACTORS, movie.Actors);
-                    //.append(Parameters.MOVIE_SCREENINGS, Arrays.asList());
+                    .append(Constants.Movie.ACTORS, movie.Actors)
+                    .append(Constants.Movie.SCREENINGS, Arrays.asList());
 
             _collection.insertOne(doc);
 
-//
-//            ArrayList<Screening> screeningsInstances = new ArrayList<>();
-//            LocalDateTime screeningTime = LocalDateTime.now(); //TODO add random time
-//            int price=(SCREENINGS_PRICE );
-//            int r = new Random().nextInt(MAX_SCREENINGS_TO_ENTER - MIN_SCREENINGS_TO_ENTER) + 1;
-//
-//
-//            for (int i = 0; i < r; i++) {
-//
-//
-//                //set random theater
-//                RandomId randomId = new HallsDao();
-//                Document hall = new HallsDao().read(String.valueOf(randomId.randomId()));
-//                int hallId =((int)(hall.get(Constants.Halls.HALL_ID)));
-//                ArrayList <Row> rows = new ArrayList<>();
-//                for (int j = 1; j <=(int)hall.get(Constants.Halls.HALLS_ROWS) ; j++) {
-//                    int arr []=new int[(int)hall.get(Constants.Halls.HALLS_COLUMNS)];
-//                    rows.add(new Row(j,arr));
-//                    for (int l = 0; l < arr.length; l++) {
-//                        arr[l]=0;
-//                    }
-//                }
-//                Screening screeningInstance = new Screening(screeningTime,hallId,price,rows);
-//
-//
-//                screeningsInstances.add(screeningInstance);
-//
-//            }
-
-
-
-
-
-//            for (int i = 0; i < movie.getScreenings().size(); i++) {//TODO move it to showInstanceDao
-//
-//                Document seatDocument = new Document();
-//                for (Row row : movie.getScreenings().get(i).getSeats()) {
-//                    seatDocument
-//                            .append(Parameters.ROW_NUMBER + " " + row.getRowNumber(), Arrays.asList(row.getSeats()));
-//                }
-//                Document instance = new Document()
-//                        .append(Parameters.ID, new ObjectId())
-//                        .append(Parameters.MOVIE_INSTANCE_DATE, movie.getScreenings().get(i).getDate())
-//                        .append(Parameters.MOVIE_INSTANCE_PRICE, movie.getScreenings().get(i).getPrice())
-//                        .append(Parameters.MOVIE_INSTANCE_THEATER_ID, movie.getScreenings().get(i).getTheaterId())
-//                        .append(Parameters.MOVIE_INSTANCE_SEATS, Arrays.asList(seatDocument));
-//                _collection.updateOne(eq(Parameters.ID, movie.getId()), Updates.addToSet(Parameters.MOVIE_SCREENINGS, instance));
-//
-//            }
-
-
-
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
             return false;
         }
+
         return true;
     }
 

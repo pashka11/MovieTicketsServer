@@ -6,23 +6,20 @@ import nimrodpasha.cinema.objects.MovieDetails;
 import org.joda.time.LocalDate;
 import java.util.ArrayList;
 
-public class InitMovies {
-
-
+public class InitMovies
+{
     //this is an insert of default movies
-    public static void main(String[]args){
+    public static void main(String[]args)
+    {
         ArrayList<MovieDetails> movies =new ArrayList<>();
 
-        //RandomId randomId = new BandDao();  //TODO maybe remove
-        //FillScreeningInstanceArrayInterface fillScreeningInstanceArrayInterface = new Help();
-        int b;
-        movies.add(new MovieDetails(1, "Fast and Furious 8", "After Dom is recruited by a mysterious villainess hacker," +
+        movies.add(new MovieDetails(10, "Fast and Furious 8", "After Dom is recruited by a mysterious villainess hacker," +
                 " he turns against his family and most importantly," +
                 " goes on the wrong side of the law again." +
                 " Now, the crew must unite to bring home the man who made them a family and stop her from unleashing chaos on a grand scale.",
                 "fast8.jpg", "F. Gary Gray", "Vin Diesel, Jason Statham, Dwayne Johnson, Michelle Rodriguez, Tyrese Gibson", new LocalDate(2017, 5, 6), "Action, Thriller, Crime", 136));
 
-        movies.add(new MovieDetails(2,"McLaren","The story of Bruce McLaren, the New Zealander who founded the McLaren Motor Racing team. " +
+        movies.add(new MovieDetails(9,"McLaren","The story of Bruce McLaren, the New Zealander who founded the McLaren Motor Racing team. " +
                 "A man who showed the world that a man of humble beginnings could take on the elite of motor racing and win." +
                 " Now, the crew must unite to bring home the man who made them a family and stop her from unleashing chaos on a grand scale.",
                 "Maclaren.jpg","Roger Donaldson"," Mario Andretti, Alastair Caldwell, Dwayne Cameron",new LocalDate(2017, 5, 6),"Documentary, Action,  Drama",92));
@@ -33,8 +30,6 @@ public class InitMovies {
                 " goes on the wrong side of the law again." +
                 " Now, the crew must unite to bring home the man who made them a family and stop her from unleashing chaos on a grand scale.",
                 "fast8.jpg","F. Gary Gray","Vin Diesel, Jason Statham, Dwayne Johnson, Michelle Rodriguez, Tyrese Gibson",new LocalDate(2017,7,12),"Action, Thriller, Crime",136  ));
-
-
 
 
         movies.add(new MovieDetails(2,"McLaren","The story of Bruce McLaren, the New Zealander who founded the McLaren Motor Racing team. " +

@@ -1,19 +1,18 @@
 package nimrodpasha.cinema.initDB;
 
 import nimrodpasha.cinema.dao.Crud;
-
+import nimrodpasha.cinema.dao.HallDao;
 import nimrodpasha.cinema.objects.Hall;
 
-import nimrodpasha.cinema.dao.HallDao;
 import java.util.ArrayList;
 
-public class InitHall {
-
+public class InitHall
+{
     public static void main(String[]args) {
 
         ArrayList<Hall> halls = new ArrayList<>();
 
-        halls.add(new Hall(1, 10, 10));
+		halls.add(new Hall(1, 10, 10));
         halls.add(new Hall(2,  7, 11));
         halls.add(new Hall(3,  8, 5 ));
         halls.add(new Hall(4,  9, 10 ));
@@ -28,10 +27,7 @@ public class InitHall {
 
         Crud crud = new HallDao();
         crud.dropAll();
-        halls.parallelStream()
-                .forEach(hall -> crud.create(hall));
-
-
+        halls.parallelStream().forEach(crud::create);
     }
 
 

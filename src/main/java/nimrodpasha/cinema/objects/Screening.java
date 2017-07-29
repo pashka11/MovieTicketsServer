@@ -10,17 +10,21 @@ import java.util.ArrayList;
 
 public class Screening
 {
+    public int Id;
     public LocalDateTime Time;
     public int HallId;
-    public ArrayList<Row> Seats;
+    public ArrayList<ArrayList<Integer>> Seats;
     public int Price;
+    public int MovieId;
 
     public Screening()
 	{
 
     }
-    public Screening(LocalDateTime screeningTime, int hallId, int price, ArrayList<Row> seats)
+    public Screening(int screeningId, int movieId, LocalDateTime screeningTime, int hallId, int price, ArrayList<ArrayList<Integer>> seats)
 	{
+	    this.MovieId = movieId;
+	    this.Id = screeningId;
         this.Time = screeningTime;
         this.HallId = hallId;
         this.Price = price;

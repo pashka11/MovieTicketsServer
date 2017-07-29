@@ -2,21 +2,17 @@ package nimrodpasha.cinema.WebApi;
 
 import nimrodpasha.cinema.dao.Crud;
 import nimrodpasha.cinema.dao.MovieDao;
-import nimrodpasha.cinema.objects.Converters.MoviesConverter;
+import nimrodpasha.cinema.dao.ScreeningsDao;
+import nimrodpasha.cinema.objects.Converters.ViewAndDataObjectConverter;
 import nimrodpasha.cinema.objects.MovieDetails;
-import nimrodpasha.cinema.objects.Row;
 import nimrodpasha.cinema.objects.Screening;
 import org.bson.Document;
-import org.joda.time.LocalDateTime;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-//import nimrodpasha.cinema.dao.ScreeningsDao;
 
 /**
  * Created by Nimrod on 14-Jun-17.....
@@ -41,7 +37,7 @@ public class MoviesResource
         if (movieDocs != null && movieDocs.size() != 0)
         {
             List<MovieDetails> movies = movieDocs.parallelStream()
-                    .map(x -> MoviesConverter.DBDocToMovieDetails(x))
+                    .map(x -> ViewAndDataObjectConverter.DBDocToMovieDetails(x))
                     .collect(Collectors.toList());
 
             return Response.ok(movies).build();
@@ -54,24 +50,41 @@ public class MoviesResource
     @Path("/{movieId}/screenings")
     public Response GetMovieScreenings(@PathParam("movieId") int  movieId)
     {
-        ArrayList<Screening> screenings = new ArrayList<>();
+//        ArrayList<Screening> screenings = new ArrayList<>();
+//
+//        ArrayList<ArrayList<Integer>> rows = new ArrayList<>();
+//
+//		for (int i = 0; i < 11; i++)
+//            rows.add(new ArrayList<>(Arrays.asList(0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0)));
+//
+//		for (int i = 0; i < 4; i++)
+//		{
+//			Screening scr = new Screening();
+//			scr.Time = LocalDateTime.now().plusDays(i + 1);
+//			scr.HallId = i + 1;
+//			scr.Seats = rows;
+//
+//			screenings.add(scr);
+//		}
+//
+//		return Response.ok(screenings).build();
 
-        ArrayList<Row> rows = new ArrayList<>();
+		ScreeningsDao dao = new ScreeningsDao();
 
-		for (int i = 0; i < 4; i++)
-            rows.add(new Row(i, new int[5]));
+		List<Document> screeningDocs = dao.GetScreeningsByMovieId(movieId);
 
-		for (int i = 0; i < 4; i++)
+		if (screeningDocs != null)
 		{
-			Screening scr = new Screening();
-			scr.Time = LocalDateTime.now().plusDays(i + 1);
-			scr.HallId = i + 1;
-			scr.Seats = rows;
+			List<Screening> screenings =
+					screeningDocs
+							.stream()
+							.map(ViewAndDataObjectConverter::DBDocToScreening)
+							.collect(Collectors.toList());
 
-			screenings.add(scr);
+			return Response.ok(screenings).build();
 		}
-
-		return Response.ok(screenings).build();
+		else
+			return Response.serverError().build();
     }
 
     /**
