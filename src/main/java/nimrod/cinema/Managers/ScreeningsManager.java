@@ -3,10 +3,7 @@ package nimrod.cinema.Managers;
 import nimrod.cinema.Services.SeatsSelectionTimeoutHandler;
 import nimrod.cinema.Services.SeatsSelectionTimingService;
 import nimrod.cinema.dao.DataAccessObject;
-import nimrod.cinema.objects.Row;
-import nimrod.cinema.objects.Screening;
-import nimrod.cinema.objects.Seat;
-import nimrod.cinema.objects.SeatsSelection;
+import nimrod.cinema.objects.*;
 import nimrod.cinema.utils.Constants;
 import org.joda.time.LocalDateTime;
 
@@ -16,12 +13,15 @@ public class ScreeningsManager implements SeatsSelectionTimeoutHandler
 {
 	private DataAccessObject<Screening> _screeningsDao;
 	private DataAccessObject<SeatsSelection> _seatSelectionDao;
+	private DataAccessObject<MovieDetails> _movieDao;
+	private DataAccessObject<Hall> _hallDao;
 
 	public ScreeningsManager()
 	{
 		_screeningsDao = new DataAccessObject<>(Screening.class);
-
+		_movieDao = new DataAccessObject<>(MovieDetails.class);
 		_seatSelectionDao = new DataAccessObject<>(SeatsSelection.class);
+		_hallDao = new DataAccessObject<>(Hall.class);
 	}
 
 
@@ -91,6 +91,34 @@ public class ScreeningsManager implements SeatsSelectionTimeoutHandler
 	{
 		return SeatsSelectionTimedOut(selectionId);
 	}
+
+	public Screening HandleNewScreening(Screening screening) {
+
+		MovieDetails movie = _movieDao.ReadOne(screening.MovieId);
+		if (movie == null)
+			return null;
+
+		Hall hall = _hallDao.ReadOne(screening.HallId);
+		if (hall == null)
+			return null;
+
+		ArrayList<Row> seats = new ArrayList<>();
+
+		for (int row = 0 ; row < hall.Row;row ++ ){
+			seats.add(new Row(hall.Column));
+		}
+
+		screening.Seats = seats;
+
+		String screeningId = _screeningsDao.CreateOne(screening);
+
+		if(screeningId == null )
+			return null;
+
+		return screening;
+
+	}
+
 
 //
 //	public synchronized String SaveScreeningSeats(String screeningsId, ArrayList<Seat> selectedSeats)

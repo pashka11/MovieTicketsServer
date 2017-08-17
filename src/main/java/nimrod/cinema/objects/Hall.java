@@ -10,6 +10,8 @@ public class Hall
 	public String HallId;
 	public int Row;
 	public int Column;
+	public Hall() {
+	}
 
 	public Hall(String hallId , int row, int column)
 	{

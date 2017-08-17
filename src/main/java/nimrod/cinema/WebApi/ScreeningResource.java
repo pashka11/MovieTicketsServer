@@ -1,7 +1,9 @@
 package nimrod.cinema.WebApi;
 
 import nimrod.cinema.Managers.ScreeningsManager;
+import nimrod.cinema.dao.CRUD;
 import nimrod.cinema.dao.DataAccessObject;
+import nimrod.cinema.objects.Hall;
 import nimrod.cinema.objects.Screening;
 import nimrod.cinema.objects.Seat;
 import nimrod.cinema.utils.Constants;
@@ -9,6 +11,7 @@ import nimrod.cinema.utils.Constants;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -96,12 +99,46 @@ public class ScreeningResource
 			Response.ok().build() : Response.serverError().build();
 	}
 
+
+
+	@POST
+	public Response AddScreening(Screening screening)
+	{
+		ScreeningsManager manager = new ScreeningsManager();
+		Screening scr = manager.HandleNewScreening(screening);
+
+		if (scr != null)
+			return Response.status(Response.Status.CREATED).entity(scr.Id).build();
+		else
+			return Response.serverError().build();
+
+	}
+
+
+
+
+
+	@DELETE
+	@Path("/{screeningId}")
+	public Response deleteScreening(@PathParam("screeningId") String screeningid) {
+		CRUD<Screening> crud = new DataAccessObject<>(Screening.class);
+
+		if (crud.DeleteOne(screeningid) != null)
+			return Response.ok().build();
+		else
+			return Response.serverError().build();
+	}
+
+
+
+
+
     /**
      * @param showId is a json format object to insert
      * @return insertion status message
      */
-    @POST
-    public Response insertShow(String showId){
+//    @POST
+//    public Response insertShow(String showId){
 //        Crud crud = new ShowDao();
 //        ResponseDocument responseDocument = new Helpers();
 //        //turn string into document
@@ -113,9 +150,9 @@ public class ScreeningResource
 //        }
 //        //        insertion went ok ,return OK status
 //        return Response.status(Response.Status.OK).entity(JSON.serialize(responseDocument.docResponse(s))).build();
-
-        return Response.ok().build();
-    }
+//
+//        return Response.ok().build();
+//    }
 
     /**
      * @param show is a json format object to update
@@ -138,9 +175,9 @@ public class ScreeningResource
      * @param showId is a json format object to delete
      * @return deletion status message
      */
-    @DELETE
-    @Path("/{showId}")
-    public Response deleteShow(@PathParam("showId")String showId){
+//    @DELETE
+//    @Path("/{showId}")
+//    public Response deleteShow(@PathParam("showId")String showId){
 //        Crud crud = new ShowDao();
 //        UsageCheck usageCheck = new ShowDao();
 //        ResponseDocument responseDocument = new Helpers();
@@ -154,7 +191,7 @@ public class ScreeningResource
 //            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(JSON.serialize(responseDocument.docResponse(Parameters.ERROR_IN_DELETION))).build();
 //        }
 //        return Response.status(Response.Status.OK).entity(JSON.serialize(responseDocument.docResponse(Parameters.RESOURCE_HAS_BEEN_DELETED))).build();
-
-        return Response.ok().build();
-    }
+//
+//        return Response.ok().build();
+//    }
 }
