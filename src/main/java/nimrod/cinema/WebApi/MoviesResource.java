@@ -1,5 +1,6 @@
 package nimrod.cinema.WebApi;
 
+import nimrod.cinema.Managers.MoviesManager;
 import nimrod.cinema.dao.CRUD;
 import nimrod.cinema.dao.DataAccessObject;
 import nimrod.cinema.objects.MovieDetails;
@@ -48,22 +49,22 @@ public class MoviesResource
     @Path("/{movieId}/screenings")
     public Response GetMovieScreenings(@PathParam("movieId") String  movieId)
     {
-		CRUD<Screening> crud = new DataAccessObject<>(Screening.class);
+        CRUD<Screening> crud = new DataAccessObject<>(Screening.class);
 
-		List<Screening> screenings = crud.ReadByField(Constants.Screening.MOVIE_ID, movieId);
+        List<Screening> screenings = crud.ReadByField(Constants.Screening.MOVIE_ID, movieId);
 
-		if (screenings != null)
-		{
+        if (screenings != null)
+        {
 //			List<Screening> screenings =
 //					screeningDocs
 //							.stream()
 //							.map(ViewAndDataObjectConverter::DBDocToScreening)
 //							.collect(Collectors.toList());
 
-			return Response.ok(screenings).build();
-		}
-		else
-			return Response.serverError().build();
+            return Response.ok(screenings).build();
+        }
+        else
+            return Response.serverError().build();
     }
 
     /**
@@ -72,14 +73,23 @@ public class MoviesResource
      */
     @POST
     public Response AddMovie(MovieDetails movie)
-	{
-    	CRUD<MovieDetails> dao = new DataAccessObject<>(MovieDetails.class);
+    {
 
-		String id = dao.CreateOne(movie);
+        MoviesManager mngr = new MoviesManager();
+        MovieDetails mov = mngr.HandleNewMovie(movie);
+        if (mov != null)
+            return Response.status(Response.Status.CREATED).entity(mov.Id).build();
+        else
+            return Response.serverError().build();
 
-		return id.isEmpty() ?
-				Response.created(URI.create("/movies/" + id)).build() :
-				Response.serverError().build();
+
+//    	CRUD<MovieDetails> dao = new DataAccessObject<>(MovieDetails.class);
+//
+//		String id = dao.CreateOne(movie);
+//
+//		return id.isEmpty() ?
+//				Response.created(URI.create("/movies/" + id)).build() :
+//				Response.serverError().build();
     }
 
 
@@ -90,12 +100,21 @@ public class MoviesResource
     @DELETE
     @Path("/{movieId}")
     public Response deleteMovie(@PathParam("movieId") String movieId) {
-		CRUD<MovieDetails> crud = new DataAccessObject<>(MovieDetails.class);
+//		CRUD<MovieDetails> crud = new DataAccessObject<>(MovieDetails.class);
 
-		if (crud.DeleteOne(movieId) != null)
-        	return Response.ok().build();
-		else
-			return Response.serverError().build();
+        MoviesManager mngr = new MoviesManager();
+        if(mngr.RemoveMovie(movieId)){
+            return Response.ok().build();
+        };
+        return Response.serverError().build();
+
+
+
+//
+//		if (crud.DeleteOne(movieId) != null)
+//        	return Response.ok().build();
+//		else
+//			return Response.serverError().build();
     }
 }
 

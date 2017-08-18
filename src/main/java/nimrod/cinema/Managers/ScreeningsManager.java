@@ -5,6 +5,7 @@ import nimrod.cinema.Services.SeatsSelectionTimingService;
 import nimrod.cinema.dao.DataAccessObject;
 import nimrod.cinema.objects.*;
 import nimrod.cinema.utils.Constants;
+import org.bson.types.ObjectId;
 import org.joda.time.LocalDateTime;
 
 import java.util.ArrayList;
@@ -109,6 +110,10 @@ public class ScreeningsManager implements SeatsSelectionTimeoutHandler
 		}
 
 		screening.Seats = seats;
+
+		if(screening.Id.isEmpty()){
+			screening.Id = ObjectId.get().toString();
+		}
 
 		String screeningId = _screeningsDao.CreateOne(screening);
 

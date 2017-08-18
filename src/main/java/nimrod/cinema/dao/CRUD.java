@@ -23,6 +23,7 @@ public interface CRUD<T>
 
     T DeleteOne(String id);
     boolean DeleteAll();
+    boolean DeleteByField(String fieldKey, Object fieldValue);
 }
 
 

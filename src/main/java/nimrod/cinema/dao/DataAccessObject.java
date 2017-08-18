@@ -110,8 +110,15 @@ public class DataAccessObject<T> implements CRUD<T>
 		}
 	}
 
+	public boolean DeleteByField(String fieldKey, Object fieldValue){
+		 return _datastore.delete(_datastore.createQuery(_class).filter(fieldKey,fieldValue)).wasAcknowledged();
+	}
+
+
 	private Query<T> getIdQuery(String id)
 	{
 		return _datastore.createQuery(_class).filter(Constants.Movie.ID, id);
 	}
 }
+
+

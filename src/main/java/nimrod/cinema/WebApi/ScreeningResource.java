@@ -120,7 +120,7 @@ public class ScreeningResource
 
 	@DELETE
 	@Path("/{screeningId}")
-	public Response deleteScreening(@PathParam("screeningId") String screeningid) {
+	public Response DeleteScreening(@PathParam("screeningId") String screeningid) {
 		CRUD<Screening> crud = new DataAccessObject<>(Screening.class);
 
 		if (crud.DeleteOne(screeningid) != null)
