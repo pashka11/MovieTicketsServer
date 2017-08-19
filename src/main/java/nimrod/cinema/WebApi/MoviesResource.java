@@ -10,7 +10,6 @@ import nimrod.cinema.utils.Constants;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.net.URI;
 import java.util.List;
 
 /**
@@ -31,16 +30,11 @@ public class MoviesResource
     public Response GetAllMoviesDetails()
     {
         CRUD<MovieDetails> crud = new DataAccessObject<>(MovieDetails.class);
+
         List<MovieDetails> movies = crud.ReadAll();
 
         if (movies != null && movies.size() != 0)
-        {
-//            List<MovieDetails> movies = movieDocs.parallelStream()
-//                    .map(ViewAndDataObjectConverter::DBDocToMovieDetails)
-//                    .collect(Collectors.toList());
-
             return Response.ok(movies).build();
-        }
         else
             return Response.serverError().build();
     }
@@ -53,18 +47,9 @@ public class MoviesResource
 
         List<Screening> screenings = crud.ReadByField(Constants.Screening.MOVIE_ID, movieId);
 
-        if (screenings != null)
-        {
-//			List<Screening> screenings =
-//					screeningDocs
-//							.stream()
-//							.map(ViewAndDataObjectConverter::DBDocToScreening)
-//							.collect(Collectors.toList());
-
-            return Response.ok(screenings).build();
-        }
-        else
-            return Response.serverError().build();
+        return screenings != null ?
+                Response.ok(screenings).build():
+                Response.serverError().build();
     }
 
     /**
@@ -74,24 +59,14 @@ public class MoviesResource
     @POST
     public Response AddMovie(MovieDetails movie)
     {
+        MoviesManager moviesManager = new MoviesManager();
 
-        MoviesManager mngr = new MoviesManager();
-        MovieDetails mov = mngr.HandleNewMovie(movie);
-        if (mov != null)
-            return Response.status(Response.Status.CREATED).entity(mov.Id).build();
-        else
-            return Response.serverError().build();
+        MovieDetails newMovie = moviesManager.HandleNewMovie(movie);
 
-
-//    	CRUD<MovieDetails> dao = new DataAccessObject<>(MovieDetails.class);
-//
-//		String id = dao.CreateOne(movie);
-//
-//		return id.isEmpty() ?
-//				Response.created(URI.create("/movies/" + id)).build() :
-//				Response.serverError().build();
+        return newMovie != null ?
+                Response.status(Response.Status.CREATED).entity(newMovie.Id).build() :
+                Response.serverError().build();
     }
-
 
     /**
      * @param movieId of the movie to delete
@@ -99,32 +74,12 @@ public class MoviesResource
      */
     @DELETE
     @Path("/{movieId}")
-    public Response deleteMovie(@PathParam("movieId") String movieId) {
-//		CRUD<MovieDetails> crud = new DataAccessObject<>(MovieDetails.class);
+    public Response DeleteMovie(@PathParam("movieId") String movieId)
+    {
+        MoviesManager moviesManager = new MoviesManager();
 
-        MoviesManager mngr = new MoviesManager();
-        if(mngr.RemoveMovie(movieId)){
-            return Response.ok().build();
-        };
-        return Response.serverError().build();
-
-
-
-//
-//		if (crud.DeleteOne(movieId) != null)
-//        	return Response.ok().build();
-//		else
-//			return Response.serverError().build();
+        return moviesManager.RemoveMovie(movieId) ?
+                Response.ok().build():
+                Response.serverError().build();
     }
 }
-
-
-//
-//        if (crud.read(bandId) == null)
-//            return Response.status(Response.Status.NOT_FOUND).entity(responseDocument.docResponse(DOES_NOT_EXIST)).build();
-//        else if (usageCheck.isInUse(bandId))
-//            return Response.status(Response.Status.FORBIDDEN).entity(responseDocument.docResponse(RESOURCE_IS_IN_USE)).build();
-//        else if (!crud.delete(bandId))
-//            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(responseDocument.docResponse(ERROR_IN_DELETION)).build();
-//
-//        return Response.ok(responseDocument.docResponse(RESOURCE_HAS_BEEN_DELETED)).build();
