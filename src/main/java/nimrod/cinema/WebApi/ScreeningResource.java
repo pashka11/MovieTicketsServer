@@ -3,7 +3,6 @@ package nimrod.cinema.WebApi;
 import nimrod.cinema.Managers.ScreeningsManager;
 import nimrod.cinema.dao.CRUD;
 import nimrod.cinema.dao.DataAccessObject;
-import nimrod.cinema.objects.Hall;
 import nimrod.cinema.objects.Screening;
 import nimrod.cinema.objects.Seat;
 import nimrod.cinema.utils.Constants;
@@ -11,7 +10,6 @@ import nimrod.cinema.utils.Constants;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,7 +87,7 @@ public class ScreeningResource
 	 * @param screeningsId to save seats for
 	 * @return seats selection id
 	 */
-	@DELETE
+	@PUT
 	@Path("/{screeningsId}/seats/save")
 	public Response ReleaseSaveSeatsInScreening(@PathParam("screeningsId") String screeningsId, String selectionId)
 	{

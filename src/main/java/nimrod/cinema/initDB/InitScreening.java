@@ -19,7 +19,7 @@ public class InitScreening
         ArrayList<Row> rows = new ArrayList<>();
 
         for (int i = 0; i < 11; i++)
-            rows.add(new Row(new ArrayList<>(Arrays.asList(0, 0, 1, 1, 0, 1, 1, 1, 1))));
+            rows.add(new Row(new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0, 1, 1, 0, 0))));
 
         for (int movie = 0; movie < 6; movie++)
 		{
