@@ -5,6 +5,7 @@ import nimrod.cinema.Services.SeatsSelectionTimingService;
 import nimrod.cinema.dao.DataAccessObject;
 import nimrod.cinema.objects.Converters.ViewAndDataObjectConverter;
 import nimrod.cinema.objects.*;
+import nimrod.cinema.utils.SendMail;
 import org.joda.time.LocalDateTime;
 
 
@@ -60,6 +61,12 @@ public class PurchasesManager
 
 		if (resultId == null || resultId.isEmpty())
 			return null;
+
+
+		MovieDetails movie = _movieDao.ReadOne(screening.MovieId);
+		SendMail sendmail = new SendMail();
+		sendmail.SendMail(purchase,movie,screening);
+
 
 		return purchase;
 	}
