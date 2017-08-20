@@ -9,9 +9,6 @@ import org.mongodb.morphia.annotations.Id;
 
 import java.util.ArrayList;
 
-/**
- * Created by Nimrod on 15/06/2017.
- */
 @Entity("screenings")
 @Converters(LocalDateTimeConverter.class)
 public class Screening

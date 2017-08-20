@@ -41,7 +41,7 @@ public class PurchasesManager
 
 		if (seatsSelection.SelectionTime.plusMinutes(15).isBefore(LocalDateTime.now()))
 		{
-			// TODO: free the seats
+			ScreeningsManager.GetInstance().ReleaseSaveScreeningSeats(seatsSelection.ScreeningId);
 			return null;
 		}
 

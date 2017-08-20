@@ -17,7 +17,10 @@ public class ScreeningsManager implements SeatsSelectionTimeoutHandler
 	private DataAccessObject<MovieDetails> _movieDao;
 	private DataAccessObject<Hall> _hallDao;
 
-	public ScreeningsManager()
+	private  final static ScreeningsManager _screeningManager = new ScreeningsManager();
+
+
+	private ScreeningsManager()
 	{
 		_screeningsDao = new DataAccessObject<>(Screening.class);
 		_movieDao = new DataAccessObject<>(MovieDetails.class);
@@ -25,6 +28,7 @@ public class ScreeningsManager implements SeatsSelectionTimeoutHandler
 		_hallDao = new DataAccessObject<>(Hall.class);
 	}
 
+	public static ScreeningsManager GetInstance(){return _screeningManager; }
 
 	public synchronized String SaveScreeningSeats(String screeningId, ArrayList<Seat> selectedSeats)
 	{
@@ -61,7 +65,6 @@ public class ScreeningsManager implements SeatsSelectionTimeoutHandler
 			return null;
 		}
 
-		// TODO : Add 15 min timer to the selectionId with callback, then set the seats back to free!!!
 		SeatsSelectionTimingService.AddSelection(selectionId, this);
 
 		return selectionId;
@@ -85,7 +88,7 @@ public class ScreeningsManager implements SeatsSelectionTimeoutHandler
 		return _screeningsDao.UpdateField(screening.Id, Constants.Screening.SEATS, screening.Seats);
 	}
 
-	public boolean ReleaseSaveScreeningSeats(String screeningsId, String selectionId)
+	public boolean ReleaseSaveScreeningSeats(String selectionId)
 	{
 		return SeatsSelectionTimedOut(selectionId);
 	}
@@ -121,39 +124,6 @@ public class ScreeningsManager implements SeatsSelectionTimeoutHandler
 
 	}
 
-
-//
-//	public synchronized String SaveScreeningSeats(String screeningsId, ArrayList<Seat> selectedSeats)
-//	{
-//		// Getting the screening seats to validate seats and update them
-//		Document screeningSeatsDoc = _screeningsDao.ReadField(screeningsId, Constants.Screening.SEATS);
-//
-//		if (screeningSeatsDoc == null)
-//			return null;
-//
-//		// Valid and update at the same time
-//		ArrayList<ArrayList<Integer>> seats = ViewAndDataObjectConverter.DBDocToSeats(screeningSeatsDoc);
-//
-//		// Checking if any of the seats are already occupied and marking them as occupied if not
-//		for (Seat seat : selectedSeats)
-//			if (seats.get(seat.RowNumber).get(seat.SeatNumber) == SeatState.Occupied.getValue())
-//				return null;
-//			else
-//				seats.get(seat.RowNumber).set(seat.SeatNumber, SeatState.Occupied.getValue());
-//
-//		// Update the screening seats
-//		if (!_screeningsDao.UpdateField(screeningsId,
-//									   Constants.Screening.SEATS,
-//									   new Document(Constants.Screening.SEATS, seats)))
-//			return null;
-//
-//		String selectionId = _seatSelectionDao.create(new SeatsSelection(screeningsId, selectedSeats, LocalDateTime.now()));
-//
-//		if (selectionId == null)
-//			return null;
-//
-//		return selectionId;
-//	}
 
 	// Constants
 	public enum SeatState

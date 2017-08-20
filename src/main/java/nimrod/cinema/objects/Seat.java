@@ -1,8 +1,5 @@
 package nimrod.cinema.objects;
 
-/**
- * Created by Nimrod on 16-Mar-17.
- */
 
 public class Seat
 {

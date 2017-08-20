@@ -20,17 +20,8 @@ public class InitMovies
                 " Now, the crew must unite to bring home the man who made them a family and stop her from unleashing chaos on a grand scale.",
                 "fast8.jpg", "F. Gary Gray", "Vin Diesel, Jason Statham, Dwayne Johnson, Michelle Rodriguez, Tyrese Gibson", new LocalDate(2017, 5, 6), "Action, Thriller, Crime", 136));
 
-        movies.add(new MovieDetails(args[1],"McLaren","The story of Bruce McLaren, the New Zealander who founded the McLaren Motor Racing team. " +
-                "A man who showed the world that a man of humble beginnings could take on the elite of motor racing and win." +
-                " Now, the crew must unite to bring home the man who made them a family and stop her from unleashing chaos on a grand scale.",
-                "Maclaren.jpg","Roger Donaldson"," Mario Andretti, Alastair Caldwell, Dwayne Cameron",new LocalDate(2017, 5, 6),"Documentary, Action,  Drama",92));
-
-
-        movies.add(new MovieDetails(args[2],"Fast and Furious 8","After Dom is recruited by a mysterious villainess hacker," +
-                " he turns against his family and most importantly," +
-                " goes on the wrong side of the law again." +
-                " Now, the crew must unite to bring home the man who made them a family and stop her from unleashing chaos on a grand scale.",
-                "fast8.jpg","F. Gary Gray","Vin Diesel, Jason Statham, Dwayne Johnson, Michelle Rodriguez, Tyrese Gibson",new LocalDate(2017,7,12),"Action, Thriller, Crime",136  ));
+        movies.add(new MovieDetails(args[1],"Wonder Woman ","Before she was Wonder Woman, she was Diana, princess of the Amazons, trained warrior. When a pilot crashes and tells of conflict in the outside world, she leaves home to fight a war, discovering her full powers and true destiny.",
+                "wonder.jpg","Patty Jenkins","  Gal Gadot, Chris Pine, Robin Wright",new LocalDate(2017, 7, 11),"Adventure, Fantasy, Action",102));
 
 
         movies.add(new MovieDetails(args[3],"McLaren","The story of Bruce McLaren, the New Zealander who founded the McLaren Motor Racing team. " +
@@ -102,23 +93,15 @@ public class InitMovies
                 " Now, the crew must unite to bring home the man who made them a family and stop her from unleashing chaos on a grand scale.",
                                     "fast8.jpg", "F. Gary Gray", "Vin Diesel, Jason Statham, Dwayne Johnson, Michelle Rodriguez, Tyrese Gibson", new LocalDate(2017, 5, 6), "Action, Thriller, Crime", 136));
 
+        movies.add(new MovieDetails(movieIds.get(0),"Wonder Woman ","Before she was Wonder Woman, she was Diana, princess of the Amazons, trained warrior. When a pilot crashes and tells of conflict in the outside world, she leaves home to fight a war, discovering her full powers and true destiny.",
+                "wonder.jpg","Patty Jenkins","  Gal Gadot, Chris Pine, Robin Wright",new LocalDate(2017, 7, 11),"Adventure, Fantasy, Action",102));
+
+
+
         movies.add(new MovieDetails(movieIds.get(1),"McLaren","The story of Bruce McLaren, the New Zealander who founded the McLaren Motor Racing team. " +
                 "A man who showed the world that a man of humble beginnings could take on the elite of motor racing and win." +
                 " Now, the crew must unite to bring home the man who made them a family and stop her from unleashing chaos on a grand scale.",
                                     "Maclaren.jpg","Roger Donaldson"," Mario Andretti, Alastair Caldwell, Dwayne Cameron",new LocalDate(2017, 5, 6),"Documentary, Action,  Drama",92));
-
-
-        movies.add(new MovieDetails(movieIds.get(2),"Fast and Furious 8","After Dom is recruited by a mysterious villainess hacker," +
-                " he turns against his family and most importantly," +
-                " goes on the wrong side of the law again." +
-                " Now, the crew must unite to bring home the man who made them a family and stop her from unleashing chaos on a grand scale.",
-                                    "fast8.jpg","F. Gary Gray","Vin Diesel, Jason Statham, Dwayne Johnson, Michelle Rodriguez, Tyrese Gibson",new LocalDate(2017,7,12),"Action, Thriller, Crime",136  ));
-
-
-        movies.add(new MovieDetails(movieIds.get(3),"McLaren","The story of Bruce McLaren, the New Zealander who founded the McLaren Motor Racing team. " +
-                "A man who showed the world that a man of humble beginnings could take on the elite of motor racing and win." +
-                " Now, the crew must unite to bring home the man who made them a family and stop her from unleashing chaos on a grand scale.",
-                                    "Maclaren.jpg","Roger Donaldson"," Mario Andretti, Alastair Caldwell, Dwayne Cameron",new LocalDate(2017,1,1),"Documentary, Action,  Drama",92 ));
 
 
 

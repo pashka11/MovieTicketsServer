@@ -7,9 +7,6 @@ import org.mongodb.morphia.annotations.*;
 
 import java.io.Serializable;
 
-/**
- * Created by Nimrod on 15/06/2017.
- */
 @Entity("movies")
 @Indexes(@Index(value = "Name", fields = @Field("Name")))
 @Converters(LocalDateConverter.class)
