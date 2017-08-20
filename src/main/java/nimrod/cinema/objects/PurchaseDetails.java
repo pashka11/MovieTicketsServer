@@ -23,6 +23,7 @@ public class PurchaseDetails
 	public String LastName;
 	public String PhoneNumber;
 	public LocalDateTime PurchaseTime;
+	public int TotalPrice;
 
 	public PurchaseDetails()
 	{

@@ -89,15 +89,14 @@ public class ScreeningResource
 	 */
 	@PUT
 	@Path("/{screeningsId}/seats/save")
-	public Response ReleaseSaveSeatsInScreening(@PathParam("screeningsId") String screeningsId, String selectionId)
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	public Response ReleaseSaveSeatsInScreening(@PathParam("screeningsId") String screeningsId, @FormParam("selectionId") String selectionId)
 	{
 		ScreeningsManager manager = new ScreeningsManager();
 
 		return manager.ReleaseSaveScreeningSeats(screeningsId, selectionId) ?
 			Response.ok().build() : Response.serverError().build();
 	}
-
-
 
 	@POST
 	public Response AddScreening(Screening screening)

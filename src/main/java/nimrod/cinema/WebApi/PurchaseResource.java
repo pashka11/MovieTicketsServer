@@ -40,21 +40,11 @@ public class PurchaseResource
      */
     @DELETE
     @Path("/{purchaseId}")
-    public Response deletePurchase(@PathParam("purchaseId") String id) {
-        PurchasesManager mngr = new PurchasesManager();
+    public Response DeletePurchase(@PathParam("purchaseId") String id) {
+        PurchasesManager manager = new PurchasesManager();
 
-        mngr.RemovePurchase(id);
-//
-//        if (crud.read(bandId) == null)
-//            return Response.status(Response.Status.NOT_FOUND).entity(responseDocument.docResponse(DOES_NOT_EXIST)).build();
-//        else if (usageCheck.isInUse(bandId))
-//            return Response.status(Response.Status.FORBIDDEN).entity(responseDocument.docResponse(RESOURCE_IS_IN_USE)).build();
-//        else if (!crud.delete(bandId))
-//            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(responseDocument.docResponse(ERROR_IN_DELETION)).build();
-//
-//        return Response.ok(responseDocument.docResponse(RESOURCE_HAS_BEEN_DELETED)).build();
-
-        return Response.ok().build();
+        return manager.RemovePurchase(id) ?
+        Response.ok().build() : Response.serverError().build();
     }
 
     @POST

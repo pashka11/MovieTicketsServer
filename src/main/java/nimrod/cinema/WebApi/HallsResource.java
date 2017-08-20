@@ -39,7 +39,7 @@ public class HallsResource
 
 		String id = dao.CreateOne(hall);
 
-		return id.isEmpty() ?
+		return !id.isEmpty() ?
 				Response.created(URI.create("/halls/" + id )).build() :
 				Response.serverError().build();
 	}

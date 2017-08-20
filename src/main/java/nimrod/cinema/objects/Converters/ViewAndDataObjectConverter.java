@@ -68,6 +68,7 @@ public class ViewAndDataObjectConverter
 			purchase.LastName = request.LastName;
 			purchase.PhoneNumber = request.PhoneNumber;
 			purchase.ScreeningId = request.ScreeningId;
+			purchase.TotalPrice = request.TotalPrice;
 
 			return purchase;
 		}

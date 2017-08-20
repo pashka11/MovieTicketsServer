@@ -82,10 +82,7 @@ public class ScreeningsManager implements SeatsSelectionTimeoutHandler
 
 		selection.Seats.forEach(seat -> screening.Seats.get(seat.RowNumber).Seats.set(seat.SeatNumber, SeatState.Free.getValue()));
 
-		if (!_screeningsDao.UpdateField(screening.Id, Constants.Screening.SEATS, screening.Seats))
-			return false;
-
-		return true;
+		return _screeningsDao.UpdateField(screening.Id, Constants.Screening.SEATS, screening.Seats);
 	}
 
 	public boolean ReleaseSaveScreeningSeats(String screeningsId, String selectionId)

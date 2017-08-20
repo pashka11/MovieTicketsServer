@@ -9,6 +9,7 @@ import org.joda.time.LocalDateTime;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 public class InitScreening
 {
@@ -44,24 +45,31 @@ public class InitScreening
 		ArrayList<String> screeningIds = new ArrayList<>();
 		ArrayList<Screening> screenings = new ArrayList<>();
 
+		Random rnd = new Random();
+
 		ArrayList<Row> rows = new ArrayList<>();
 
 		for (int i = 0; i < 11; i++)
-			rows.add(new Row(new ArrayList<>(Arrays.asList(0, 0, 1, 1, 0, 1, 1, 1, 1))));
+			rows.add(new Row(new ArrayList<>(Arrays.asList(0, 0, 1, 1, 0, 0, 0, 1, 1))));
 
 		for (int movieIndex = 0; movieIndex < movieIds.size(); movieIndex++)
 		{
 			for (int i = 0; i < hallIds.size(); i++)
 			{
-				Screening scr = new Screening();
-				scr.Time = LocalDateTime.now().plusDays(i + 1);
-				scr.HallId = hallIds.get(i);
-				scr.Seats = rows;
-				scr.MovieId = movieIds.get(movieIndex);
-				scr.Id = ObjectId.get().toString();
+				for (int scrIndex = 0; scrIndex < 4; scrIndex++)
+				{
+					Screening scr = new Screening();
+					scr.Time = LocalDateTime.now().plusDays(i + 1).plusHours(scrIndex);
+					scr.HallId = hallIds.get(i);
+					scr.Seats = rows;
+					scr.MovieId = movieIds.get(movieIndex);
+					scr.Id = ObjectId.get().toString();
+					scr.Price = rnd.nextInt(20) + 30;
 
-				screeningIds.add(scr.Id);
-				screenings.add(scr);
+
+					screeningIds.add(scr.Id);
+					screenings.add(scr);
+				}
 			}
 		}
 
