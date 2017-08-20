@@ -38,12 +38,15 @@ public class MoviesResource
     @Path("/{movieId}/screenings")
     public Response GetMovieScreenings(@PathParam("movieId") String  movieId)
     {
-        CRUD<Screening> crud = new DataAccessObject<>(Screening.class);
 
-        List<Screening> screenings = crud.ReadByField(Constants.Screening.MOVIE_ID, movieId);
+        MoviesManager moviesManager = new MoviesManager();
 
-        return screenings != null ?
-                Response.ok(screenings).build():
+        List<Screening> newMovieScreenings = moviesManager.HandleGetMovieScreenings(movieId);
+
+
+
+        return newMovieScreenings != null  ?
+                Response.ok(newMovieScreenings).build():
                 Response.serverError().build();
     }
 
