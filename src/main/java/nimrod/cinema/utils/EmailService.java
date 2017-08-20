@@ -59,12 +59,17 @@ public class EmailService
             message.setRecipients(Message.RecipientType.TO,
                                   InternetAddress.parse(purchase.Email));//TO  whome u have to send mails that person id
 
-            message.setSubject("NimPashCinema Order Summary ");
-            message.setText("Dear " +  purchase.GivenName + " "  +  purchase.LastName  +  ",\n\n" +
-                                    "Your Order Number: "  +  purchase.Id  + "\n\n"  +
-                                    "Your Order Details: \n\n"   +  ConstructPurchaseSummery(movie,screening,purchase.Seats)  + "\n"  +
-                                    "Thank you for purchasing a tickets from NimPashCinema" + "\n\n"  +
-                                    " Enjoy the Screening ! "
+            message.setSubject("NimPashCinema Order: " + purchase.Id);
+            message.setText(new StringBuilder()
+                                    .append("Dear ")
+                                    .append(purchase.GivenName)
+                                    .append(" ")
+                                    .append(purchase.LastName)
+                                    .append(",\n\n")
+                                    .append("Your Order Number: ").append(purchase.Id).append("\n\n")
+                                    .append("Your Order Details: \n\n").append(ConstructPurchaseSummery(movie, screening, purchase.Seats))
+                                    .append("Thank you for purchasing a tickets from NimPashCinema")
+                                    .append("\n\n").append(" Enjoy the Screening ! ").toString()
 
             );
 
