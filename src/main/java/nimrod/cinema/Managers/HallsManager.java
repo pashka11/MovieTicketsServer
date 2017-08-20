@@ -6,12 +6,14 @@ import nimrod.cinema.objects.MovieDetails;
 import nimrod.cinema.objects.Screening;
 import nimrod.cinema.utils.Constants;
 
+
 public class HallsManager {
 
 	private DataAccessObject<Screening> _screeningsDao;
 	private DataAccessObject<MovieDetails> _movieDao;
 	private DataAccessObject<Hall> _hallDao;
 
+    //constractor
 	public HallsManager()
 	{
 		_screeningsDao = new DataAccessObject<>(Screening.class);

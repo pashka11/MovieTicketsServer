@@ -10,9 +10,6 @@ import javax.ws.rs.core.Response;
 import java.io.*;
 import java.nio.file.Paths;
 
-/**
- * Created by Nimrod on 13-July-17.
- */
 @Path("/images")
 public class ImageService {
 
@@ -28,52 +25,7 @@ public class ImageService {
 	 */
 	private static final String RELATIVE_IMAGE_DIR = "/Images/";
 	private static final java.nio.file.Path BASE_DIR = Paths.get("C:\\Users\\ppoltar\\Android_Project\\MovieTicketsServer\\src\\main\\resources\\Images");
-//    /*
-//     * Download a list of all image file names.
-//     */
-//    @GET
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public String getFileNames() throws IOException {
-//
-//        // Filters out all non JPEG or PNG files, as well as files larger than the maximum allowed size.
-//        DirectoryStream.Filter<java.nio.file.Path> filter = entry -> {
-//            boolean sizeOk = Files.size(entry) <= 1024 * 1024 * MAX_SIZE_IN_MB;
-//            boolean extensionOk = entry.getFileName().toString().endsWith("jpg") || entry.getFileName().toString().endsWith("png");
-//            return sizeOk && extensionOk;
-//        };
-//
-//        // Browse the filtered directory and list all the files.
-////        JsonArrayBuilder results = Json.createArrayBuilder();
-//        ArrayList<String>strings = new ArrayList<>();
-//        for (java.nio.file.Path entry : Files.newDirectoryStream(BASE_DIR, filter)) {
-//            System.out.println(entry.getFileName().toString());
-//            strings.add(entry.getFileName().toString());
-//        }
-//        return JSON.serialize(strings);
-//    }
 
-    /*
-     * Upload a JPEG or PNG file.
-     */
-//    @POST
-//	@Consumes(MediaType.MULTIPART_FORM_DATA)
-//	public Response UploadImage(@FormDataParam("upload") FormDataBodyPart part1,
-//								@FormDataParam("upload") FormDataBodyPart part2) throws IOException
-//	{
-//
-//		// Make sure the file is not larger than the maximum allowed size.
-////        if (fileType.equals("image/jpeg")) {
-////            fileName += ".jpg";
-////        } else {
-////            fileName += ".png";
-////        }
-//
-//		// Copy the file to its location.
-//		//Files.copy(in, BASE_DIR.resolve(fileName), StandardCopyOption.REPLACE_EXISTING);
-//
-//		// Return a 201 Created response with the appropriate Location header.
-//		return Response.ok().build();//Response.status(Status.CREATED).entity(Parameters.IMAGE_FOLDER+fileName).build();
-//	}
 
 	@POST
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
@@ -135,12 +87,6 @@ public class ImageService {
 		else
 			throw new WebApplicationException("File: '" + imageName + "' not found");
 
-		//InputStream stream = ImagesPathUtil.GetFilePath(imageName);//this.getClass().getResourceAsStream("/Images/"+imageName);
-
-//		if (stream == null)
-//			throw new WebApplicationException("File: '" + imageName + "' not found");
-//
-//		return stream;
 	}
 
 }

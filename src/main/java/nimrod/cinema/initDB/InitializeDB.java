@@ -1,5 +1,6 @@
 package nimrod.cinema.initDB;
 
+import nimrod.cinema.objects.User;
 import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class InitializeDB {
         InitMovies.AddMoviesToDB(movieIds);
         ArrayList<String> hallIds = InitHall.AddHallsToDB();
 		ArrayList<String> screeningIds = InitScreening.AddScreeningsToDB(movieIds, hallIds);
+        ArrayList<User> users = InitUser.AddUser();
 
     }
 

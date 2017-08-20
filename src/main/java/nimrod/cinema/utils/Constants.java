@@ -68,4 +68,10 @@ public class Constants {
 		public static final String SCREENING_ID = "screeningid";
 		public static final String ID = DB.ID;
 	}
+
+	public class User
+	{
+		public static final String USER = "_user";
+		public static final String PASSWORD = "_password";
+	}
 }

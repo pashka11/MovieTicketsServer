@@ -6,6 +6,8 @@ import nimrod.cinema.objects.Screening;
 import nimrod.cinema.utils.Constants;
 import org.bson.types.ObjectId;
 
+
+
 public class MoviesManager
 {
 	private DataAccessObject<Screening> _screeningsDao;
