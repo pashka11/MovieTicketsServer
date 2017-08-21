@@ -8,7 +8,6 @@ import nimrod.cinema.objects.Hall;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.net.URI;
 import java.util.List;
 
 @Path("/halls")
@@ -40,7 +39,7 @@ public class HallsResource
 		String id = dao.CreateOne(hall);
 
 		return !id.isEmpty() ?
-				Response.created(URI.create("/halls/" + id )).build() :
+				Response.status(Response.Status.CREATED).entity(id).build() :
 				Response.serverError().build();
 	}
 

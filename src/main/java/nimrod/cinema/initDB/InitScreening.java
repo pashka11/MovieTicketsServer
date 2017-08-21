@@ -59,7 +59,7 @@ public class InitScreening
 				for (int scrIndex = 0; scrIndex < 4; scrIndex++)
 				{
 					Screening scr = new Screening();
-					scr.Time = LocalDateTime.now().plusDays(i + 1).plusHours(scrIndex);
+					scr.Time = LocalDateTime.now().plusDays(i - 1).plusHours(scrIndex);
 					scr.HallId = hallIds.get(i);
 					scr.Seats = rows;
 					scr.MovieId = movieIds.get(movieIndex);

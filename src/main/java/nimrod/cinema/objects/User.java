@@ -3,7 +3,7 @@ package nimrod.cinema.objects;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
-@Entity("user")
+@Entity("users")
 public class User {
 
     @Id
@@ -15,18 +15,18 @@ public class User {
 
     }
 
-    public User(String password,String user)
+    public User(String user, String password)
     {
         this._user = user;
         this._password = password;
     }
 
-    public String get_password()
+    public String getPassword()
     {
         return _password;
     }
 
-    public String get_user()
+    public String getUser()
     {
         return _user;
     }

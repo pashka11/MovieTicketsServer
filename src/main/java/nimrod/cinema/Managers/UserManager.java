@@ -1,8 +1,6 @@
 package nimrod.cinema.Managers;
 
 import nimrod.cinema.dao.DataAccessObject;
-import nimrod.cinema.objects.MovieDetails;
-import nimrod.cinema.objects.Screening;
 import nimrod.cinema.objects.User;
 
 public class UserManager {
@@ -16,9 +14,9 @@ public class UserManager {
 
     public User HandleValidateUser(User user)
     {
-        User userFromDb = _userDao.ReadOne(user.get_user());
+        User userFromDb = _userDao.ReadOne(user.getUser().toLowerCase());
 
-        if (userFromDb == null || !userFromDb.get_password().equals(user.get_password()))
+        if (userFromDb == null || !userFromDb.getPassword().equals(user.getPassword()))
             return null;
 
         return user;

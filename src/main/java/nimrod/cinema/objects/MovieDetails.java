@@ -8,7 +8,7 @@ import org.mongodb.morphia.annotations.*;
 import java.io.Serializable;
 
 @Entity("movies")
-@Indexes(@Index(value = "Name", fields = @Field("Name")))
+@Indexes(@Index(value = "Name", fields = @Field("Name"), unique = true))
 @Converters(LocalDateConverter.class)
 public class MovieDetails implements Serializable
 {

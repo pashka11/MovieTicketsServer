@@ -10,7 +10,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("/user")
+@Path("/users")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class UserResource
@@ -20,10 +20,10 @@ public class UserResource
     {
         UserManager userManager = new UserManager();
 
-        User validateuser = userManager.HandleValidateUser(user);
+        User validatedUser = userManager.HandleValidateUser(user);
 
-        return validateuser != null ?
-                Response.ok(validateuser).build():
+        return validatedUser != null ?
+                Response.ok(validatedUser).build():
                 Response.serverError().build();
     }
 }
