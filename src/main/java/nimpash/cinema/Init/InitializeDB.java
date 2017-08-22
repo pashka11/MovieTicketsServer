@@ -1,6 +1,6 @@
 package nimpash.cinema.Init;
 
-import nimpash.cinema.Objects.User;
+import nimpash.cinema.objects.User;
 import org.bson.types.ObjectId;
 
 import java.util.ArrayList;

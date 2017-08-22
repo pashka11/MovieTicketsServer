@@ -1,4 +1,4 @@
-package nimpash.cinema.Utils;
+package nimpash.cinema.utils;
 
 public class Constants {
 

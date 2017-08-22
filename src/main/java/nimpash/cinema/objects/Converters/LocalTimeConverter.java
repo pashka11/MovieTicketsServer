@@ -1,4 +1,4 @@
-package nimpash.cinema.Objects.Converters;
+package nimpash.cinema.objects.Converters;
 
 import org.joda.time.LocalTime;
 import org.joda.time.format.ISODateTimeFormat;

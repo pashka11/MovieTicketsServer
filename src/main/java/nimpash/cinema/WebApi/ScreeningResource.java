@@ -1,9 +1,9 @@
 package nimpash.cinema.WebApi;
 
 import nimpash.cinema.Managers.ScreeningsManager;
-import nimpash.cinema.Objects.Screening;
-import nimpash.cinema.Objects.Seat;
-import nimpash.cinema.Utils.Constants;
+import nimpash.cinema.objects.Screening;
+import nimpash.cinema.objects.Seat;
+import nimpash.cinema.utils.Constants;
 import nimpash.cinema.DataAccess.CRUD;
 import nimpash.cinema.DataAccess.DataAccessObject;
 

@@ -1,6 +1,6 @@
 package nimpash.cinema.DataAccess;
 
-import nimpash.cinema.Utils.Constants;
+import nimpash.cinema.utils.Constants;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.query.Query;
 import org.mongodb.morphia.query.UpdateOperations;
@@ -9,6 +9,10 @@ import org.mongodb.morphia.query.UpdateResults;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class provides easy DB access for OO experience
+ * @param <T> The object type to handle a collection for
+ */
 public class DataAccessObject<T> implements CRUD<T>
 {
 	private Datastore _datastore;

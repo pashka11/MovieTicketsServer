@@ -1,7 +1,8 @@
-package nimpash.cinema.Objects.Converters;
+package nimpash.cinema.objects.Converters;
 
-import nimpash.cinema.Objects.PurchaseDetails;
-import nimpash.cinema.Objects.PurchaseRequest;
+import nimpash.cinema.objects.PurchaseDetails;
+import nimpash.cinema.objects.PurchaseRequest;
+import org.bson.types.ObjectId;
 
 public class ViewAndDataObjectConverter
 {
@@ -17,7 +18,8 @@ public class ViewAndDataObjectConverter
 			purchase.PhoneNumber = request.PhoneNumber;
 			purchase.ScreeningId = request.ScreeningId;
 			purchase.TotalPrice = request.TotalPrice;
-
+			purchase.Id = ObjectId.get().toString();
+			
 			return purchase;
 		}
 		catch (Exception e)

@@ -1,7 +1,7 @@
 package nimpash.cinema.Init;
 
-import nimpash.cinema.Objects.PurchaseDetails;
-import nimpash.cinema.Objects.Seat;
+import nimpash.cinema.objects.PurchaseDetails;
+import nimpash.cinema.objects.Seat;
 import nimpash.cinema.DataAccess.CRUD;
 import nimpash.cinema.DataAccess.DataAccessObject;
 import org.bson.types.ObjectId;

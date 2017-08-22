@@ -1,6 +1,6 @@
 package nimpash.cinema.WebApi;
 
-import nimpash.cinema.Utils.ImagesPathUtil;
+import nimpash.cinema.utils.ImagesPathUtil;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 

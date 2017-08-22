@@ -1,6 +1,6 @@
-package nimpash.cinema.Objects;
+package nimpash.cinema.objects;
 
-import nimpash.cinema.Objects.Converters.LocalDateConverter;
+import nimpash.cinema.objects.Converters.LocalDateConverter;
 import org.bson.types.ObjectId;
 import org.joda.time.LocalDate;
 import org.mongodb.morphia.annotations.*;

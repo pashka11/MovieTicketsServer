@@ -1,4 +1,4 @@
-package nimpash.cinema.Objects.TypeSerializers;
+package nimpash.cinema.objects.TypeSerializers;
 
 /**
  * Created by Nimrod on 23/06/2017.

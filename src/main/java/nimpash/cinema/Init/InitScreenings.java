@@ -1,9 +1,9 @@
 package nimpash.cinema.Init;
 
-import nimpash.cinema.Objects.Screening;
+import nimpash.cinema.objects.Screening;
 import nimpash.cinema.DataAccess.CRUD;
 import nimpash.cinema.DataAccess.DataAccessObject;
-import nimpash.cinema.Objects.Row;
+import nimpash.cinema.objects.Row;
 import org.bson.types.ObjectId;
 import org.joda.time.LocalDateTime;
 

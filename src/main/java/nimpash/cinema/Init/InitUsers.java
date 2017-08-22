@@ -1,7 +1,7 @@
 package nimpash.cinema.Init;
 
 import nimpash.cinema.DataAccess.CRUD;
-import nimpash.cinema.Objects.User;
+import nimpash.cinema.objects.User;
 import nimpash.cinema.DataAccess.DataAccessObject;
 
 import java.util.ArrayList;

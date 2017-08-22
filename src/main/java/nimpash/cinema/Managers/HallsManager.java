@@ -1,12 +1,14 @@
 package nimpash.cinema.Managers;
 
-import nimpash.cinema.Objects.Hall;
-import nimpash.cinema.Objects.Screening;
-import nimpash.cinema.Utils.Constants;
+import nimpash.cinema.objects.Hall;
+import nimpash.cinema.objects.Screening;
+import nimpash.cinema.utils.Constants;
 import nimpash.cinema.DataAccess.DataAccessObject;
-import nimpash.cinema.Objects.MovieDetails;
+import nimpash.cinema.objects.MovieDetails;
 
-
+/**
+ * Handles all the operation for halls
+ */
 public class HallsManager {
 
 	private DataAccessObject<Screening> _screeningsDao;

@@ -2,7 +2,7 @@ package nimpash.cinema.Init;
 
 import nimpash.cinema.DataAccess.CRUD;
 import nimpash.cinema.DataAccess.DataAccessObject;
-import nimpash.cinema.Objects.Hall;
+import nimpash.cinema.objects.Hall;
 
 import java.util.ArrayList;
 import java.util.Random;

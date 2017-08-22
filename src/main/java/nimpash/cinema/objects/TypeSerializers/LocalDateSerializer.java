@@ -1,4 +1,4 @@
-package nimpash.cinema.Objects.TypeSerializers;
+package nimpash.cinema.objects.TypeSerializers;
 
 import com.google.gson.*;
 import org.joda.time.LocalDate;

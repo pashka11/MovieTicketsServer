@@ -19,9 +19,9 @@ import javax.ws.rs.ext.Provider;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import nimpash.cinema.Objects.TypeSerializers.LocalDateSerializer;
-import nimpash.cinema.Objects.TypeSerializers.LocalDateTimeSerializer;
-import nimpash.cinema.Objects.TypeSerializers.LocalTimeSerializer;
+import nimpash.cinema.objects.TypeSerializers.LocalDateSerializer;
+import nimpash.cinema.objects.TypeSerializers.LocalDateTimeSerializer;
+import nimpash.cinema.objects.TypeSerializers.LocalTimeSerializer;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import org.joda.time.LocalTime;

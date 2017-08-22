@@ -1,7 +1,7 @@
 package nimpash.cinema.WebApi;
 
 import nimpash.cinema.Managers.UserManager;
-import nimpash.cinema.Objects.User;
+import nimpash.cinema.objects.User;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;

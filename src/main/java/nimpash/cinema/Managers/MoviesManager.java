@@ -1,9 +1,9 @@
 package nimpash.cinema.Managers;
 
 import nimpash.cinema.DataAccess.CRUD;
-import nimpash.cinema.Objects.MovieDetails;
-import nimpash.cinema.Objects.Screening;
-import nimpash.cinema.Utils.Constants;
+import nimpash.cinema.objects.MovieDetails;
+import nimpash.cinema.objects.Screening;
+import nimpash.cinema.utils.Constants;
 import nimpash.cinema.DataAccess.DataAccessObject;
 import org.bson.types.ObjectId;
 import org.joda.time.LocalDateTime;
@@ -11,7 +11,9 @@ import org.joda.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
+/**
+ * Handles all the operation for movies
+ */
 public class MoviesManager
 {
 	private DataAccessObject<Screening> _screeningsDao;

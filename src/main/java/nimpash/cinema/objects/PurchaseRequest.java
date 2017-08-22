@@ -1,4 +1,4 @@
-package nimpash.cinema.Objects;
+package nimpash.cinema.objects;
 
 public class PurchaseRequest
 {

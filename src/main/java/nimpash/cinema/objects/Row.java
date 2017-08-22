@@ -1,6 +1,4 @@
-package nimpash.cinema.Objects;
-
-import nimpash.cinema.Managers.ScreeningsManager;
+package nimpash.cinema.objects;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,7 +14,7 @@ public class Row implements Serializable
 	}
 
 	public Row(int seats) {
-		Seats = new ArrayList<>(Collections.nCopies(seats, ScreeningsManager.SeatState.Free.getValue()));
+		Seats = new ArrayList<>(Collections.nCopies(seats, SeatState.Free.getValue()));
 	}
 
 	public Row(ArrayList<Integer> seats)

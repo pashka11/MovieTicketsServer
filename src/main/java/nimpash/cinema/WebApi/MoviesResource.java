@@ -1,10 +1,10 @@
 package nimpash.cinema.WebApi;
 
-import nimpash.cinema.Objects.Screening;
+import nimpash.cinema.objects.Screening;
 import nimpash.cinema.Managers.MoviesManager;
 import nimpash.cinema.DataAccess.CRUD;
 import nimpash.cinema.DataAccess.DataAccessObject;
-import nimpash.cinema.Objects.MovieDetails;
+import nimpash.cinema.objects.MovieDetails;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -41,8 +41,6 @@ public class MoviesResource
         MoviesManager moviesManager = new MoviesManager();
 
         List<Screening> newMovieScreenings = moviesManager.HandleGetMovieScreenings(movieId, futureDates);
-
-
 
         return newMovieScreenings != null  ?
                 Response.ok(newMovieScreenings).build():

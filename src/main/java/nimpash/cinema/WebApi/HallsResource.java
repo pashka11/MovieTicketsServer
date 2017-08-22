@@ -3,7 +3,7 @@ package nimpash.cinema.WebApi;
 import nimpash.cinema.Managers.HallsManager;
 import nimpash.cinema.DataAccess.CRUD;
 import nimpash.cinema.DataAccess.DataAccessObject;
-import nimpash.cinema.Objects.Hall;
+import nimpash.cinema.objects.Hall;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

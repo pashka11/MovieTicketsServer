@@ -2,7 +2,7 @@ package nimpash.cinema.Init;
 
 import nimpash.cinema.DataAccess.CRUD;
 import nimpash.cinema.DataAccess.DataAccessObject;
-import nimpash.cinema.Objects.MovieDetails;
+import nimpash.cinema.objects.MovieDetails;
 import org.joda.time.LocalDate;
 
 import java.util.ArrayList;

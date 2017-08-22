@@ -1,9 +1,9 @@
-package nimpash.cinema.Utils;
+package nimpash.cinema.utils;
 
-import nimpash.cinema.Objects.PurchaseDetails;
-import nimpash.cinema.Objects.Screening;
-import nimpash.cinema.Objects.Seat;
-import nimpash.cinema.Objects.MovieDetails;
+import nimpash.cinema.objects.PurchaseDetails;
+import nimpash.cinema.objects.Screening;
+import nimpash.cinema.objects.Seat;
+import nimpash.cinema.objects.MovieDetails;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;

@@ -8,7 +8,7 @@ public class TicketsDatastore
 {
 //	private static Datastore _datastore;
 
-	private static final String PACKAGE_PATH = "nimrod.cinema.Objects";
+	private static final String PACKAGE_PATH = "nimpash.cinema.objects";
 
 	public static Datastore GetDataStore(String dbName)
 	{

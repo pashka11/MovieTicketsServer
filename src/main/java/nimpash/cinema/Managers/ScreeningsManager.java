@@ -3,8 +3,8 @@ package nimpash.cinema.Managers;
 import nimpash.cinema.Services.SeatsSelectionTimeoutHandler;
 import nimpash.cinema.Services.SeatsSelectionTimingService;
 import nimpash.cinema.DataAccess.DataAccessObject;
-import nimpash.cinema.Objects.*;
-import nimpash.cinema.Utils.Constants;
+import nimpash.cinema.objects.*;
+import nimpash.cinema.utils.Constants;
 import org.bson.types.ObjectId;
 import org.joda.time.LocalDateTime;
 
@@ -17,8 +17,7 @@ public class ScreeningsManager implements SeatsSelectionTimeoutHandler
 	private DataAccessObject<MovieDetails> _movieDao;
 	private DataAccessObject<Hall> _hallDao;
 
-	private  final static ScreeningsManager _screeningManager = new ScreeningsManager();
-
+	private final static ScreeningsManager _screeningManager = new ScreeningsManager();
 
 	private ScreeningsManager()
 	{
@@ -65,11 +64,13 @@ public class ScreeningsManager implements SeatsSelectionTimeoutHandler
 			return null;
 		}
 
+		// Add seats selection to the timers service, to release the seats in 15 minutes
 		SeatsSelectionTimingService.AddSelection(selectionId, this);
 
 		return selectionId;
 	}
 
+	// If a timer has timed out
 	@Override
 	public synchronized boolean SeatsSelectionTimedOut(String selectionId)
 	{
@@ -83,8 +84,10 @@ public class ScreeningsManager implements SeatsSelectionTimeoutHandler
 		if (screening == null)
 			return false;
 
+		// Change the seats selected back to free
 		selection.Seats.forEach(seat -> screening.Seats.get(seat.RowNumber).Seats.set(seat.SeatNumber, SeatState.Free.getValue()));
 
+		// Release all the seats from the DB
 		return _screeningsDao.UpdateField(screening.Id, Constants.Screening.SEATS, screening.Seats);
 	}
 
@@ -93,53 +96,38 @@ public class ScreeningsManager implements SeatsSelectionTimeoutHandler
 		return SeatsSelectionTimedOut(selectionId);
 	}
 
-	public Screening HandleNewScreening(Screening screening) {
-
+	public synchronized Screening HandleNewScreening(Screening screening)
+	{
+		// Validate that the movie exists
 		MovieDetails movie = _movieDao.ReadOne(screening.MovieId);
 		if (movie == null)
 			return null;
 
+		// Validate that the hall exists
 		Hall hall = _hallDao.ReadOne(screening.HallId);
 		if (hall == null)
 			return null;
 
 		ArrayList<Row> seats = new ArrayList<>();
 
+		// Create empty rows for the new screening
 		for (int row = 0 ; row < hall.Row;row ++ ){
 			seats.add(new Row(hall.Column));
 		}
 
 		screening.Seats = seats;
 
-		if(screening.Id.isEmpty()){
+		// If the screening has no id, assign one
+		if(screening.Id.isEmpty())
 			screening.Id = ObjectId.get().toString();
-		}
 
 		String screeningId = _screeningsDao.CreateOne(screening);
 
-		if(screeningId == null )
+		if(screeningId == null)
 			return null;
 
 		return screening;
 
 	}
 
-
-	// Constants
-	public enum SeatState
-	{
-		Free(0),
-		Occupied(1),
-		Chosen(2);
-
-		private int value;
-
-		SeatState(int value) {
-			this.value = value;
-		}
-
-		public int getValue() {
-			return value;
-		}
-	}
 }

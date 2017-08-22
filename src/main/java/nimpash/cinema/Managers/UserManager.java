@@ -1,6 +1,6 @@
 package nimpash.cinema.Managers;
 
-import nimpash.cinema.Objects.User;
+import nimpash.cinema.objects.User;
 import nimpash.cinema.DataAccess.DataAccessObject;
 
 public class UserManager {

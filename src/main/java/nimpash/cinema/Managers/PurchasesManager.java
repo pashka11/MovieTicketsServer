@@ -1,14 +1,16 @@
 
 package nimpash.cinema.Managers;
 
-import nimpash.cinema.Services.SeatsSelectionTimingService;
 import nimpash.cinema.DataAccess.DataAccessObject;
-import nimpash.cinema.Objects.Converters.ViewAndDataObjectConverter;
-import nimpash.cinema.Objects.*;
-import nimpash.cinema.Utils.EmailService;
+import nimpash.cinema.Services.SeatsSelectionTimingService;
+import nimpash.cinema.objects.Converters.ViewAndDataObjectConverter;
+import nimpash.cinema.objects.*;
+import nimpash.cinema.utils.EmailService;
 import org.joda.time.LocalDateTime;
 
-
+/**
+ * Handles everything related to purchases
+ */
 public class PurchasesManager
 {
 	private DataAccessObject<MovieDetails> _movieDao;
@@ -16,7 +18,9 @@ public class PurchasesManager
 	private DataAccessObject<SeatsSelection> _seatsSelectionDao;
 	private DataAccessObject<PurchaseDetails> _purchaseDao;
 
-	public PurchasesManager()
+	private final static PurchasesManager _purchaseManager = new PurchasesManager();
+
+	private PurchasesManager()
 	{
 		_movieDao = new DataAccessObject<>(MovieDetails.class);
 		_screeningDao = new DataAccessObject<>(Screening.class);
@@ -24,7 +28,11 @@ public class PurchasesManager
 		_purchaseDao = new DataAccessObject<>(PurchaseDetails.class);
 	}
 
-	public PurchaseDetails HandleNewPurchase(PurchaseRequest request)
+	public static PurchasesManager GetInstance()
+	{
+		return _purchaseManager;
+	}
+	public synchronized PurchaseDetails HandleNewPurchase(PurchaseRequest request)
 	{
 		// Get screening
 		Screening screening = _screeningDao.ReadOne(request.ScreeningId);
@@ -39,12 +47,14 @@ public class PurchasesManager
 		if (seatsSelection == null)
 			return null;
 
+		// If the user has waited more than 15 minuts for his purchase we cancel it and release the seats if it wasnt released
 		if (seatsSelection.SelectionTime.plusMinutes(15).isBefore(LocalDateTime.now()))
 		{
 			ScreeningsManager.GetInstance().ReleaseSaveScreeningSeats(seatsSelection.ScreeningId);
 			return null;
 		}
 
+		// Convert the request to full data object
 		PurchaseDetails purchase = ViewAndDataObjectConverter.PurchaseRequestToPurchaseDetails(request);
 
 		if (purchase == null)
@@ -54,6 +64,7 @@ public class PurchasesManager
 		purchase.MovieId = screening.MovieId;
 		purchase.Seats = seatsSelection.Seats;
 
+		// Purchase was created, we can stop the seats countdown timer
 		if (!SeatsSelectionTimingService.StopTimerSelection(request.SeatsSelectionId))
 			return null;
 
@@ -75,7 +86,7 @@ public class PurchasesManager
 		return _purchaseDao.ReadOne(purchaseId);
 	}
 
-	public boolean RemovePurchase(String id)
+	public synchronized boolean RemovePurchase(String id)
 	{
 		return _purchaseDao.DeleteOne(id) != null;
 	}

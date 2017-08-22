@@ -1,4 +1,4 @@
-package nimpash.cinema.Objects;
+package nimpash.cinema.objects;
 
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;

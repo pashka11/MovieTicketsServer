@@ -1,8 +1,8 @@
 package nimpash.cinema.WebApi;
 
 import nimpash.cinema.Managers.PurchasesManager;
-import nimpash.cinema.Objects.PurchaseDetails;
-import nimpash.cinema.Objects.PurchaseRequest;
+import nimpash.cinema.objects.PurchaseDetails;
+import nimpash.cinema.objects.PurchaseRequest;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -22,12 +22,12 @@ public class PurchaseResource
      * @return all the movies
     .*/
     @GET
-	@Path("/{purchaseId}")
+	@Path("{purchaseId}")
     public Response GetPurchaseDetails(@PathParam("purchaseId") String purchaseId)
     {
-		PurchasesManager purchaseManager = new PurchasesManager();
+		PurchasesManager manager = PurchasesManager.GetInstance();
 
-		PurchaseDetails purchaseDetails = purchaseManager.GetPurchaseDetails(purchaseId);
+		PurchaseDetails purchaseDetails = manager.GetPurchaseDetails(purchaseId);
 
 		return purchaseDetails == null ?
 				Response.serverError().build() :
@@ -39,9 +39,9 @@ public class PurchaseResource
      * @return deletion status message
      */
     @DELETE
-    @Path("/{purchaseId}")
+    @Path("{purchaseId}")
     public Response DeletePurchase(@PathParam("purchaseId") String id) {
-        PurchasesManager manager = new PurchasesManager();
+        PurchasesManager manager = PurchasesManager.GetInstance();
 
         return manager.RemovePurchase(id) ?
         Response.ok().build() : Response.serverError().build();
@@ -50,9 +50,9 @@ public class PurchaseResource
     @POST
 	public Response AddPurchase(PurchaseRequest request)
 	{
-		PurchasesManager mngr = new PurchasesManager();
+		PurchasesManager manager = PurchasesManager.GetInstance();
 
-		PurchaseDetails purchase = mngr.HandleNewPurchase(request);
+		PurchaseDetails purchase = manager.HandleNewPurchase(request);
 
 		if (purchase != null)
 			return Response.status(Response.Status.CREATED).entity(purchase.Id).build();
